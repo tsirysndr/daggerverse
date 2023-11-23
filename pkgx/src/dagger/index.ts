@@ -1,4 +1,4 @@
 import pipeline from "./pipeline.ts";
-import { install } from "./jobs.ts";
+import { install, jobDescriptions } from "./jobs.ts";
 
-export { pipeline, install };
+export { pipeline, install, jobDescriptions };
