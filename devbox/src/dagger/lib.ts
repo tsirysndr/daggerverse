@@ -48,6 +48,6 @@ export const devboxBase = (client: Client, name: string) =>
     .withExec([
       "sh",
       "-c",
-      `echo 'eval "$(devbox global shellenv)"' >> ~/.bashrc`,
+      `echo 'eval "$(devbox global shellenv --recompute)"' >> ~/.bashrc`,
     ])
     .withExec(["devbox", "version"]);
