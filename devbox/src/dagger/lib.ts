@@ -19,6 +19,7 @@ export const nixBase = (client: Client, name: string) =>
     .from("ubuntu:latest")
     .withExec(["apt-get", "update"])
     .withExec(["apt-get", "install", "-y", "curl"])
+    .withMountedCache("/nix/store", client.cacheVolume("nix-store"))
     .withExec([
       "sh",
       "-c",
@@ -43,7 +44,7 @@ export const devboxBase = (client: Client, name: string) =>
     .withExec(["adduser", "--disabled-password", "devbox"])
     .withExec(["addgroup", "devbox", "nixbld"])
     .withEnvVariable("FORCE", "1")
-    .withEnvVariable("DEVBOX_DEBUG", "1")
+    // .withEnvVariable("DEVBOX_DEBUG", "1")
     .withExec(["sh", "-c", "curl -fsSL https://get.jetpack.io/devbox | bash"])
     .withExec([
       "sh",
