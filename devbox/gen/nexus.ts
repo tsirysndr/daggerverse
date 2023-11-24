@@ -43,20 +43,32 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
   Query: { // field return type
-    setupNix: string | null; // String
+    dev: string | null; // String
+    install: string | null; // String
+    run: string | null; // String
   }
 }
 
 export interface NexusGenFieldTypeNames {
   Query: { // field return type name
-    setupNix: 'String'
+    dev: 'String'
+    install: 'String'
+    run: 'String'
   }
 }
 
 export interface NexusGenArgTypes {
   Query: {
-    setupNix: { // args
+    dev: { // args
       src?: string | null; // String
+    }
+    install: { // args
+      pkgs: string[]; // [String!]!
+      src?: string | null; // String
+    }
+    run: { // args
+      command: string; // String!
+      src: string; // String!
     }
   }
 }

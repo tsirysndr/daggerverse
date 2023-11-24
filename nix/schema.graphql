@@ -3,5 +3,5 @@
 
 
 type Query {
-  hello(src: String): String
+  setupNix(src: String): String
 }

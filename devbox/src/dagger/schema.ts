@@ -5,25 +5,34 @@ import {
   join,
   resolve,
   stringArg,
-  list,
   nonNull,
+  list,
 } from "../../deps.ts";
 
-import { install, dev } from "./jobs.ts";
+import { run, dev, install } from "./jobs.ts";
 
 const Query = queryType({
   definition(t) {
-    t.string("install", {
+    t.string("run", {
       args: {
-        pkgs: nonNull(list(nonNull(stringArg()))),
+        src: nonNull(stringArg()),
+        command: nonNull(stringArg()),
       },
-      resolve: async (_root, args, _ctx) => await install(args.pkgs),
+      resolve: async (_root, args, _ctx) => await run(args.src, args.command),
     });
     t.string("dev", {
       args: {
         src: stringArg(),
       },
       resolve: async (_root, args, _ctx) => await dev(args.src || undefined),
+    });
+    t.string("install", {
+      args: {
+        src: stringArg(),
+        pkgs: nonNull(list(nonNull(stringArg()))),
+      },
+      resolve: async (_root, args, _ctx) =>
+        await install(args.src || undefined, args.pkgs),
     });
   },
 });
@@ -37,9 +46,12 @@ const schema = makeSchema({
 });
 
 schema.description = JSON.stringify({
-  install: "container",
-  dev: "container",
+  "run.src": "directory",
   "dev.src": "directory",
+  "install.src": "directory",
+  run: "container",
+  dev: "container",
+  install: "container",
 });
 
 export { schema };
