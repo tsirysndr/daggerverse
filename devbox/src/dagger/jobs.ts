@@ -18,8 +18,7 @@ export const run = async (src: string | Directory = ".", command: string) => {
     const ctr = devboxBase(client, Job.run)
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["bash", "-c", `devbox run -- ${command}`])
-      .withEntrypoint(["bash", "-i"]);
+      .withExec(["bash", "-c", `devbox run -- ${command}`]);
 
     await ctr.stdout();
     id = await ctr.id();
@@ -34,8 +33,7 @@ export const dev = async (src: string | Directory | undefined = ".") => {
     const context = getDirectory(client, src);
     const ctr = devboxBase(client, Job.dev)
       .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withEntrypoint(["bash", "-i"]);
+      .withWorkdir("/app");
 
     await ctr.stdout();
     id = await ctr.id();
@@ -54,8 +52,7 @@ export const install = async (
     const ctr = devboxBase(client, Job.install)
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["devbox", "global", "add", ...pkgs])
-      .withEntrypoint(["bash", "-i"]);
+      .withExec(["devbox", "global", "add", ...pkgs]);
 
     await ctr.stdout();
     id = await ctr.id();
