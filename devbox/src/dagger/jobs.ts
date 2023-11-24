@@ -17,7 +17,8 @@ export const run = async (src: string | Directory = ".", command: string) => {
 
     const ctr = client
       .container({
-        id: (await setupNix()) as ContainerID,
+        // deno-lint-ignore no-explicit-any
+        id: (await setupNix(src as any)) as ContainerID,
       })
       .pipeline(Job.run)
       .withExec(["adduser", "--disabled-password", "devbox"])
@@ -48,7 +49,8 @@ export const dev = async (src: string | Directory | undefined = ".") => {
     const context = getDirectory(client, src);
     const ctr = client
       .container({
-        id: (await setupNix()) as ContainerID,
+        // deno-lint-ignore no-explicit-any
+        id: (await setupNix(src as any)) as ContainerID,
       })
       .pipeline(Job.dev)
       .withExec(["adduser", "--disabled-password", "devbox"])
@@ -81,7 +83,8 @@ export const install = async (
     const context = getDirectory(client, src);
     const ctr = client
       .container({
-        id: (await setupNix()) as ContainerID,
+        // deno-lint-ignore no-explicit-any
+        id: (await setupNix(src as any)) as ContainerID,
       })
       .pipeline(Job.install)
       .withExec(["adduser", "--disabled-password", "devbox"])
