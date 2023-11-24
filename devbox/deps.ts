@@ -52,8 +52,6 @@ export type {
   ConnectOpts,
 } from "https://sdk.fluentci.io/v0.3.0/mod.ts";
 
-export { setupNix } from "https://cdn.jsdelivr.net/gh/tsirysndr/daggerverse/nix/mod.ts";
-
 export * as FluentGitlabCI from "https://deno.land/x/fluent_gitlab_ci@v0.4.2/mod.ts";
 export * as FluentGithubActions from "https://deno.land/x/fluent_github_actions@v0.2.1/mod.ts";
 export * as FluentCircleCI from "https://deno.land/x/fluent_circleci@v0.2.5/mod.ts";

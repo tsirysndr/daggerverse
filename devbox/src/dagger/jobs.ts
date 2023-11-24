@@ -1,6 +1,6 @@
-import Client, { setupNix, ContainerID, Directory } from "../../deps.ts";
+import Client, { Directory } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
-import { getDirectory } from "./lib.ts";
+import { getDirectory, devboxBase } from "./lib.ts";
 
 export enum Job {
   run = "run",
@@ -15,22 +15,7 @@ export const run = async (src: string | Directory = ".", command: string) => {
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
 
-    const ctr = client
-      .container({
-        // deno-lint-ignore no-explicit-any
-        id: (await setupNix(src as any)) as ContainerID,
-      })
-      .pipeline(Job.run)
-      .withExec(["adduser", "--disabled-password", "devbox"])
-      .withExec(["addgroup", "devbox", "nixbld"])
-      .withEnvVariable("FORCE", "1")
-      .withExec(["sh", "-c", "curl -fsSL https://get.jetpack.io/devbox | bash"])
-      .withExec([
-        "sh",
-        "-c",
-        `echo 'eval "$(devbox global shellenv)"' >> ~/.bashrc`,
-      ])
-      .withExec(["devbox", "version"])
+    const ctr = devboxBase(client, Job.run)
       .withDirectory("/app", context)
       .withWorkdir("/app")
       .withExec(["bash", "-c", `devbox run -- ${command}`])
@@ -47,22 +32,7 @@ export const dev = async (src: string | Directory | undefined = ".") => {
   let id = "";
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
-    const ctr = client
-      .container({
-        // deno-lint-ignore no-explicit-any
-        id: (await setupNix(src as any)) as ContainerID,
-      })
-      .pipeline(Job.dev)
-      .withExec(["adduser", "--disabled-password", "devbox"])
-      .withExec(["addgroup", "devbox", "nixbld"])
-      .withEnvVariable("FORCE", "1")
-      .withExec(["sh", "-c", "curl -fsSL https://get.jetpack.io/devbox | bash"])
-      .withExec([
-        "sh",
-        "-c",
-        `echo 'eval "$(devbox global shellenv)"' >> ~/.bashrc`,
-      ])
-      .withExec(["devbox", "version"])
+    const ctr = devboxBase(client, Job.dev)
       .withDirectory("/app", context)
       .withWorkdir("/app")
       .withEntrypoint(["bash", "-i"]);
@@ -81,22 +51,7 @@ export const install = async (
   let id = "";
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
-    const ctr = client
-      .container({
-        // deno-lint-ignore no-explicit-any
-        id: (await setupNix(src as any)) as ContainerID,
-      })
-      .pipeline(Job.install)
-      .withExec(["adduser", "--disabled-password", "devbox"])
-      .withExec(["addgroup", "devbox", "nixbld"])
-      .withEnvVariable("FORCE", "1")
-      .withExec(["sh", "-c", "curl -fsSL https://get.jetpack.io/devbox | bash"])
-      .withExec([
-        "sh",
-        "-c",
-        `echo 'eval "$(devbox global shellenv)"' >> ~/.bashrc`,
-      ])
-      .withExec(["devbox", "version"])
+    const ctr = devboxBase(client, Job.install)
       .withDirectory("/app", context)
       .withWorkdir("/app")
       .withExec(["devbox", "global", "add", ...pkgs])
