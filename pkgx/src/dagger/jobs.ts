@@ -35,7 +35,7 @@ export const dev = async (src: string | Directory | undefined = ".") => {
       .from("pkgxdev/pkgx:latest")
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withEntrypoint(["dev"]);
+      .withExec(["bash", "-c", "echo dev >> ~/.bashrc"]);
 
     const result = await ctr.stdout();
     console.log(result);
