@@ -8,16 +8,24 @@ Returns a Container with the package specified in the [pkgx](https://pkgx.sh/) a
 
 ```sh
 dagger shell -m github.com/tsirysndr/daggerverse/pkgx install --pkgs <packages>
+dagger shell -m github.com/tsirysndr/daggerverse/pkgx dev --src <source>
 ```
 
 ## Example
 
 ```sh
 dagger shell -m github.com/tsirysndr/daggerverse/pkgx install --pkgs jq,gh
+dagger shell -m github.com/tsirysndr/daggerverse/pkgx dev --src .
 ```
 
-## Arguments
+## Install Arguments
 
 | Name | Description         | Required |
 | ---- | ------------------- | -------- |
 | pkgs | Packages to install | true     |
+
+## Dev Arguments
+
+| Name | Description         | Required |
+| ---- | ------------------- | -------- |
+| src  | Directory to mount  | true     |

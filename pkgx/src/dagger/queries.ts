@@ -5,3 +5,9 @@ export const install = gql`
     install(pkgs: $pkgs)
   }
 `;
+
+export const dev = gql`
+  query Dev($src: String) {
+    dev(src: $src)
+  }
+`;

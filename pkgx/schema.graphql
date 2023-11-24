@@ -3,5 +3,6 @@
 
 
 type Query {
+  dev(src: String): String
   install(pkgs: [String!]!): String
 }

@@ -8,19 +8,19 @@ export default async function pipeline(src = ".", args: string[] = []) {
     await uploadContext(src, exclude);
   }
   if (args.length > 0) {
-    await runSpecificJobs(args as jobs.Job[], args);
+    await runSpecificJobs(args as jobs.Job[], args as string[] & string);
     return;
   }
 
   await install(args);
 }
 
-async function runSpecificJobs(args: jobs.Job[], pkgs: string[]) {
+async function runSpecificJobs(args: jobs.Job[], pkgsOrSrc: string[] & string) {
   for (const name of args) {
     const job = runnableJobs[name];
     if (!job) {
       throw new Error(`Job ${name} not found`);
     }
-    await job(pkgs);
+    await job(pkgsOrSrc);
   }
 }
