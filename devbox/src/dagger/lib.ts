@@ -19,15 +19,11 @@ export const nixBase = (client: Client, name: string) =>
     .from("ubuntu:latest")
     .withExec(["apt-get", "update"])
     .withExec(["apt-get", "install", "-y", "curl"])
-    .withMountedCache("/nix/store", client.cacheVolume("nix-store"))
+    .withMountedCache("/nix", client.cacheVolume("nix-cache"))
     .withExec([
       "sh",
       "-c",
-      `curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install linux \
-    --extra-conf "sandbox = false" \
-    --init none \
-    --no-confirm
-  `,
+      '[ ! -f "/nix/receipt.json" ] && curl --proto =https --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install linux --extra-conf "sandbox = false" --init none --no-confirm; exit 0',
     ])
     .withExec([
       "sed",
