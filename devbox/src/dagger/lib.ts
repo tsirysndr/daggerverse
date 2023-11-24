@@ -43,6 +43,7 @@ export const devboxBase = (client: Client, name: string) =>
     .withExec(["adduser", "--disabled-password", "devbox"])
     .withExec(["addgroup", "devbox", "nixbld"])
     .withEnvVariable("FORCE", "1")
+    .withEnvVariable("DEVBOX_DEBUG", "1")
     .withExec(["sh", "-c", "curl -fsSL https://get.jetpack.io/devbox | bash"])
     .withExec([
       "sh",
