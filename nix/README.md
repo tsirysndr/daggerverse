@@ -20,4 +20,4 @@ dagger shell -m github.com/tsirysndr/daggerverse/nix setup-nix
 
 | Name | Description                                                    | Required |
 | ---- | -------------------------------------------------------------- | -------- |
-| src  | Optional context directory. Defaults to the current directory. | false    |
+| src  | Optional context directory. | false    |

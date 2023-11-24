@@ -8,11 +8,11 @@ export enum Job {
 
 export const exclude = [];
 
-export const setupNix = async (src: string | Directory = ".") => {
+export const setupNix = async (src?: string | Directory) => {
   let id = "";
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
-    const ctr = client
+    let ctr = client
       .pipeline(Job.setupNix)
       .container()
       .from("ubuntu:latest")
@@ -35,9 +35,11 @@ export const setupNix = async (src: string | Directory = ".") => {
       ])
       .withEnvVariable("PATH", "${PATH}:/nix/var/nix/profiles/default/bin", {
         expand: true,
-      })
-      .withDirectory("/app", context)
-      .withWorkdir("/app");
+      });
+
+    if (src) {
+      ctr = ctr.withDirectory("/app", context).withWorkdir("/app");
+    }
 
     await ctr.stdout();
     id = await ctr.id();
