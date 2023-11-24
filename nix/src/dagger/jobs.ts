@@ -11,7 +11,6 @@ export const exclude = [];
 export const setupNix = async (src?: string | Directory) => {
   let id = "";
   await connect(async (client: Client) => {
-    const context = getDirectory(client, src);
     let ctr = client
       .pipeline(Job.setupNix)
       .container()
@@ -38,6 +37,7 @@ export const setupNix = async (src?: string | Directory) => {
       });
 
     if (src) {
+      const context = getDirectory(client, src);
       ctr = ctr.withDirectory("/app", context).withWorkdir("/app");
     }
 
