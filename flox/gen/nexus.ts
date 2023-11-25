@@ -61,7 +61,6 @@ export interface NexusGenArgTypes {
       src?: string | null; // String
     }
     install: { // args
-      environment: string; // String!
       pkgs: string[]; // [String!]!
       src?: string | null; // String
     }

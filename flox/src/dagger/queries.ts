@@ -7,7 +7,7 @@ export const dev = gql`
 `;
 
 export const install = gql`
-  query Install($src: String, $environment: String!, $pkgs: [String!]!) {
-    install(src: $src, environment: $environment, pkgs: $pkgs)
+  query Install($src: String, $pkgs: [String!]!) {
+    install(src: $src, environment: pkgs: $pkgs)
   }
 `;

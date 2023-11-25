@@ -22,11 +22,10 @@ const Query = queryType({
     t.string("install", {
       args: {
         src: stringArg(),
-        environment: nonNull(stringArg()),
         pkgs: nonNull(list(nonNull(stringArg()))),
       },
       resolve: async (_root, args, _ctx) =>
-        await install(args.src || undefined, args.environment, args.pkgs),
+        await install(args.src || undefined, args.pkgs),
     });
   },
 });

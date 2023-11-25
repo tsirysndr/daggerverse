@@ -26,7 +26,6 @@ export const dev = async (src: string | Directory | undefined = ".") => {
 
 export const install = async (
   src: string | Directory | undefined = ".",
-  environment: string,
   pkgs: string[]
 ) => {
   let id = "";
@@ -35,8 +34,7 @@ export const install = async (
     const ctr = floxBase(client, Job.install)
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["flox", "create", "-e", environment])
-      .withExec(["flox", "install", "-e", environment, ...pkgs]);
+      .withExec(["flox", "install", ...pkgs]);
 
     await ctr.stdout();
     id = await ctr.id();
@@ -47,7 +45,7 @@ export const install = async (
 
 export type JobExec =
   | ((src?: string) => Promise<string>)
-  | ((src: string, environment: string, pkgs: string[]) => Promise<string>);
+  | ((src: string, pkgs: string[]) => Promise<string>);
 
 export const runnableJobs: Record<Job, JobExec> = {
   [Job.dev]: dev,
