@@ -8,11 +8,11 @@ Returns a Container with [flox](https://flox.dev/) installed.
 
 ```sh
 dagger shell -m github.com/tsirysndr/daggerverse/flox dev
-dagger shell -m github.com/tsirysndr/daggerverse/devbox install --environment <environment> -pkgs <packages>
+dagger shell -m github.com/tsirysndr/daggerverse/devbox install -pkgs <packages>
 ```
 
 ## Example
 
 ```sh
-dagger shell -m github.com/tsirysndr/daggerverse/flox install --environment demo --pkgs gh,jq
+dagger shell -m github.com/tsirysndr/daggerverse/flox install --pkgs gh,jq
 ```
