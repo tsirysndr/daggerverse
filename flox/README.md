@@ -14,5 +14,5 @@ dagger shell -m github.com/tsirysndr/daggerverse/devbox install --environment <e
 ## Example
 
 ```sh
-dagger shell -m github.com/tsirysndr/daggerverse/flox install --environment demo --pkgs git,curl
+dagger shell -m github.com/tsirysndr/daggerverse/flox install --environment demo --pkgs gh,jq
 ```
