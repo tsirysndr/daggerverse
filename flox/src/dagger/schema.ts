@@ -9,17 +9,10 @@ import {
   list,
 } from "../../deps.ts";
 
-import { run, dev, install } from "./jobs.ts";
+import { dev, install } from "./jobs.ts";
 
 const Query = queryType({
   definition(t) {
-    t.string("run", {
-      args: {
-        src: nonNull(stringArg()),
-        command: nonNull(stringArg()),
-      },
-      resolve: async (_root, args, _ctx) => await run(args.src, args.command),
-    });
     t.string("dev", {
       args: {
         src: stringArg(),
@@ -29,10 +22,11 @@ const Query = queryType({
     t.string("install", {
       args: {
         src: stringArg(),
+        environment: nonNull(stringArg()),
         pkgs: nonNull(list(nonNull(stringArg()))),
       },
       resolve: async (_root, args, _ctx) =>
-        await install(args.src || undefined, args.pkgs),
+        await install(args.src || undefined, args.environment, args.pkgs),
     });
   },
 });

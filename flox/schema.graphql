@@ -4,6 +4,5 @@
 
 type Query {
   dev(src: String): String
-  install(pkgs: [String!]!, src: String): String
-  run(command: String!, src: String!): String
+  install(environment: String!, pkgs: [String!]!, src: String): String
 }

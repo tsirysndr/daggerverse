@@ -45,7 +45,6 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     dev: string | null; // String
     install: string | null; // String
-    run: string | null; // String
   }
 }
 
@@ -53,7 +52,6 @@ export interface NexusGenFieldTypeNames {
   Query: { // field return type name
     dev: 'String'
     install: 'String'
-    run: 'String'
   }
 }
 
@@ -63,12 +61,9 @@ export interface NexusGenArgTypes {
       src?: string | null; // String
     }
     install: { // args
+      environment: string; // String!
       pkgs: string[]; // [String!]!
       src?: string | null; // String
-    }
-    run: { // args
-      command: string; // String!
-      src: string; // String!
     }
   }
 }
