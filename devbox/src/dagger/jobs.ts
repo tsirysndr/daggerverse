@@ -1,4 +1,4 @@
-import Client, { Directory } from "../../deps.ts";
+import Client, { Directory, Container } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory, devboxBase } from "./lib.ts";
 
@@ -10,7 +10,17 @@ export enum Job {
 
 export const exclude = [];
 
-export const run = async (src: string | Directory = ".", command: string) => {
+/**
+ * @function
+ * @description Run a command
+ * @param src {string | Directory | undefined}
+ * @param command {string}
+ * @returns {string}
+ */
+export async function run(
+  src: string | Directory = ".",
+  command: string
+): Promise<Container | string> {
   let id = "";
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
@@ -25,9 +35,17 @@ export const run = async (src: string | Directory = ".", command: string) => {
   });
 
   return id;
-};
+}
 
-export const dev = async (src: string | Directory | undefined = ".") => {
+/**
+ * @function
+ * @description Return a container with flox installed
+ * @param src {string | Directory | undefined}
+ * @returns {string}
+ */
+export async function dev(
+  src: string | Directory | undefined = "."
+): Promise<Container | string> {
   let id = "";
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
@@ -40,12 +58,19 @@ export const dev = async (src: string | Directory | undefined = ".") => {
   });
 
   return id;
-};
+}
 
-export const install = async (
+/**
+ * @function
+ * @description Return a container with flox installed
+ * @param src {string | Directory | undefined}
+ * @param pkgs {string[]}
+ * @returns {string}
+ */
+export async function install(
   src: string | Directory | undefined = ".",
   pkgs: string[]
-) => {
+): Promise<Container | string> {
   let id = "";
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
@@ -59,12 +84,12 @@ export const install = async (
   });
 
   return id;
-};
+}
 
 export type JobExec =
-  | ((src?: string) => Promise<string>)
-  | ((src: string, command: string) => Promise<string>)
-  | ((src: string, pkgs: string[]) => Promise<string>);
+  | ((src?: string) => Promise<Container | string>)
+  | ((src: string, command: string) => Promise<Container | string>)
+  | ((src: string, pkgs: string[]) => Promise<Container | string>);
 
 export const runnableJobs: Record<Job, JobExec> = {
   [Job.run]: run,
