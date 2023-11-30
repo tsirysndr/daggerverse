@@ -14,9 +14,9 @@ export const exclude = [];
  * @param src {string | Directory | undefined}
  * @returns {string}
  */
-export const setupNix = async (
+export async function setupNix(
   src?: string | Directory
-): Promise<Container | string> => {
+): Promise<Container | string> {
   let id = "";
   await connect(async (client: Client) => {
     let ctr = client
@@ -54,7 +54,7 @@ export const setupNix = async (
   });
 
   return id;
-};
+}
 
 export type JobExec = (src?: string) =>
   | Promise<Container | string>
