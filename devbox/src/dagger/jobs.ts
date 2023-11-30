@@ -63,8 +63,8 @@ export async function dev(
 /**
  * @function
  * @description Install packages in a Docker Container and return it
- * @param src {string | Directory | undefined}
- * @param pkgs {string[]}
+ * @param {string | Directory | undefined} src
+ * @param {string[]} pkgs
  * @returns {string}
  */
 export async function install(

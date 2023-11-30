@@ -11,7 +11,7 @@ export const exclude = [];
 /**
  * @function
  * @description Setup Nix with DeterminateSystems Nix Installer
- * @param src {string | Directory | undefined}
+ * @param {string | Directory | undefined} src
  * @returns {string}
  */
 export async function setupNix(

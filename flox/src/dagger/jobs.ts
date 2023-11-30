@@ -12,7 +12,7 @@ export const exclude = [];
 /**
  * @function
  * @description Return a container with flox installed
- * @param src {string | Directory | undefined}
+ * @param {string | Directory | undefined} src
  * @returns {string}
  */
 export async function dev(

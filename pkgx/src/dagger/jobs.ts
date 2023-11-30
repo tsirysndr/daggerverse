@@ -12,7 +12,7 @@ export const exclude = [];
 /**
  * @function
  * @description Install packages in a Docker Container and return it
- * @param pkgs {string[]}
+ * @param {string[]} pkgs
  * @returns {string}
  */
 export async function install(pkgs: string[]): Promise<Container | string> {
@@ -34,7 +34,7 @@ export async function install(pkgs: string[]): Promise<Container | string> {
 /**
  * @function
  * @description Activate developer environment in a Docker Container and return it
- * @param src {string | Directory | undefined}
+ * @param {string | Directory | undefined} src
  * @returns {string}
  */
 export async function dev(
