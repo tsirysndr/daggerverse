@@ -1,4 +1,4 @@
-import Client, { Directory } from "../../deps.ts";
+import Client, { Directory, Container } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory } from "./lib.ts";
 
@@ -8,7 +8,15 @@ export enum Job {
 
 export const exclude = [];
 
-export const setupNix = async (src?: string | Directory) => {
+/**
+ * @function
+ * @description Setup Nix with DeterminateSystems Nix Installer
+ * @param src {string | Directory | undefined}
+ * @returns {string}
+ */
+export const setupNix = async (
+  src?: string | Directory
+): Promise<Container | string> => {
   let id = "";
   await connect(async (client: Client) => {
     let ctr = client
@@ -49,13 +57,13 @@ export const setupNix = async (src?: string | Directory) => {
 };
 
 export type JobExec = (src?: string) =>
-  | Promise<string>
+  | Promise<Container | string>
   | ((
       src?: string,
       options?: {
         ignore: string[];
       }
-    ) => Promise<string>);
+    ) => Promise<Container | string>);
 
 export const runnableJobs: Record<Job, JobExec> = {
   [Job.setupNix]: setupNix,
