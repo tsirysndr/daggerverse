@@ -1,4 +1,4 @@
-import Client, { Directory } from "../../deps.ts";
+import Client, { Directory, Container } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory, floxBase } from "./lib.ts";
 
@@ -9,7 +9,15 @@ export enum Job {
 
 export const exclude = [];
 
-export const dev = async (src: string | Directory | undefined = ".") => {
+/**
+ * @function
+ * @description Return a container with flox installed
+ * @param src {string | Directory | undefined}
+ * @returns {string}
+ */
+export async function dev(
+  src: string | Directory | undefined = "."
+): Promise<Container | string> {
   let id = "";
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
@@ -22,12 +30,19 @@ export const dev = async (src: string | Directory | undefined = ".") => {
   });
 
   return id;
-};
+}
 
-export const install = async (
+/**
+ * @function
+ * @description Install packages in a Docker Container and return it
+ * @param src {string | Directory | undefined}
+ * @param pkgs {string[]}
+ * @returns {string}
+ */
+export async function install(
   src: string | Directory | undefined = ".",
   pkgs: string[]
-) => {
+): Promise<Container | string> {
   let id = "";
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
@@ -41,11 +56,11 @@ export const install = async (
   });
 
   return id;
-};
+}
 
 export type JobExec =
-  | ((src?: string) => Promise<string>)
-  | ((src: string, pkgs: string[]) => Promise<string>);
+  | ((src?: string) => Promise<Container | string>)
+  | ((src: string, pkgs: string[]) => Promise<Container | string>);
 
 export const runnableJobs: Record<Job, JobExec> = {
   [Job.dev]: dev,
