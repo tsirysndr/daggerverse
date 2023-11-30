@@ -39,7 +39,7 @@ export async function run(
 
 /**
  * @function
- * @description Return a container with flox installed
+ * @description Return a container with a dev environment
  * @param src {string | Directory | undefined}
  * @returns {string}
  */
@@ -62,7 +62,7 @@ export async function dev(
 
 /**
  * @function
- * @description Return a container with flox installed
+ * @description Install packages in a Docker Container and return it
  * @param src {string | Directory | undefined}
  * @param pkgs {string[]}
  * @returns {string}
