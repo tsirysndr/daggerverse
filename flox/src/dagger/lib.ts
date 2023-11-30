@@ -18,8 +18,8 @@ export const nixBase = (client: Client, name: string) =>
     .from("ubuntu:latest")
     .withExec(["apt-get", "update"])
     .withExec(["apt-get", "install", "-y", "curl", "git"])
-    .withMountedCache("/nix", client.cacheVolume("nix_cache"))
-    .withMountedCache("/etc/nix", client.cacheVolume("nix_config"))
+    .withMountedCache("/nix", client.cacheVolume("nix-cache-dir"))
+    .withMountedCache("/etc/nix", client.cacheVolume("nix-etc-cache"))
     .withExec([
       "sh",
       "-c",
