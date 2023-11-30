@@ -12,15 +12,6 @@ import gql from "https://esm.sh/graphql-tag@2.12.6";
 export { gql };
 
 export {
-  arg,
-  queryType,
-  stringArg,
-  intArg,
-  list,
-  nonNull,
-  makeSchema,
-} from "npm:nexus";
-export {
   dirname,
   join,
   resolve,

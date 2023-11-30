@@ -1,4 +1,4 @@
-import Client, { Directory } from "../../deps.ts";
+import Client, { Directory, Container } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory } from "./lib.ts";
 
@@ -9,7 +9,13 @@ export enum Job {
 
 export const exclude = [];
 
-export const install = async (pkgs: string[]) => {
+/**
+ * @function
+ * @description Install packages in a Docker Container and return it
+ * @param pkgs {string[]}
+ * @returns {string}
+ */
+export async function install(pkgs: string[]): Promise<Container | string> {
   let id = "";
   await connect(async (client: Client) => {
     const ctr = client
@@ -23,9 +29,17 @@ export const install = async (pkgs: string[]) => {
     id = await ctr.id();
   });
   return id;
-};
+}
 
-export const dev = async (src: string | Directory | undefined = ".") => {
+/**
+ * @function
+ * @description Activate developer environment in a Docker Container and return it
+ * @param src {string | Directory | undefined}
+ * @returns {string}
+ */
+export async function dev(
+  src: string | Directory | undefined = "."
+): Promise<Container | string> {
   let id = "";
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
@@ -42,11 +56,11 @@ export const dev = async (src: string | Directory | undefined = ".") => {
     id = await ctr.id();
   });
   return id;
-};
+}
 
 export type JobExec =
-  | ((pkgs: string[]) => Promise<string>)
-  | ((src?: string) => Promise<string>);
+  | ((pkgs: string[]) => Promise<Container | string>)
+  | ((src?: string) => Promise<Container | string>);
 
 export const runnableJobs: Record<Job, JobExec> = {
   [Job.install]: install,
