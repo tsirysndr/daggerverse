@@ -26,7 +26,7 @@ export async function dev(
       .from("pkgxdev/pkgx:latest")
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["pkgx", "install", "rtx"])
+      .withExec(["pkgx", "install", "rtx", "git"])
       .withExec(["sh", "-c", `echo 'eval "$(rtx activate bash)"' >> ~/.bashrc`])
       .withExec(["bash", "-c", "source ~/.bashrc"]);
 
