@@ -28,7 +28,8 @@ export async function dev(
       .withWorkdir("/app")
       .withExec(["pkgx", "install", "rtx", "git"])
       .withExec(["sh", "-c", `echo 'eval "$(rtx activate bash)"' >> ~/.bashrc`])
-      .withExec(["bash", "-c", "source ~/.bashrc"]);
+      .withExec(["bash", "-c", "source ~/.bashrc"])
+      .withExec(["rtx", "install"]);
 
     const result = await ctr.stdout();
     console.log(result);
