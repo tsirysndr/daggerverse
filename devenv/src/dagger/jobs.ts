@@ -5,6 +5,7 @@ import { getDirectory, devenvBase } from "./lib.ts";
 export enum Job {
   run = "run",
   dev = "dev",
+  ci = "ci",
 }
 
 export const exclude = [];
@@ -59,6 +60,30 @@ export async function dev(
   return id;
 }
 
+/**
+ * @function
+ * @description Build the devenv shell and run any pre-commit hooks
+ * @param src {string | Directory | undefined}
+ * @returns {string}
+ */
+export async function ci(
+  src: string | Directory | undefined = "."
+): Promise<Container | string> {
+  let id = "";
+  await connect(async (client: Client) => {
+    const context = getDirectory(client, src);
+    const ctr = devenvBase(client, Job.ci)
+      .withDirectory("/app", context)
+      .withWorkdir("/app")
+      .withExec(["bash", "-c", "devenv ci"]);
+
+    await ctr.stdout();
+    id = await ctr.id();
+  });
+
+  return id;
+}
+
 export type JobExec =
   | ((src?: string) => Promise<Container | string>)
   | ((src: string, command: string) => Promise<Container | string>);
@@ -66,9 +91,11 @@ export type JobExec =
 export const runnableJobs: Record<Job, JobExec> = {
   [Job.run]: run,
   [Job.dev]: dev,
+  [Job.ci]: ci,
 };
 
 export const jobDescriptions: Record<Job, string> = {
   [Job.run]: "Run a command",
   [Job.dev]: "Return a container with a dev environment",
+  [Job.ci]: "Build the devenv shell and run any pre-commit hooks",
 };
