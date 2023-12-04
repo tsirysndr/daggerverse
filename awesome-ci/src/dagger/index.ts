@@ -15,6 +15,7 @@ import {
   syntaxBash,
   syntaxCss,
   syntaxJs,
+  syntaxJson,
   jobDescriptions,
 } from "./jobs.ts";
 
@@ -35,5 +36,6 @@ export {
   syntaxBash,
   syntaxCss,
   syntaxJs,
+  syntaxJson,
   jobDescriptions,
 };
