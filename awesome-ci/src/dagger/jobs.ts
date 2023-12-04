@@ -11,6 +11,7 @@ export enum Job {
   fileEmpty = "fileEmpty",
   fileNullByteChar = "fileNullByteChar",
   fileTrailingNewline = "fileTrailingNewline",
+  fileTrailingSingleNewline = "fileTrailingSingleNewline",
 }
 
 export const exclude = [];
@@ -223,6 +224,32 @@ export async function fileTrailingNewline(
   return "Done";
 }
 
+/**
+ * @function
+ * @description Scan files and check if they contain exactly one trailing newline.
+ * @param {string | Directory | undefined} src
+ * @param {string} path
+ * @returns {string}
+ */
+export async function fileTrailingSingleNewline(
+  src: string | Directory | undefined = ".",
+  path = "."
+): Promise<string> {
+  await connect(async (client: Client) => {
+    const context = getDirectory(client, src);
+    const ctr = client
+      .pipeline(Job.fileCr)
+      .container()
+      .from("cytopia/awesome-ci")
+      .withDirectory("/app", context)
+      .withWorkdir("/app")
+      .withExec(["file-trailing-single-newline", `--path=${path}`]);
+
+    await ctr.stdout();
+  });
+  return "Done";
+}
+
 export type JobExec = (src?: string) => Promise<Container | string>;
 
 export const runnableJobs: Record<Job, JobExec> = {
@@ -234,6 +261,7 @@ export const runnableJobs: Record<Job, JobExec> = {
   [Job.fileEmpty]: fileEmpty,
   [Job.fileNullByteChar]: fileNullByteChar,
   [Job.fileTrailingNewline]: fileTrailingNewline,
+  [Job.fileTrailingSingleNewline]: fileTrailingSingleNewline,
 };
 
 export const jobDescriptions: Record<Job, string> = {
@@ -250,4 +278,6 @@ export const jobDescriptions: Record<Job, string> = {
     "Scan files and check if they contain a null-byte character (\x00).",
   [Job.fileTrailingNewline]:
     "Scan files and check if they contain a trailing newline.",
+  [Job.fileTrailingSingleNewline]:
+    "Scan files and check if they contain exactly one trailing newline.",
 };

@@ -8,6 +8,7 @@ import {
   fileEmpty,
   fileNullByteChar,
   fileTrailingNewline,
+  fileTrailingSingleNewline,
   jobDescriptions,
 } from "./jobs.ts";
 
@@ -21,5 +22,6 @@ export {
   fileEmpty,
   fileNullByteChar,
   fileTrailingNewline,
+  fileTrailingSingleNewline,
   jobDescriptions,
 };
