@@ -7,6 +7,7 @@ import {
   fileCrlf,
   fileEmpty,
   fileNullByteChar,
+  fileTrailingNewline,
   jobDescriptions,
 } from "./jobs.ts";
 
@@ -19,5 +20,6 @@ export {
   fileCrlf,
   fileEmpty,
   fileNullByteChar,
+  fileTrailingNewline,
   jobDescriptions,
 };
