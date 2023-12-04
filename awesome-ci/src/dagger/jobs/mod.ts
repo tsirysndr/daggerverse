@@ -17,6 +17,7 @@ export enum Job {
   syntaxCss = "syntaxCss",
   syntaxJs = "syntaxJs",
   syntaxJson = "syntaxJson",
+  syntaxMarkdown = "syntaxMarkdown",
 }
 
 export const exclude = [];

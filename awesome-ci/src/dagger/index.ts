@@ -15,6 +15,7 @@ import { syntaxBash } from "./jobs/syntax-bash.ts";
 import { syntaxCss } from "./jobs/syntax-css.ts";
 import { syntaxJs } from "./jobs/syntax-js.ts";
 import { syntaxJson } from "./jobs/syntax-json.ts";
+import { syntaxMarkdown } from "./jobs/syntax-markdown.ts";
 import pipeline from "./pipeline.ts";
 
 export {
@@ -35,5 +36,6 @@ export {
   syntaxCss,
   syntaxJs,
   syntaxJson,
+  syntaxMarkdown,
   jobDescriptions,
 };

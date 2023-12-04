@@ -15,6 +15,7 @@ import { syntaxBash } from "./syntax-bash.ts";
 import { syntaxCss } from "./syntax-css.ts";
 import { syntaxJs } from "./syntax-js.ts";
 import { syntaxJson } from "./syntax-json.ts";
+import { syntaxMarkdown } from "./syntax-markdown.ts";
 
 export const runnableJobs: Record<Job, JobExec> = {
   [Job.dev]: dev,
@@ -33,6 +34,7 @@ export const runnableJobs: Record<Job, JobExec> = {
   [Job.syntaxCss]: syntaxCss,
   [Job.syntaxJs]: syntaxJs,
   [Job.syntaxJson]: syntaxJson,
+  [Job.syntaxMarkdown]: syntaxMarkdown,
 };
 
 export const jobDescriptions: Record<Job, string> = {
@@ -60,4 +62,5 @@ export const jobDescriptions: Record<Job, string> = {
   [Job.syntaxCss]: "Scan CSS files for CSS syntax errors.",
   [Job.syntaxJs]: "Scan JS files for JS syntax errors.",
   [Job.syntaxJson]: "Scan files for JSON syntax errors.",
+  [Job.syntaxMarkdown]: "Scan files for Markdown syntax errors.",
 };
