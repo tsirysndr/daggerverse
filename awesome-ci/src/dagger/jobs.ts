@@ -60,10 +60,14 @@ export async function gitConflicts(
 
     result = await ctr.stdout();
   });
-  return result
-    .replace(/\t/g, "\\t")
-    .replace(/\n/g, "\\n")
-    .replace(/\r/g, "\\r");
+  return (
+    result
+      .replace(/\t/g, "\\t")
+      .replace(/\n/g, "\\n")
+      .replace(/\r/g, "\\r")
+      // deno-lint-ignore no-control-regex
+      .replace(/\x1b\[[0-9;]*m/g, "")
+  );
 }
 
 /**
@@ -90,10 +94,14 @@ export async function gitIgnored(
 
     result = await ctr.stdout();
   });
-  return result
-    .replace(/\t/g, "\\t")
-    .replace(/\n/g, "\\n")
-    .replace(/\r/g, "\\r");
+  return (
+    result
+      .replace(/\t/g, "\\t")
+      .replace(/\n/g, "\\n")
+      .replace(/\r/g, "\\r")
+      // deno-lint-ignore no-control-regex
+      .replace(/\x1b\[[0-9;]*m/g, "")
+  );
 }
 
 export type JobExec = (src?: string) => Promise<Container | string>;
