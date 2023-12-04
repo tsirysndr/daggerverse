@@ -6,6 +6,7 @@ export enum Job {
   dev = "dev",
   gitConflicts = "gitConflicts",
   gitIgnored = "gitIgnored",
+  fileCr = "fileCr",
 }
 
 export const exclude = [];
@@ -88,12 +89,39 @@ export async function gitIgnored(
   return "Done";
 }
 
+/**
+ * @function
+ * @description Scan files and check if they contain CR (Carriage Return only).
+ * @param {string | Directory | undefined} src
+ * @param {string} path
+ * @returns {string}
+ */
+export async function fileCr(
+  src: string | Directory | undefined = ".",
+  path = "."
+): Promise<string> {
+  await connect(async (client: Client) => {
+    const context = getDirectory(client, src);
+    const ctr = client
+      .pipeline(Job.fileCr)
+      .container()
+      .from("cytopia/awesome-ci")
+      .withDirectory("/app", context)
+      .withWorkdir("/app")
+      .withExec(["file-cr", `--path=${path}`]);
+
+    await ctr.stdout();
+  });
+  return "Done";
+}
+
 export type JobExec = (src?: string) => Promise<Container | string>;
 
 export const runnableJobs: Record<Job, JobExec> = {
   [Job.dev]: dev,
   [Job.gitConflicts]: gitConflicts,
   [Job.gitIgnored]: gitIgnored,
+  [Job.fileCr]: fileCr,
 };
 
 export const jobDescriptions: Record<Job, string> = {
@@ -101,4 +129,6 @@ export const jobDescriptions: Record<Job, string> = {
   [Job.gitConflicts]: "Scan files and check if they contain git conflicts.",
   [Job.gitIgnored]:
     "Scan git directory and see if ignored files are still in git cache.",
+  [Job.fileCr]:
+    "Scan files and check if they contain CR (Carriage Return only).",
 };
