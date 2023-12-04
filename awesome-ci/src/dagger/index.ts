@@ -10,6 +10,7 @@ import {
   fileTrailingNewline,
   fileTrailingSingleNewline,
   fileTrailingSpace,
+  fileUtf8,
   jobDescriptions,
 } from "./jobs.ts";
 
@@ -25,5 +26,6 @@ export {
   fileTrailingNewline,
   fileTrailingSingleNewline,
   fileTrailingSpace,
+  fileUtf8,
   jobDescriptions,
 };

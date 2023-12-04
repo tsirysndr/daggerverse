@@ -13,6 +13,7 @@ export enum Job {
   fileTrailingNewline = "fileTrailingNewline",
   fileTrailingSingleNewline = "fileTrailingSingleNewline",
   fileTrailingSpace = "fileTrailingSpace",
+  fileUtf8 = "fileUtf8",
 }
 
 export const exclude = [];
@@ -277,6 +278,32 @@ export async function fileTrailingSpace(
   return "Done";
 }
 
+/**
+ * @function
+ * @description Scan files and check if they have a non UTF-8 encoding.
+ * @param {string | Directory | undefined} src
+ * @param {string} path
+ * @returns {string}
+ */
+export async function fileUtf8(
+  src: string | Directory | undefined = ".",
+  path = "."
+): Promise<string> {
+  await connect(async (client: Client) => {
+    const context = getDirectory(client, src);
+    const ctr = client
+      .pipeline(Job.fileCr)
+      .container()
+      .from("cytopia/awesome-ci")
+      .withDirectory("/app", context)
+      .withWorkdir("/app")
+      .withExec(["file-utf8", `--path=${path}`]);
+
+    await ctr.stdout();
+  });
+  return "Done";
+}
+
 export type JobExec = (src?: string) => Promise<Container | string>;
 
 export const runnableJobs: Record<Job, JobExec> = {
@@ -290,6 +317,7 @@ export const runnableJobs: Record<Job, JobExec> = {
   [Job.fileTrailingNewline]: fileTrailingNewline,
   [Job.fileTrailingSingleNewline]: fileTrailingSingleNewline,
   [Job.fileTrailingSpace]: fileTrailingSpace,
+  [Job.fileUtf8]: fileUtf8,
 };
 
 export const jobDescriptions: Record<Job, string> = {
@@ -310,4 +338,5 @@ export const jobDescriptions: Record<Job, string> = {
     "Scan files and check if they contain exactly one trailing newline.",
   [Job.fileTrailingSpace]:
     "Scan files and check if they contain trailing whitespaces.",
+  [Job.fileUtf8]: "Scan files and check if they have a non UTF-8 encoding.",
 };
