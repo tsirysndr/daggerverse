@@ -51,21 +51,35 @@ export async function dev(
  * @description Scan files and check if they contain git conflicts.
  * @param {string | Directory | undefined} src
  * @param {string} path
+ * @param {string} ignore
+ * @param {string} extensions
  * @returns {string}
  */
 export async function gitConflicts(
   src: string | Directory | undefined = ".",
-  path = "."
+  path = ".",
+  ignore?: string,
+  extensions?: string
 ): Promise<string> {
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
+    const args = [];
+
+    if (ignore) {
+      args.push(`--ignore="${ignore}"`);
+    }
+
+    if (extensions) {
+      args.push(`--extensions="${extensions}"`);
+    }
+
     const ctr = client
       .pipeline(Job.gitConflicts)
       .container()
       .from("cytopia/awesome-ci")
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["git-conflicts", `--path=${path}`]);
+      .withExec(["git-conflicts", `--path=${path}`, ...args]);
 
     await ctr.stdout();
   });
@@ -77,21 +91,35 @@ export async function gitConflicts(
  * @description Scan git directory and see if ignored files are still in git cache.
  * @param {string | Directory | undefined} src
  * @param {string} path
+ * @param {string} ignore
+ * @param {string} extensions
  * @returns {string}
  */
 export async function gitIgnored(
   src: string | Directory | undefined = ".",
-  path = "."
+  path = ".",
+  ignore?: string,
+  extensions?: string
 ): Promise<string> {
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
+    const args = [];
+
+    if (ignore) {
+      args.push(`--ignore="${ignore}"`);
+    }
+
+    if (extensions) {
+      args.push(`--extensions="${extensions}"`);
+    }
+
     const ctr = client
       .pipeline(Job.gitIgnored)
       .container()
       .from("cytopia/awesome-ci")
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["git-ignored", `--path=${path}`]);
+      .withExec(["git-ignored", `--path=${path}`, ...args]);
 
     await ctr.stdout();
   });
@@ -103,21 +131,35 @@ export async function gitIgnored(
  * @description Scan files and check if they contain CR (Carriage Return only).
  * @param {string | Directory | undefined} src
  * @param {string} path
+ * @param {string} ignore
+ * @param {string} extensions
  * @returns {string}
  */
 export async function fileCr(
   src: string | Directory | undefined = ".",
-  path = "."
+  path = ".",
+  ignore?: string,
+  extensions?: string
 ): Promise<string> {
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
+    const args = [];
+
+    if (ignore) {
+      args.push(`--ignore="${ignore}"`);
+    }
+
+    if (extensions) {
+      args.push(`--extensions="${extensions}"`);
+    }
+
     const ctr = client
       .pipeline(Job.fileCr)
       .container()
       .from("cytopia/awesome-ci")
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["file-cr", `--path=${path}`]);
+      .withExec(["file-cr", `--path=${path}`, ...args]);
 
     await ctr.stdout();
   });
@@ -129,21 +171,35 @@ export async function fileCr(
  * @description Scan files and check if they contain CRLF (Windows Line Feeds).
  * @param {string | Directory | undefined} src
  * @param {string} path
+ * @param {string} ignore
+ * @param {string} extensions
  * @returns {string}
  */
 export async function fileCrlf(
   src: string | Directory | undefined = ".",
-  path = "."
+  path = ".",
+  ignore?: string,
+  extensions?: string
 ): Promise<string> {
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
+    const args = [];
+
+    if (ignore) {
+      args.push(`--ignore="${ignore}"`);
+    }
+
+    if (extensions) {
+      args.push(`--extensions="${extensions}"`);
+    }
+
     const ctr = client
       .pipeline(Job.fileCr)
       .container()
       .from("cytopia/awesome-ci")
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["file-cr", `--path=${path}`]);
+      .withExec(["file-cr", `--path=${path}`, ...args]);
 
     await ctr.stdout();
   });
@@ -155,21 +211,35 @@ export async function fileCrlf(
  * @description Scan files and check if they are empty (0 bytes).
  * @param {string | Directory | undefined} src
  * @param {string} path
+ * @param {string} ignore
+ * @param {string} extensions
  * @returns {string}
  */
 export async function fileEmpty(
   src: string | Directory | undefined = ".",
-  path = "."
+  path = ".",
+  ignore?: string,
+  extensions?: string
 ): Promise<string> {
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
+    const args = [];
+
+    if (ignore) {
+      args.push(`--ignore="${ignore}"`);
+    }
+
+    if (extensions) {
+      args.push(`--extensions="${extensions}"`);
+    }
+
     const ctr = client
       .pipeline(Job.fileCr)
       .container()
       .from("cytopia/awesome-ci")
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["file-empty", `--path=${path}`]);
+      .withExec(["file-empty", `--path=${path}`, ...args]);
 
     await ctr.stdout();
   });
@@ -181,21 +251,35 @@ export async function fileEmpty(
  * @description Scan files and check if they contain a null-byte character (\x00).
  * @param {string | Directory | undefined} src
  * @param {string} path
+ * @param {string} ignore
+ * @param {string} extensions
  * @returns {string}
  */
 export async function fileNullByteChar(
   src: string | Directory | undefined = ".",
-  path = "."
+  path = ".",
+  ignore?: string,
+  extensions?: string
 ): Promise<string> {
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
+    const args = [];
+
+    if (ignore) {
+      args.push(`--ignore="${ignore}"`);
+    }
+
+    if (extensions) {
+      args.push(`--extensions="${extensions}"`);
+    }
+
     const ctr = client
       .pipeline(Job.fileCr)
       .container()
       .from("cytopia/awesome-ci")
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["file-nullbyte-char", `--path=${path}`]);
+      .withExec(["file-nullbyte-char", `--path=${path}`, ...args]);
 
     await ctr.stdout();
   });
@@ -207,21 +291,35 @@ export async function fileNullByteChar(
  * @description Scan files and check if they contain a trailing newline.
  * @param {string | Directory | undefined} src
  * @param {string} path
+ * @param {string} ignore
+ * @param {string} extensions
  * @returns {string}
  */
 export async function fileTrailingNewline(
   src: string | Directory | undefined = ".",
-  path = "."
+  path = ".",
+  ignore?: string,
+  extensions?: string
 ): Promise<string> {
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
+    const args = [];
+
+    if (ignore) {
+      args.push(`--ignore="${ignore}"`);
+    }
+
+    if (extensions) {
+      args.push(`--extensions="${extensions}"`);
+    }
+
     const ctr = client
       .pipeline(Job.fileCr)
       .container()
       .from("cytopia/awesome-ci")
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["file-trailing-newline", `--path=${path}`]);
+      .withExec(["file-trailing-newline", `--path=${path}`, ...args]);
 
     await ctr.stdout();
   });
@@ -233,21 +331,35 @@ export async function fileTrailingNewline(
  * @description Scan files and check if they contain exactly one trailing newline.
  * @param {string | Directory | undefined} src
  * @param {string} path
+ * @param {string} ignore
+ * @param {string} extensions
  * @returns {string}
  */
 export async function fileTrailingSingleNewline(
   src: string | Directory | undefined = ".",
-  path = "."
+  path = ".",
+  ignore?: string,
+  extensions?: string
 ): Promise<string> {
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
+    const args = [];
+
+    if (ignore) {
+      args.push(`--ignore="${ignore}"`);
+    }
+
+    if (extensions) {
+      args.push(`--extensions="${extensions}"`);
+    }
+
     const ctr = client
       .pipeline(Job.fileCr)
       .container()
       .from("cytopia/awesome-ci")
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["file-trailing-single-newline", `--path=${path}`]);
+      .withExec(["file-trailing-single-newline", `--path=${path}`, ...args]);
 
     await ctr.stdout();
   });
@@ -259,21 +371,35 @@ export async function fileTrailingSingleNewline(
  * @description Scan files and check if they contain trailing whitespaces.
  * @param {string | Directory | undefined} src
  * @param {string} path
+ * @param {string} ignore
+ * @param {string} extensions
  * @returns {string}
  */
 export async function fileTrailingSpace(
   src: string | Directory | undefined = ".",
-  path = "."
+  path = ".",
+  ignore?: string,
+  extensions?: string
 ): Promise<string> {
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
+    const args = [];
+
+    if (ignore) {
+      args.push(`--ignore="${ignore}"`);
+    }
+
+    if (extensions) {
+      args.push(`--extensions="${extensions}"`);
+    }
+
     const ctr = client
       .pipeline(Job.fileCr)
       .container()
       .from("cytopia/awesome-ci")
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["file-trailing-space", `--path=${path}`]);
+      .withExec(["file-trailing-space", `--path=${path}`, ...args]);
 
     await ctr.stdout();
   });
@@ -285,21 +411,35 @@ export async function fileTrailingSpace(
  * @description Scan files and check if they have a non UTF-8 encoding.
  * @param {string | Directory | undefined} src
  * @param {string} path
+ * @param {string} ignore
+ * @param {string} extensions
  * @returns {string}
  */
 export async function fileUtf8(
   src: string | Directory | undefined = ".",
-  path = "."
+  path = ".",
+  ignore?: string,
+  extensions?: string
 ): Promise<string> {
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
+    const args = [];
+
+    if (ignore) {
+      args.push(`--ignore="${ignore}"`);
+    }
+
+    if (extensions) {
+      args.push(`--extensions="${extensions}"`);
+    }
+
     const ctr = client
       .pipeline(Job.fileCr)
       .container()
       .from("cytopia/awesome-ci")
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["file-utf8", `--path=${path}`]);
+      .withExec(["file-utf8", `--path=${path}`, ...args]);
 
     await ctr.stdout();
   });
@@ -311,21 +451,35 @@ export async function fileUtf8(
  * @description Scan files and check if they contain BOM (Byte Order Mark): <U+FEFF>.
  * @param {string | Directory | undefined} src
  * @param {string} path
+ * @param {string} ignore
+ * @param {string} extensions
  * @returns {string}
  */
 export async function fileUtf8Bom(
   src: string | Directory | undefined = ".",
-  path = "."
+  path = ".",
+  ignore?: string,
+  extensions?: string
 ): Promise<string> {
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
+    const args = [];
+
+    if (extensions) {
+      args.push(`--extensions="${extensions}"`);
+    }
+
+    if (ignore) {
+      args.push(`--ignore="${ignore}"`);
+    }
+
     const ctr = client
       .pipeline(Job.fileCr)
       .container()
       .from("cytopia/awesome-ci")
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["file-utf8-bom", `--path=${path}`]);
+      .withExec(["file-utf8-bom", `--path=${path}`, ...args]);
 
     await ctr.stdout();
   });
@@ -337,21 +491,35 @@ export async function fileUtf8Bom(
  * @description Scan shell files for bash syntax errors.
  * @param {string | Directory | undefined} src
  * @param {string} path
+ * @param {string} ignore
+ * @param {string} extensions
  * @returns {string}
  */
 export async function syntaxBash(
   src: string | Directory | undefined = ".",
-  path = "."
+  path = ".",
+  ignore?: string,
+  extensions?: string
 ): Promise<string> {
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
+    const args = [];
+
+    if (ignore) {
+      args.push(`--ignore="${ignore}"`);
+    }
+
+    if (extensions) {
+      args.push(`--extensions="${extensions}"`);
+    }
+
     const ctr = client
       .pipeline(Job.fileCr)
       .container()
       .from("cytopia/awesome-ci")
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["syntax-bash", `--path=${path}`]);
+      .withExec(["syntax-bash", `--path=${path}`, ...args]);
 
     await ctr.stdout();
   });
