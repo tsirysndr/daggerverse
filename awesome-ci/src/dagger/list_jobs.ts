@@ -1,5 +1,7 @@
 import { brightGreen, stringifyTree } from "../../deps.ts";
-import { runnableJobs, jobDescriptions, Job } from "./jobs.ts";
+import { jobDescriptions } from "./index.ts";
+import { runnableJobs } from "./jobs/desc.ts";
+import { Job } from "./jobs/mod.ts";
 
 const tree = {
   name: brightGreen("pkgx_pipeline"),
