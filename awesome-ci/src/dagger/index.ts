@@ -4,7 +4,16 @@ import {
   gitConflicts,
   gitIgnored,
   fileCr,
+  fileCrlf,
   jobDescriptions,
 } from "./jobs.ts";
 
-export { pipeline, dev, gitConflicts, gitIgnored, fileCr, jobDescriptions };
+export {
+  pipeline,
+  dev,
+  gitConflicts,
+  gitIgnored,
+  fileCr,
+  fileCrlf,
+  jobDescriptions,
+};

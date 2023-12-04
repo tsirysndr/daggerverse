@@ -7,6 +7,7 @@ export enum Job {
   gitConflicts = "gitConflicts",
   gitIgnored = "gitIgnored",
   fileCr = "fileCr",
+  fileCrlf = "fileCrlf",
 }
 
 export const exclude = [];
@@ -115,6 +116,32 @@ export async function fileCr(
   return "Done";
 }
 
+/**
+ * @function
+ * @description Scan files and check if they contain CRLF (Windows Line Feeds).
+ * @param {string | Directory | undefined} src
+ * @param {string} path
+ * @returns {string}
+ */
+export async function fileCrlf(
+  src: string | Directory | undefined = ".",
+  path = "."
+): Promise<string> {
+  await connect(async (client: Client) => {
+    const context = getDirectory(client, src);
+    const ctr = client
+      .pipeline(Job.fileCr)
+      .container()
+      .from("cytopia/awesome-ci")
+      .withDirectory("/app", context)
+      .withWorkdir("/app")
+      .withExec(["file-cr", `--path=${path}`]);
+
+    await ctr.stdout();
+  });
+  return "Done";
+}
+
 export type JobExec = (src?: string) => Promise<Container | string>;
 
 export const runnableJobs: Record<Job, JobExec> = {
@@ -122,6 +149,7 @@ export const runnableJobs: Record<Job, JobExec> = {
   [Job.gitConflicts]: gitConflicts,
   [Job.gitIgnored]: gitIgnored,
   [Job.fileCr]: fileCr,
+  [Job.fileCrlf]: fileCrlf,
 };
 
 export const jobDescriptions: Record<Job, string> = {
@@ -131,4 +159,6 @@ export const jobDescriptions: Record<Job, string> = {
     "Scan git directory and see if ignored files are still in git cache.",
   [Job.fileCr]:
     "Scan files and check if they contain CR (Carriage Return only).",
+  [Job.fileCrlf]:
+    "Scan files and check if they contain CRLF (Windows Line Feeds).",
 };
