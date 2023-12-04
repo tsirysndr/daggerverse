@@ -47,7 +47,6 @@ export async function gitConflicts(
   src: string | Directory | undefined = ".",
   path = "."
 ): Promise<string> {
-  let result = "";
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
     const ctr = client
@@ -58,16 +57,9 @@ export async function gitConflicts(
       .withWorkdir("/app")
       .withExec(["git-conflicts", `--path=${path}`]);
 
-    result = await ctr.stdout();
+    await ctr.stdout();
   });
-  return (
-    result
-      .replace(/\t/g, "\\t")
-      .replace(/\n/g, "\\n")
-      .replace(/\r/g, "\\r")
-      // deno-lint-ignore no-control-regex
-      .replace(/\x1b\[[0-9;]*m/g, "")
-  );
+  return "Done";
 }
 
 /**
@@ -81,7 +73,6 @@ export async function gitIgnored(
   src: string | Directory | undefined = ".",
   path = "."
 ): Promise<string> {
-  let result = "";
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
     const ctr = client
@@ -92,16 +83,9 @@ export async function gitIgnored(
       .withWorkdir("/app")
       .withExec(["git-ignored", `--path=${path}`]);
 
-    result = await ctr.stdout();
+    await ctr.stdout();
   });
-  return (
-    result
-      .replace(/\t/g, "\\t")
-      .replace(/\n/g, "\\n")
-      .replace(/\r/g, "\\r")
-      // deno-lint-ignore no-control-regex
-      .replace(/\x1b\[[0-9;]*m/g, "")
-  );
+  return "Done";
 }
 
 export type JobExec = (src?: string) => Promise<Container | string>;
