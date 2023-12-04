@@ -12,6 +12,7 @@ import {
   fileTrailingSpace,
   fileUtf8,
   fileUtf8Bom,
+  syntaxBash,
   jobDescriptions,
 } from "./jobs.ts";
 
@@ -29,5 +30,6 @@ export {
   fileTrailingSpace,
   fileUtf8,
   fileUtf8Bom,
+  syntaxBash,
   jobDescriptions,
 };
