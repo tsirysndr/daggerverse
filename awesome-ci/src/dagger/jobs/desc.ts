@@ -16,6 +16,14 @@ import { syntaxCss } from "./syntax-css.ts";
 import { syntaxJs } from "./syntax-js.ts";
 import { syntaxJson } from "./syntax-json.ts";
 import { syntaxMarkdown } from "./syntax-markdown.ts";
+import { syntaxPerl } from "./syntax-perl.ts";
+import { syntaxPhp } from "./syntax-php.ts";
+import { syntaxPython } from "./syntax-python.ts";
+import { syntaxRuby } from "./syntax-ruby.ts";
+import { syntaxScss } from "./syntax-scss.ts";
+import { syntaxSh } from "./syntax-sh.ts";
+import { inlineCss } from "./inline-css.ts";
+import { inlineJs } from "./inline-js.ts";
 
 export const runnableJobs: Record<Job, JobExec> = {
   [Job.dev]: dev,
@@ -35,6 +43,14 @@ export const runnableJobs: Record<Job, JobExec> = {
   [Job.syntaxJs]: syntaxJs,
   [Job.syntaxJson]: syntaxJson,
   [Job.syntaxMarkdown]: syntaxMarkdown,
+  [Job.syntaxPerl]: syntaxPerl,
+  [Job.syntaxPhp]: syntaxPhp,
+  [Job.syntaxPython]: syntaxPython,
+  [Job.syntaxRuby]: syntaxRuby,
+  [Job.syntaxScss]: syntaxScss,
+  [Job.syntaxSh]: syntaxSh,
+  [Job.inlineCss]: inlineCss,
+  [Job.inlineJs]: inlineJs,
 };
 
 export const jobDescriptions: Record<Job, string> = {
@@ -63,4 +79,13 @@ export const jobDescriptions: Record<Job, string> = {
   [Job.syntaxJs]: "Scan JS files for JS syntax errors.",
   [Job.syntaxJson]: "Scan files for JSON syntax errors.",
   [Job.syntaxMarkdown]: "Scan files for Markdown syntax errors.",
+  [Job.syntaxPerl]: "Scan Perl files for Perl syntax errors.",
+  [Job.syntaxPhp]: "Scan PHP files for PHP syntax errors.",
+  [Job.syntaxPython]: "Scan Python files for Python syntax errors.",
+  [Job.syntaxRuby]: "Scan Ruby files for Ruby syntax errors.",
+  [Job.syntaxScss]: "Scan SCSS files for SCSS syntax errors.",
+  [Job.syntaxSh]: "Scan shell files for /bin/sh syntax errors.",
+  [Job.inlineCss]: "Scan files and check if they contain inline css code.",
+  [Job.inlineJs]:
+    "Scan files and check if they contain inline javascript code.",
 };

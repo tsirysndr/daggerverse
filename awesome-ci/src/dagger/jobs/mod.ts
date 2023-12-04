@@ -18,6 +18,14 @@ export enum Job {
   syntaxJs = "syntaxJs",
   syntaxJson = "syntaxJson",
   syntaxMarkdown = "syntaxMarkdown",
+  syntaxPerl = "syntaxPerl",
+  syntaxPhp = "syntaxPhp",
+  syntaxPython = "syntaxPython",
+  syntaxRuby = "syntaxRuby",
+  syntaxScss = "syntaxScss",
+  syntaxSh = "syntaxSh",
+  inlineCss = "inlineCss",
+  inlineJs = "inlineJs",
 }
 
 export const exclude = [];

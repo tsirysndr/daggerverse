@@ -11,11 +11,19 @@ import { fileUtf8Bom } from "./jobs/file-utf8-bom.ts";
 import { fileUtf8 } from "./jobs/file-utf8.ts";
 import { gitConflicts } from "./jobs/git-conflicts.ts";
 import { gitIgnored } from "./jobs/git-ignored.ts";
+import { inlineCss } from "./jobs/inline-css.ts";
+import { inlineJs } from "./jobs/inline-js.ts";
 import { syntaxBash } from "./jobs/syntax-bash.ts";
 import { syntaxCss } from "./jobs/syntax-css.ts";
 import { syntaxJs } from "./jobs/syntax-js.ts";
 import { syntaxJson } from "./jobs/syntax-json.ts";
 import { syntaxMarkdown } from "./jobs/syntax-markdown.ts";
+import { syntaxPerl } from "./jobs/syntax-perl.ts";
+import { syntaxPhp } from "./jobs/syntax-php.ts";
+import { syntaxPython } from "./jobs/syntax-python.ts";
+import { syntaxRuby } from "./jobs/syntax-ruby.ts";
+import { syntaxScss } from "./jobs/syntax-scss.ts";
+import { syntaxSh } from "./jobs/syntax-sh.ts";
 import pipeline from "./pipeline.ts";
 
 export {
@@ -37,5 +45,13 @@ export {
   syntaxJs,
   syntaxJson,
   syntaxMarkdown,
+  syntaxPerl,
+  syntaxPhp,
+  syntaxPython,
+  syntaxRuby,
+  syntaxScss,
+  syntaxSh,
+  inlineCss,
+  inlineJs,
   jobDescriptions,
 };
