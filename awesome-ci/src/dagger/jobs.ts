@@ -76,7 +76,7 @@ export async function gitIgnored(
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
     const ctr = client
-      .pipeline(Job.gitConflicts)
+      .pipeline(Job.gitIgnored)
       .container()
       .from("cytopia/awesome-ci")
       .withDirectory("/app", context)
