@@ -351,7 +351,7 @@ export async function syntaxBash(
       .from("cytopia/awesome-ci")
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["syntaxBash", `--path=${path}`]);
+      .withExec(["syntax-bash", `--path=${path}`]);
 
     await ctr.stdout();
   });
