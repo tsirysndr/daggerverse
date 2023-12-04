@@ -5,6 +5,7 @@ import { getDirectory } from "./lib.ts";
 export enum Job {
   dev = "dev",
   gitConflicts = "gitConflicts",
+  gitIgnored = "gitIgnored",
 }
 
 export const exclude = [];
@@ -55,7 +56,7 @@ export async function gitConflicts(
       .from("cytopia/awesome-ci")
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["git-conflicts", "--path", path]);
+      .withExec(["git-conflicts", `--path=${path}`]);
 
     const result = await ctr.stdout();
     console.log(result);
