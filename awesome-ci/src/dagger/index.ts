@@ -5,6 +5,7 @@ import {
   gitIgnored,
   fileCr,
   fileCrlf,
+  fileEmpty,
   jobDescriptions,
 } from "./jobs.ts";
 
@@ -15,5 +16,6 @@ export {
   gitIgnored,
   fileCr,
   fileCrlf,
+  fileEmpty,
   jobDescriptions,
 };
