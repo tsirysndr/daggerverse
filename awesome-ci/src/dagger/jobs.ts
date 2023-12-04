@@ -16,6 +16,7 @@ export enum Job {
   fileUtf8 = "fileUtf8",
   fileUtf8Bom = "fileUtf8Bom",
   syntaxBash = "syntaxBash",
+  syntaxCss = "syntaxCss",
 }
 
 export const exclude = [];
@@ -526,6 +527,46 @@ export async function syntaxBash(
   return "Done";
 }
 
+/**
+ * @function
+ * @description Scan CSS files for CSS syntax errors.
+ * @param {string | Directory | undefined} src
+ * @param {string} path
+ * @param {string} ignore
+ * @param {string} extensions
+ * @returns {string}
+ */
+export async function syntaxCss(
+  src: string | Directory | undefined = ".",
+  path = ".",
+  ignore?: string,
+  extensions?: string
+): Promise<string> {
+  await connect(async (client: Client) => {
+    const context = getDirectory(client, src);
+    const args = [];
+
+    if (ignore) {
+      args.push(`--ignore="${ignore}"`);
+    }
+
+    if (extensions) {
+      args.push(`--extensions="${extensions}"`);
+    }
+
+    const ctr = client
+      .pipeline(Job.fileCr)
+      .container()
+      .from("cytopia/awesome-ci")
+      .withDirectory("/app", context)
+      .withWorkdir("/app")
+      .withExec(["syntax-css", `--path=${path}`, ...args]);
+
+    await ctr.stdout();
+  });
+  return "Done";
+}
+
 export type JobExec = (src?: string) => Promise<Container | string>;
 
 export const runnableJobs: Record<Job, JobExec> = {
@@ -542,6 +583,7 @@ export const runnableJobs: Record<Job, JobExec> = {
   [Job.fileUtf8]: fileUtf8,
   [Job.fileUtf8Bom]: fileUtf8Bom,
   [Job.syntaxBash]: syntaxBash,
+  [Job.syntaxCss]: syntaxCss,
 };
 
 export const jobDescriptions: Record<Job, string> = {
@@ -566,4 +608,5 @@ export const jobDescriptions: Record<Job, string> = {
   [Job.fileUtf8Bom]:
     "Scan files and check if they contain BOM (Byte Order Mark): <U+FEFF>.",
   [Job.syntaxBash]: "Scan shell files for bash syntax errors.",
+  [Job.syntaxCss]: "Scan CSS files for CSS syntax errors.",
 };

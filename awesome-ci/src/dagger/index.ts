@@ -13,6 +13,7 @@ import {
   fileUtf8,
   fileUtf8Bom,
   syntaxBash,
+  syntaxCss,
   jobDescriptions,
 } from "./jobs.ts";
 
@@ -31,5 +32,6 @@ export {
   fileUtf8,
   fileUtf8Bom,
   syntaxBash,
+  syntaxCss,
   jobDescriptions,
 };
