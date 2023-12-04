@@ -4,6 +4,7 @@ import { getDirectory } from "./lib.ts";
 
 export enum Job {
   dev = "dev",
+  gitConflicts = "gitConflicts",
 }
 
 export const exclude = [];
@@ -34,12 +35,43 @@ export async function dev(
   return id;
 }
 
+/**
+ * @function
+ * @description Scan files and check if they contain git conflicts.
+ * @param {string | Directory | undefined} src
+ * @param {string} path
+ * @returns {string}
+ */
+export async function gitConflicts(
+  src: string | Directory | undefined = ".",
+  path = "."
+): Promise<Container | string> {
+  let id = "";
+  await connect(async (client: Client) => {
+    const context = getDirectory(client, src);
+    const ctr = client
+      .pipeline(Job.gitConflicts)
+      .container()
+      .from("cytopia/awesome-ci")
+      .withDirectory("/app", context)
+      .withWorkdir("/app")
+      .withExec(["git-conflicts", "--path", path]);
+
+    const result = await ctr.stdout();
+    console.log(result);
+    id = await ctr.id();
+  });
+  return id;
+}
+
 export type JobExec = (src?: string) => Promise<Container | string>;
 
 export const runnableJobs: Record<Job, JobExec> = {
   [Job.dev]: dev,
+  [Job.gitConflicts]: gitConflicts,
 };
 
 export const jobDescriptions: Record<Job, string> = {
   [Job.dev]: "Returns a container with awesome-ci installed.",
+  [Job.gitConflicts]: "Scan files and check if they contain git conflicts.",
 };
