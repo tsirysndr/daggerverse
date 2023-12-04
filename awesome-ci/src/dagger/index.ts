@@ -6,6 +6,7 @@ import {
   fileCr,
   fileCrlf,
   fileEmpty,
+  fileNullByteChar,
   jobDescriptions,
 } from "./jobs.ts";
 
@@ -17,5 +18,6 @@ export {
   fileCr,
   fileCrlf,
   fileEmpty,
+  fileNullByteChar,
   jobDescriptions,
 };

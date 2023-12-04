@@ -9,6 +9,7 @@ export enum Job {
   fileCr = "fileCr",
   fileCrlf = "fileCrlf",
   fileEmpty = "fileEmpty",
+  fileNullByteChar = "fileNullByteChar",
 }
 
 export const exclude = [];
@@ -169,6 +170,32 @@ export async function fileEmpty(
   return "Done";
 }
 
+/**
+ * @function
+ * @description Scan files and check if they contain a null-byte character (\x00).
+ * @param {string | Directory | undefined} src
+ * @param {string} path
+ * @returns {string}
+ */
+export async function fileNullByteChar(
+  src: string | Directory | undefined = ".",
+  path = "."
+): Promise<string> {
+  await connect(async (client: Client) => {
+    const context = getDirectory(client, src);
+    const ctr = client
+      .pipeline(Job.fileCr)
+      .container()
+      .from("cytopia/awesome-ci")
+      .withDirectory("/app", context)
+      .withWorkdir("/app")
+      .withExec(["file-nullbyte-char", `--path=${path}`]);
+
+    await ctr.stdout();
+  });
+  return "Done";
+}
+
 export type JobExec = (src?: string) => Promise<Container | string>;
 
 export const runnableJobs: Record<Job, JobExec> = {
@@ -178,6 +205,7 @@ export const runnableJobs: Record<Job, JobExec> = {
   [Job.fileCr]: fileCr,
   [Job.fileCrlf]: fileCrlf,
   [Job.fileEmpty]: fileEmpty,
+  [Job.fileNullByteChar]: fileNullByteChar,
 };
 
 export const jobDescriptions: Record<Job, string> = {
@@ -190,4 +218,6 @@ export const jobDescriptions: Record<Job, string> = {
   [Job.fileCrlf]:
     "Scan files and check if they contain CRLF (Windows Line Feeds).",
   [Job.fileEmpty]: "Scan files and check if they are empty (0 bytes).",
+  [Job.fileNullByteChar]:
+    "Scan files and check if they contain a null-byte character (\x00).",
 };
