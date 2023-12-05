@@ -18,8 +18,7 @@ export const exclude = [];
  */
 export async function lint(
   src: Directory | string,
-  files = "*.yml",
-  tag = "latest"
+  files = "*.yml"
 ): Promise<Directory | string> {
   let id = "";
   await connect(async (client: Client) => {
@@ -27,7 +26,7 @@ export async function lint(
     const ctr = client
       .pipeline(Job.lint)
       .container()
-      .from(`cytopia/ansible-lint:${tag}`)
+      .from("cytopia/ansible-lint")
       .withDirectory("/app", context)
       .withWorkdir("/app")
       .withExec([files]);
@@ -42,12 +41,10 @@ export async function lint(
  * @function
  * @description Returns a container with ansible-lint installed.
  * @param {string | Directory | undefined} src
- * @param {string} tag
  * @returns {Container | string}
  */
 export async function dev(
-  src: string | Directory | undefined = ".",
-  tag = "latest"
+  src: string | Directory | undefined = "."
 ): Promise<Container | string> {
   let id = "";
   await connect(async (client: Client) => {
@@ -55,7 +52,7 @@ export async function dev(
     const ctr = client
       .pipeline(Job.dev)
       .container()
-      .from(`cytopia/ansible-lint:${tag}`)
+      .from("cytopia/ansible-lint")
       .withDirectory("/app", context)
       .withWorkdir("/app")
       .withEntrypoint(["/bin/sh"]);
