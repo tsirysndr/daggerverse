@@ -18,6 +18,7 @@ This is my collection of [Dagger](https://dagger.io) Modules that I use in my pr
 | [jsonlint](./jsonlint/)     | Daggerized version of [jsonlint](https://github.com/zaach/jsonlint) |
 | [kubeval](./kubeval/)       | Daggerized version of [kubeval](https://github.com/instrumenta/kubeval) |
 | [nix](./nix)                | Nix package manager |
+| [phpcbf](./phpcbf/)         | Daggerized version of [phpcbf](https://github.com/squizlabs/PHP_CodeSniffer) |
 | [pkgx](./pkgx/)             | Daggerized version of [pkgx](https://pkgx.sh) |
 | [rtx](./rtx/)               | Daggerized version of [rtx](https://github.com/jdx/rtx) |
 | [yamllint](./yamllint/)     | Daggerized version of [yamllint](https://github.com/adrienverge/yamllint) |
