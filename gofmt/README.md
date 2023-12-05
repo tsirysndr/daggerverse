@@ -13,5 +13,5 @@ dagger -m github.com/tsirysndr/daggerverse/gofmt call format --src <source>
 ## Example
 
 ```sh
-dagger -m github.com/tsirysndr/daggerverse/golint call format --src .
+dagger -m github.com/tsirysndr/daggerverse/gofmt call format --src .
 ```
