@@ -1,5 +1,0 @@
-{
-  pkgx {
-    install(pkgs: ["jq"])
-  }
-}
