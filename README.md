@@ -1,9 +1,9 @@
-# Daggerverse
+# Daggerverse 🪐 🌌
 
 This is my collection of [Dagger](https://dagger.io) Modules that I use in my projects.
 
 
-# Modules
+## 🧩 Modules
 
 | Module                      | Description |
 | --------------------------- | ------------ |
@@ -16,6 +16,6 @@ This is my collection of [Dagger](https://dagger.io) Modules that I use in my pr
 | [pkgx](./pkgx/)             | Daggerized version of [pkgx](https://pkgx.sh) |
 | [rtx](./rtx/)               | Daggerized version of [rtx](https://github.com/jdx/rtx) |
 
-# License
+## 📝 License
 
 [MIT](LICENSE)
