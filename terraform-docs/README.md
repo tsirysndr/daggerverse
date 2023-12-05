@@ -8,7 +8,6 @@ Daggerized version of [terraform-docs](https://terraform-docs.io/).
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/terraform-docs call generate --src <source>
-dagger shell -m github.com/tsirysndr/daggerverse/terraform-docs call dev --src <source>
 ```
 
 ## Example
