@@ -15,6 +15,7 @@ This is my collection of [Dagger](https://dagger.io) Modules that I use in my pr
 | [nix](./nix)                | Nix package manager |
 | [pkgx](./pkgx/)             | Daggerized version of [pkgx](https://pkgx.sh) |
 | [rtx](./rtx/)               | Daggerized version of [rtx](https://github.com/jdx/rtx) |
+| [yamllint](./yamllint/)     | Daggerized version of [yamllint](https://github.com/adrienverge/yamllint) |
 
 ## 📝 License
 
