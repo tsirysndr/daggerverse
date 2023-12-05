@@ -8,7 +8,7 @@ This is my collection of [Dagger](https://dagger.io) Modules that I use in my pr
 | Module                      | Description |
 | --------------------------- | ------------ |
 | [ansible-lint](./ansible-lint/) | Lint Ansible with [ansible-lint](https://github.com/ansible/ansible-lint) |
-| [ansible](./ansible/)       | Multiple versions and flavours of [ansible](https://github.com/cytopia/docker-ansible) |
+| [ansible](./ansible/)       | Multiple versions and flavours of [ansible](https://github.com/ansible/ansible) |
 | [awesome-ci](./awesome-ci/) | Lot's of tools for git, file and static source code analysis. |
 | [black](./black/)           | The uncompromising Python code formatter [black](https://github.com/psf/black) |
 | [checkmake](./checkmake/)   | Lint Makefiles with [checkmake](https://github.com/mrtazz/checkmake) |
