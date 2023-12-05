@@ -11,6 +11,7 @@ This is my collection of [Dagger](https://dagger.io) Modules that I use in my pr
 | [ansible](./ansible/)       | Daggerized version of [ansible](https://github.com/cytopia/docker-ansible) |
 | [awesome-ci](./awesome-ci/) | Lot's of tools for git, file and static source code analysis. |
 | [black](./black/)           | Daggerized version of [black](https://github.com/psf/black) |
+| [checkmake](./checkmake/)   | Daggerized version of [checkmake](https://github.com/mrtazz/checkmake) |
 | [devbox](./devbox/)         | Instant, easy, and predictable development environments |
 | [devenv](./devenv/)         | Fast, Declarative, Reproducible, and Composable Developer Environments |
 | [flox](./flox/)             | Harness the power of Nix |
