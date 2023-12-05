@@ -11,7 +11,7 @@ export const exclude = [];
 
 /**
  * @function
- * @description
+ * @description Runs a playbook.
  * @param {string | Directory | undefined} src
  * @param {string} playbook
  * @param {string} tag
@@ -56,11 +56,9 @@ export async function dev(
       .container()
       .from(`cytopia/ansible:${tag}`)
       .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withEntrypoint(["/bin/sh"]);
+      .withWorkdir("/app");
 
-    const result = await ctr.stdout();
-    console.log(result);
+    await ctr.stdout();
     id = await ctr.id();
   });
   return id;
