@@ -2,7 +2,7 @@
 
 ![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.3-yellow)
 
-Daggerized version of [ansible](https://github.com/ansible/ansible-lint).
+Daggerized version of [jsonlint](https://github.com/zaach/jsonlint).
 
 ## Usage
 
