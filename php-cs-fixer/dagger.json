@@ -1,0 +1,4 @@
+{
+  "name": "php-cs-fixer",
+  "sdk": "github.com/fluentci-io/daggerverse/deno-sdk@main"
+}

@@ -20,6 +20,7 @@ This is my collection of [Dagger](https://dagger.io) Modules that I use in my pr
 | [nix](./nix)                | Nix package manager |
 | [phpcbf](./phpcbf/)         | Daggerized version of [phpcbf](https://github.com/squizlabs/PHP_CodeSniffer) |
 | [phpcs](./phpcs/)           | Daggerized version of [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) |
+| [php-cs-fixer](./php-cs-fixer/) | Daggerized version of [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) |
 | [pkgx](./pkgx/)             | Daggerized version of [pkgx](https://pkgx.sh) |
 | [rtx](./rtx/)               | Daggerized version of [rtx](https://github.com/jdx/rtx) |
 | [yamllint](./yamllint/)     | Daggerized version of [yamllint](https://github.com/adrienverge/yamllint) |
