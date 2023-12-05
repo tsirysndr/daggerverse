@@ -13,5 +13,5 @@ dagger -m github.com/tsirysndr/daggerverse/checkmake call lint --src <source>
 ## Example
 
 ```sh
-dagger -m github.com/tsirysndr/daggerverse/ansible-lint call lint --src .
+dagger -m github.com/tsirysndr/daggerverse/checkmake call lint --src .
 ```
