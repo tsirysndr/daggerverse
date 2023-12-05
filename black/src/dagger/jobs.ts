@@ -55,7 +55,7 @@ export async function dev(
       .from("cytopia/black")
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withEntrypoint(["/bin/ash", "-c"]);
+      .withEntrypoint(["/bin/ash"]);
 
     const result = await ctr.stdout();
     console.log(result);
