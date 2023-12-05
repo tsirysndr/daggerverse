@@ -28,7 +28,7 @@ export async function lint(
       .from(`cytopia/golint`)
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec([path]);
+      .withExec(["-set_exit_status", path]);
 
     await ctr.stdout();
     id = await ctr.directory("/app").id();
