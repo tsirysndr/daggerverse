@@ -3,7 +3,7 @@ import { connect } from "../../sdk/connect.ts";
 import { getDirectory } from "./lib.ts";
 
 export enum Job {
-  playbook = "playbook",
+  lint = "lint",
   dev = "dev",
 }
 
@@ -11,35 +11,36 @@ export const exclude = [];
 
 /**
  * @function
- * @description Runs a playbook.
+ * @description Lint ansible YAML files.
  * @param {string | Directory | undefined} src
- * @param {string} playbook
- * @param {string} tag
- * @returns {string}
+ * @param {string} files
+ * @returns {Directory | string}
  */
-export async function playbook(
+export async function lint(
   src: Directory | string,
-  playbook: string,
+  files = "*.yml",
   tag = "latest"
-): Promise<string> {
+): Promise<Directory | string> {
+  let id = "";
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
     const ctr = client
-      .pipeline(Job.playbook)
+      .pipeline(Job.lint)
       .container()
-      .from(`cytopia/ansible:${tag}`)
+      .from(`cytopia/ansible-lint:${tag}`)
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["ansible-playbook", playbook]);
+      .withExec([files]);
 
     await ctr.stdout();
+    id = await ctr.directory("/app").id();
   });
-  return "Done";
+  return id;
 }
 
 /**
  * @function
- * @description Returns a container with ansible installed.
+ * @description Returns a container with ansible-lint installed.
  * @param {string | Directory | undefined} src
  * @param {string} tag
  * @returns {Container | string}
@@ -54,9 +55,10 @@ export async function dev(
     const ctr = client
       .pipeline(Job.dev)
       .container()
-      .from(`cytopia/ansible:${tag}`)
+      .from(`cytopia/ansible-lint:${tag}`)
       .withDirectory("/app", context)
-      .withWorkdir("/app");
+      .withWorkdir("/app")
+      .withEntrypoint(["/bin/sh"]);
 
     await ctr.stdout();
     id = await ctr.id();
@@ -65,19 +67,15 @@ export async function dev(
 }
 
 export type JobExec =
-  | ((
-      src: string,
-      playbook: string,
-      tag?: string
-    ) => Promise<Container | Directory | string>)
-  | ((src?: string, tag?: string) => Promise<Container | Directory | string>);
+  | ((src: string, files?: string) => Promise<Container | Directory | string>)
+  | ((src: string) => Promise<Container | Directory | string>);
 
 export const runnableJobs: Record<Job, JobExec> = {
-  [Job.playbook]: playbook,
+  [Job.lint]: lint,
   [Job.dev]: dev,
 };
 
 export const jobDescriptions: Record<Job, string> = {
-  [Job.playbook]: "Runs a playbook.",
-  [Job.dev]: "Returns a container with ansible installed.",
+  [Job.lint]: "Lint ansible YAML files.",
+  [Job.dev]: "Returns a container with ansible-lint installed.",
 };

@@ -8,6 +8,7 @@ This is my collection of [Dagger](https://dagger.io) Modules that I use in my pr
 | Module                      | Description |
 | --------------------------- | ------------ |
 | [ansible](./ansible/)       | Daggerized version of [ansible](https://github.com/cytopia/docker-ansible) |
+| [ansible-lint](./ansible-lint/) | Daggerized version of [ansible-lint](https://github.com/ansible/ansible-lint) |
 | [awesome-ci](./awesome-ci/) | Lot's of tools for git, file and static source code analysis. |
 | [black](./black/)           | Daggerized version of [black](https://github.com/psf/black) |
 | [devbox](./devbox/)         | Instant, easy, and predictable development environments |
