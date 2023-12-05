@@ -14,5 +14,4 @@ dagger -m github.com/tsirysndr/daggerverse/yamllint call lint --src <source>
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/yamllint call lint --src .
-dagger shell -m github.com/tsirysndr/daggerverse/yamllint dev --src .
 ```

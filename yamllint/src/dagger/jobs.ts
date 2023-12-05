@@ -4,7 +4,6 @@ import { getDirectory } from "./lib.ts";
 
 export enum Job {
   lint = "lint",
-  dev = "dev",
 }
 
 export const exclude = [];
@@ -36,34 +35,6 @@ export async function lint(
   });
   return id;
 }
-
-/**
- * @function
- * @description Returns a container with yamllint installed.
- * @param {string | Directory | undefined} src
- * @returns {Container | string}
- */
-export async function dev(
-  src: string | Directory | undefined = "."
-): Promise<Container | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = getDirectory(client, src);
-    const ctr = client
-      .pipeline(Job.dev)
-      .container()
-      .from("cytopia/yamllint")
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withEntrypoint(["/bin/sh"]);
-
-    const result = await ctr.stdout();
-    console.log(result);
-    id = await ctr.id();
-  });
-  return id;
-}
-
 export type JobExec = (
   src: string,
   path?: string
@@ -71,10 +42,8 @@ export type JobExec = (
 
 export const runnableJobs: Record<Job, JobExec> = {
   [Job.lint]: lint,
-  [Job.dev]: dev,
 };
 
 export const jobDescriptions: Record<Job, string> = {
   [Job.lint]: "Lint Yaml files.",
-  [Job.dev]: "Returns a container with yamllint installed.",
 };
