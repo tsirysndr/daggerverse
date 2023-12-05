@@ -55,7 +55,7 @@ export async function dev(
       .from("cytopia/yamllint")
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withEntrypoint(["/bin/ash"]);
+      .withEntrypoint(["/bin/sh"]);
 
     const result = await ctr.stdout();
     console.log(result);
