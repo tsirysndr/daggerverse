@@ -13,5 +13,6 @@ dagger -m github.com/tsirysndr/daggerverse/black call format --src <source>
 ## Example
 
 ```sh
+dagger -m github.com/tsirysndr/daggerverse/black call format --src .
 dagger shell -m github.com/tsirysndr/daggerverse/black dev --src .
 ```
