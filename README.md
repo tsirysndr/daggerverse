@@ -15,6 +15,7 @@ This is my collection of [Dagger](https://dagger.io) Modules that I use in my pr
 | [devbox](./devbox/)         | Instant, easy, and predictable development environments |
 | [devenv](./devenv/)         | Fast, Declarative, Reproducible, and Composable Developer Environments |
 | [flox](./flox/)             | Harness the power of Nix |
+| [golint](./golint/)         | Daggerized version of [golint](https://github.com/golang/lint) |
 | [jsonlint](./jsonlint/)     | Daggerized version of [jsonlint](https://github.com/zaach/jsonlint) |
 | [kubeval](./kubeval/)       | Daggerized version of [kubeval](https://github.com/instrumenta/kubeval) |
 | [nix](./nix)                | Nix package manager |
