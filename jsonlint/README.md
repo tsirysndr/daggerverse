@@ -13,6 +13,5 @@ dagger -m github.com/tsirysndr/daggerverse/jsonlint call lint --src <source>
 ## Example
 
 ```sh
-dagger -m github.com/tsirysndr/daggerverse/jsonlint call lint --src . 
-dagger shell -m github.com/tsirysndr/daggerverse/jsonlint dev --src .
+dagger -m github.com/tsirysndr/daggerverse/jsonlint call lint --src .
 ```
