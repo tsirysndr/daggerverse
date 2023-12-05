@@ -28,7 +28,7 @@ export async function format(
       .from(`cytopia/gofmt`)
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec([path]);
+      .withExec(["-d", "-w", path]);
 
     await ctr.stdout();
     id = await ctr.directory("/app").id();
