@@ -25,7 +25,7 @@ export async function format(
     const ctr = client
       .pipeline(Job.format)
       .container()
-      .from(`cytopia/gotfmt`)
+      .from(`cytopia/gofmt`)
       .withDirectory("/app", context)
       .withWorkdir("/app")
       .withExec([path]);
