@@ -2,7 +2,7 @@
 
 ![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.3-yellow)
 
-Daggerized version of [phpcbf](https://github.com/squizlabs/PHP_CodeSniffer).
+Daggerized version of [phpcs](https://github.com/squizlabs/PHP_CodeSniffer).
 
 ## Usage
 
