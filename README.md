@@ -25,6 +25,7 @@ This is my collection of [Dagger](https://dagger.io) Modules that I use in my pr
 | [php-cs-fixer](./php-cs-fixer/) | PHP Coding Standards Fixer [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) |
 | [pkgx](./pkgx/)             | Daggerized version of [pkgx](https://pkgx.sh) |
 | [rtx](./rtx/)               | Daggerized version of [rtx](https://github.com/jdx/rtx) |
+| [terraform-docs](./terraform-docs/) | Generate documentation from Terraform modules in various output formats [terraform-docs](https://terraform-docs.io/) |
 | [yamllint](./yamllint/)     | Lint Yaml files with [yamllint](https://github.com/adrienverge/yamllint) |
 
 ## 📝 License
