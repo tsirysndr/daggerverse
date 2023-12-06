@@ -1,4 +1,5 @@
-import Client, { Directory, Container, File } from "../../deps.ts";
+import { Directory, Container, File } from "../../deps.ts";
+import { Client } from "../../sdk/client.gen.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory } from "./lib.ts";
 
