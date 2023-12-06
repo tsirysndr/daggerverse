@@ -4,7 +4,7 @@ import { runnableJobs } from "./jobs/desc.ts";
 import { Job } from "./jobs/mod.ts";
 
 const tree = {
-  name: brightGreen("pkgx_pipeline"),
+  name: brightGreen("awesome_ci_pipeline"),
   children: (Object.keys(runnableJobs) as Job[]).map((job) => ({
     name: jobDescriptions[job]
       ? `${brightGreen(job)} - ${jobDescriptions[job]}`
