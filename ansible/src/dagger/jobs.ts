@@ -22,6 +22,7 @@ export async function playbook(
   playbook: string,
   tag = "latest"
 ): Promise<string> {
+  let stdout = "";
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
     const ctr = client
@@ -32,9 +33,9 @@ export async function playbook(
       .withWorkdir("/app")
       .withExec(["ansible-playbook", playbook]);
 
-    await ctr.stdout();
+    stdout = await ctr.stdout();
   });
-  return "Done";
+  return stdout;
 }
 
 /**

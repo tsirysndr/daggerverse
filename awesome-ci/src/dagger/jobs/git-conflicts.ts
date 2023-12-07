@@ -19,6 +19,7 @@ export async function gitConflicts(
   ignore?: string,
   extensions?: string
 ): Promise<string> {
+  let stdout = "";
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
     const args = [];
@@ -39,7 +40,7 @@ export async function gitConflicts(
       .withWorkdir("/app")
       .withExec(["git-conflicts", `--path=${path}`, ...args]);
 
-    await ctr.stdout();
+    stdout = await ctr.stdout();
   });
-  return "Done";
+  return stdout;
 }
