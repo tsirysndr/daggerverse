@@ -7,7 +7,7 @@ A Dagger Module for testing configuration files using [Conftest](https://github.
 ## Usage
 
 ```sh
-dagger -m github.com/tsirysndr/daggerverse/conftest dev \
+dagger -m github.com/tsirysndr/daggerverse/conftest call test \
   --src <source> \
   --files <files> \
   --policy [policy] \
@@ -21,7 +21,7 @@ dagger shell -m github.com/tsirysndr/daggerverse/conftest dev --src <source>
 ## Example
 
 ```sh
-dagger -m github.com/tsirysndr/daggerverse/conftest call \
+dagger -m github.com/tsirysndr/daggerverse/conftest call test \
   --src . \
   --files deployment.yaml \
   --policy policy \
