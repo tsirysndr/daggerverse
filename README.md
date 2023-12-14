@@ -23,6 +23,7 @@ This is my collection of [Dagger](https://dagger.io) Modules that I use in my pr
 | [jsonlint](./jsonlint/)     | Lint JSON files with [jsonlint](https://github.com/zaach/jsonlint) |
 | [kubeval](./kubeval/)       | Lint Kubernetes files with [kubeval](https://github.com/instrumenta/kubeval) |
 | [nix](./nix)                | Nix package manager |
+| [open-policy-agent](./open-policy-agent/)  | Daggerized version of [Open Policy Agent](https://www.openpolicyagent.org/) |
 | [phpcbf](./phpcbf/)         | Daggerized version of [phpcbf](https://github.com/squizlabs/PHP_CodeSniffer) |
 | [phpcs](./phpcs/)           | PHP Code Sniffer [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) |
 | [php-cs-fixer](./php-cs-fixer/) | PHP Coding Standards Fixer [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) |
