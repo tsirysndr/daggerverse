@@ -28,7 +28,7 @@ This is my collection of [Dagger](https://dagger.io) Modules that I use in my pr
 | [pkgx](./pkgx/)             | Daggerized version of [pkgx](https://pkgx.sh) |
 | [r2-sync](./r2-sync/)       | Sync files from local directory to Cloudflare [R2](https://www.cloudflare.com/developer-platform/r2/) |
 | [rtx](./rtx/)               | Daggerized version of [rtx](https://github.com/jdx/rtx) |
-| [scorecard](./scorecard/)   | Run [scorecard](https://github.com/ossf/scorecard) on a repository |
+| [scorecard](./scorecard/)   | Calculates [scorecard](https://github.com/ossf/scorecard) for a given repository |
 | [terraform-docs](./terraform-docs/) | Generate documentation from Terraform modules in various output formats [terraform-docs](https://terraform-docs.io/) |
 | [yamllint](./yamllint/)     | Lint Yaml files with [yamllint](https://github.com/adrienverge/yamllint) |
 
