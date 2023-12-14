@@ -13,6 +13,7 @@ export const exclude = [];
  * @description Lint a shell script with ShellCheck.
  * @param {Directory | string} src
  * @param {string} format
+ * @param {string} path
  * @param {string} shell
  * @param {string} severity
  * @param {string} check
@@ -20,6 +21,7 @@ export const exclude = [];
  */
 export async function lint(
   src: Directory | string,
+  path = ".",
   format?: string,
   shell?: string,
   severity?: string,
@@ -41,7 +43,7 @@ export async function lint(
       .from("koalaman/shellcheck:latest")
       .withDirectory("/app", context, { exclude })
       .withWorkdir("/app")
-      .withExec([...args]);
+      .withExec([...args, "-P", path]);
 
     result = await ctr.stdout();
   });
