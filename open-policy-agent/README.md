@@ -7,7 +7,7 @@ A Dagger Module for validating configuration files using [Open Policy Agent](htt
 ## Usage
 
 ```sh
-dagger -m github.com/tsirysndr/daggerverse/open-policy-agent call eval \
+dagger -m github.com/tsirysndr/daggerverse/open-policy-agent call evaluate \
   --src <source> \
   --data <data> \
   --input <input> \
@@ -21,7 +21,7 @@ dagger shell -m github.com/tsirysndr/daggerverse/open-policy-agent dev --src <so
 ## Example
 
 ```sh
-dagger -m github.com/tsirysndr/daggerverse/open-policy-agent call eval \
+dagger -m github.com/tsirysndr/daggerverse/open-policy-agent call evaluate \
   --src . \
   --data data.json \
   --input input.json \
