@@ -21,7 +21,7 @@ export const exclude = [];
  */
 export async function lint(
   src: Directory | string,
-  path = ".",
+  files = "*.sh",
   format?: string,
   shell?: string,
   severity?: string,
@@ -43,7 +43,7 @@ export async function lint(
       .from("koalaman/shellcheck:latest")
       .withDirectory("/app", context, { exclude })
       .withWorkdir("/app")
-      .withExec([...args, "-P", path]);
+      .withExec([...args, files]);
 
     result = await ctr.stdout();
   });
