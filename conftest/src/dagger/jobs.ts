@@ -20,7 +20,7 @@ export async function test(
   files: string,
   policy = "policy",
   output = "stdout"
-): Promise<Container | string> {
+): Promise<string> {
   let result = "";
   await connect(async (client: Client) => {
     const context = getDirectory(client, src);
