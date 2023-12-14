@@ -26,7 +26,7 @@ export async function upload(
   accessKey: Secret | string,
   secretKey: Secret | string,
   bucket: string,
-  endpoint: string,
+  endpointUrl: string,
   region = "us-east-1"
 ): Promise<string> {
   let result = "";
@@ -66,7 +66,7 @@ export async function upload(
         "sync",
         ".",
         "--endpoint-url",
-        endpoint,
+        endpointUrl,
         `s3://${bucket}`,
         "--delete",
       ]);
