@@ -12,7 +12,7 @@ It uses aws-cli, so you can use it on any S3 compatible storage.
 dagger -m github.com/tsirysndr/daggerverse/r2-sync \
   call r2-sync upload \
   --src <source> \
-  --dst <bucket> \
+  --bucket <bucket> \
   --access-key-id <access-key-id> \
   --secret-key <secret-key> \
   --endpoint <endpoint>
@@ -28,7 +28,7 @@ dagger shell -m github.com/tsirysndr/daggerverse/r2-sync dev --src <source>
 dagger -m github.com/tsirysndr/daggerverse/r2-sync \
   call r2-sync upload \
   --src . \
-  --dst demo \
+  --bucket demo \
   --access-key $ACCESS_KEY \
   --secret-key $SECRET_KEY \
   --endpoint https://$ACCOUNT_ID.r2.cloudflarestorage.com
