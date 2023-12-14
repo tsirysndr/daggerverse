@@ -1,4 +1,4 @@
-import Client from "../../deps.ts";
+import Client, { Secret } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getGithubAuthToken } from "./lib.ts";
 
@@ -21,7 +21,7 @@ export async function calc(
   repo: string,
   format?: string,
   checks?: string,
-  token?: string
+  token?: Secret | string
 ): Promise<string> {
   let result = "";
   const args: string[] = [];
