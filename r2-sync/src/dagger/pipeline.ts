@@ -22,7 +22,7 @@ export default async function pipeline(src = ".", args: string[] = []) {
   );
 }
 
-async function runSpecificJobs(args: jobs.Job[], src) {
+async function runSpecificJobs(args: jobs.Job[], src: string) {
   for (const name of args) {
     const job = runnableJobs[name];
     if (!job) {
