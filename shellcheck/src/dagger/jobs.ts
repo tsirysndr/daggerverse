@@ -40,10 +40,10 @@ export async function lint(
     const ctr = client
       .pipeline(Job.lint)
       .container()
-      .from("koalaman/shellcheck:latest")
+      .from("koalaman/shellcheck-alpine:latest")
       .withDirectory("/app", context, { exclude })
       .withWorkdir("/app")
-      .withExec([...args, files]);
+      .withExec(["sh", "-c", `shellcheck ${args.join(" ")} ${files}`]);
 
     result = await ctr.stdout();
   });
