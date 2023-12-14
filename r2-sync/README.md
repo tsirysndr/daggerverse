@@ -13,8 +13,8 @@ dagger -m github.com/tsirysndr/daggerverse/r2-sync \
   call r2-sync upload \
   --src <source> \
   --bucket <bucket> \
-  --access-key-id <access-key-id> \
-  --secret-key <secret-key> \
+  --access-key <access-key-id> \
+  --secret-key <secret-access-key> \
   --endpoint <endpoint>
 ```
 
