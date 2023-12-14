@@ -29,6 +29,7 @@ This is my collection of [Dagger](https://dagger.io) Modules that I use in my pr
 | [r2-sync](./r2-sync/)       | Sync files from local directory to Cloudflare [R2](https://www.cloudflare.com/developer-platform/r2/) |
 | [rtx](./rtx/)               | Daggerized version of [rtx](https://github.com/jdx/rtx) |
 | [scorecard](./scorecard/)   | Calculates [scorecard](https://github.com/ossf/scorecard) for a given repository |
+| [shellcheck](./shellcheck/) | Lint Shell scripts with [shellcheck](https://github.com/koalaman/shellcheck) |
 | [terraform-docs](./terraform-docs/) | Generate documentation from Terraform modules in various output formats [terraform-docs](https://terraform-docs.io/) |
 | [yamllint](./yamllint/)     | Lint Yaml files with [yamllint](https://github.com/adrienverge/yamllint) |
 
