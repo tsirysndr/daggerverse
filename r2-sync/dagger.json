@@ -1,0 +1,4 @@
+{
+  "name": "r2-sync",
+  "sdk": "github.com/fluentci-io/daggerverse/deno-sdk@main"
+}
