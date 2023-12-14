@@ -14,6 +14,7 @@ This is my collection of [Dagger](https://dagger.io) Modules that I use in my pr
 | [awesome-ci](./awesome-ci/) | Lot's of tools for git, file and static source code analysis. |
 | [black](./black/)           | The uncompromising Python code formatter [black](https://github.com/psf/black) |
 | [checkmake](./checkmake/)   | Lint Makefiles with [checkmake](https://github.com/mrtazz/checkmake) |
+| [conftest](./conftest/)     | Test your configuration files using [Conftest](https://conftest.dev/) |
 | [devbox](./devbox/)         | Instant, easy, and predictable development environments |
 | [devenv](./devenv/)         | Fast, Declarative, Reproducible, and Composable Developer Environments |
 | [flox](./flox/)             | Harness the power of Nix |
