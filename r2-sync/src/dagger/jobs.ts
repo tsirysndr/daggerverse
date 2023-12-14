@@ -105,8 +105,8 @@ export async function dev(
 export type JobExec =
   | ((
       src: string,
-      accessKey: Secret,
-      secretKey: Secret,
+      accessKey: Secret | string,
+      secretKey: Secret | string,
       bucket: string,
       endpoint: string,
       region?: string
