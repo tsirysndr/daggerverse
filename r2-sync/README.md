@@ -10,7 +10,7 @@ It uses aws-cli, so you can use it on any S3 compatible storage.
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/r2-sync \
-  call r2-sync upload \
+  call upload \
   --src <source> \
   --bucket <bucket> \
   --access-key <access-key-id> \
@@ -26,7 +26,7 @@ dagger shell -m github.com/tsirysndr/daggerverse/r2-sync dev --src <source>
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/r2-sync \
-  call r2-sync upload \
+  call upload \
   --src . \
   --bucket demo \
   --access-key $ACCESS_KEY \
