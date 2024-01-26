@@ -45,7 +45,7 @@ export async function setupNix(
       });
 
     if (src) {
-      const context = getDirectory(client, src);
+      const context = await getDirectory(client, src);
       ctr = ctr.withDirectory("/app", context).withWorkdir("/app");
     }
 
