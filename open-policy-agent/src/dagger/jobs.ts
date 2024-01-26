@@ -26,7 +26,7 @@ export async function evaluate(
 ): Promise<string> {
   let result = "";
   await connect(async (client: Client) => {
-    const context = getDirectory(client, src);
+    const context = await getDirectory(client, src);
     const ctr = client
       .pipeline(Job.eval)
       .container()
@@ -56,7 +56,7 @@ export async function dev(
 ): Promise<Container | string> {
   let id = "";
   await connect(async (client: Client) => {
-    const context = getDirectory(client, src);
+    const context = await getDirectory(client, src);
     const ctr = client
       .pipeline(Job.dev)
       .container()
