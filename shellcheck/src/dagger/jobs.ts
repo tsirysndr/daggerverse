@@ -36,7 +36,7 @@ export async function lint(
   if (check) args.push("-o", check);
 
   await connect(async (client: Client) => {
-    const context = getDirectory(client, src);
+    const context = await getDirectory(client, src);
     const ctr = client
       .pipeline(Job.lint)
       .container()
