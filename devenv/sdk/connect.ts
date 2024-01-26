@@ -1,6 +1,6 @@
 import { Writable } from "node:stream";
-
 import { Client } from "./client.gen.ts";
+import { Context } from "./context.ts";
 
 /**
  * ConnectOpts defines option used to connect to an engine.
@@ -39,51 +39,15 @@ export interface ConnectParams {
  */
 export async function connect(
   cb: CallbackFct,
-  config: ConnectOpts = {}
+  _config: ConnectOpts = {}
 ): Promise<void> {
-  let client: Client;
-  // let close: null | (() => void) = null;
+  const ctx = new Context();
+  const client = new Client({ ctx: ctx });
 
-  if (Deno.env.has("FLUENTCI_TOKEN") && Deno.env.has("FLUENTCI_SESSION_ID")) {
-    const client = new Client({
-      host: Deno.env.get("FLUENTCI_HOST") || "vm.fluentci.io",
-      sessionToken: Deno.env.get("FLUENTCI_TOKEN"),
-    });
-    await cb(client).finally(() => {
-      if (close) {
-        close();
-      }
-    });
-    return;
-  }
-
-  // Prefer DAGGER_SESSION_PORT if set
-  const daggerSessionPort = Deno.env.get("DAGGER_SESSION_PORT");
-  if (daggerSessionPort) {
-    const sessionToken = Deno.env.get("DAGGER_SESSION_TOKEN");
-    if (!sessionToken) {
-      throw new Error(
-        "DAGGER_SESSION_TOKEN must be set when using DAGGER_SESSION_PORT"
-      );
-    }
-
-    if (config.Workdir && config.Workdir !== "") {
-      throw new Error(
-        "cannot configure workdir for existing session (please use --workdir or host.directory with absolute paths instead)"
-      );
-    }
-
-    client = new Client({
-      host: `127.0.0.1:${daggerSessionPort}`,
-      sessionToken: sessionToken,
-    });
-  } else {
-    throw new Error("DAGGER_SESSION_PORT must be set");
-  }
+  // Initialize connection
+  await ctx.connection();
 
   await cb(client).finally(() => {
-    if (close) {
-      close();
-    }
+    ctx.close();
   });
 }
