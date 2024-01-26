@@ -21,7 +21,7 @@ export async function fileUtf8Bom(
 ): Promise<string> {
   let stdout = "";
   await connect(async (client: Client) => {
-    const context = getDirectory(client, src);
+    const context = await getDirectory(client, src);
     const args = [];
 
     if (extensions) {
