@@ -26,6 +26,8 @@ export async function dev(
       .from("pkgxdev/pkgx:latest")
       .withDirectory("/app", context)
       .withWorkdir("/app")
+      .withExec(["apt-get", "update"])
+      .withExec(["apt-get", "install", "-y", "libssl1.1"])
       .withExec(["pkgx", "install", "rtx", "git", "curl", "wget"])
       .withExec(["sh", "-c", `echo 'eval "$(rtx activate bash)"' >> ~/.bashrc`])
       .withExec(["bash", "-c", "source ~/.bashrc"])
