@@ -35,7 +35,7 @@ export async function calc(
   }
 
   await connect(async (client: Client) => {
-    const secret = getGithubAuthToken(client, token);
+    const secret = await getGithubAuthToken(client, token);
 
     let baseCtr = client
       .pipeline(Job.calc)

@@ -5,19 +5,26 @@ import Client, {
   SecretID,
 } from "../../deps.ts";
 
-export const getDirectory = (
+export const getDirectory = async (
   client: Client,
   src: string | Directory | undefined = "."
 ) => {
-  if (typeof src === "string" && src.startsWith("core.Directory")) {
-    return client.directory({
-      id: src as DirectoryID,
-    });
+  if (typeof src === "string") {
+    try {
+      const directory = client.loadDirectoryFromID(src as DirectoryID);
+      await directory.id();
+      return directory;
+    } catch (_) {
+      return client.host().directory(src);
+    }
   }
   return src instanceof Directory ? src : client.host().directory(src);
 };
 
-export const getGithubAuthToken = (client: Client, token?: string | Secret) => {
+export const getGithubAuthToken = async (
+  client: Client,
+  token?: string | Secret
+) => {
   if (Deno.env.get("GITHUB_AUTH_TOKEN")) {
     return client.setSecret(
       "GITHUB_AUTH_TOKEN",
@@ -25,10 +32,13 @@ export const getGithubAuthToken = (client: Client, token?: string | Secret) => {
     );
   }
   if (token && typeof token === "string") {
-    if (token.startsWith("core.Secret")) {
-      return client.loadSecretFromID(token as SecretID);
+    try {
+      const secret = client.loadSecretFromID(token as SecretID);
+      await secret.id();
+      return secret;
+    } catch (_) {
+      return client.setSecret("GITHUB_AUTH_TOKEN", token);
     }
-    return client.setSecret("GITHUB_AUTH_TOKEN", token);
   }
   if (token && token instanceof Secret) {
     return token;
