@@ -31,9 +31,9 @@ export async function upload(
 ): Promise<string> {
   let result = "";
   await connect(async (client: Client) => {
-    const context = getDirectory(client, src);
-    const _accessKey = getAccessKey(client, accessKey);
-    const _secretKey = getSecretKey(client, secretKey);
+    const context = await getDirectory(client, src);
+    const _accessKey = await getAccessKey(client, accessKey);
+    const _secretKey = await getSecretKey(client, secretKey);
 
     if (!_accessKey || !_secretKey) {
       console.error("Missing ACCESS_KEY or SECRET_KEY");
@@ -86,7 +86,7 @@ export async function dev(
 ): Promise<Container | string> {
   let id = "";
   await connect(async (client: Client) => {
-    const context = getDirectory(client, src);
+    const context = await getDirectory(client, src);
     const ctr = client
       .pipeline(Job.dev)
       .container()
