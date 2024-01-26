@@ -22,7 +22,7 @@ export async function lint(
 ): Promise<Directory | string> {
   let id = "";
   await connect(async (client: Client) => {
-    const context = getDirectory(client, src);
+    const context = await getDirectory(client, src);
     const ctr = client
       .pipeline(Job.lint)
       .container()
@@ -48,7 +48,7 @@ export async function dev(
 ): Promise<Container | string> {
   let id = "";
   await connect(async (client: Client) => {
-    const context = getDirectory(client, src);
+    const context = await getDirectory(client, src);
     const ctr = client
       .pipeline(Job.dev)
       .container()
