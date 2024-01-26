@@ -20,7 +20,7 @@ export async function dev(
 ): Promise<Container | string> {
   let id = "";
   await connect(async (client: Client) => {
-    const context = getDirectory(client, src);
+    const context = await getDirectory(client, src);
     const ctr = floxBase(client, Job.dev)
       .withDirectory("/app", context)
       .withWorkdir("/app");
@@ -45,7 +45,7 @@ export async function install(
 ): Promise<Container | string> {
   let id = "";
   await connect(async (client: Client) => {
-    const context = getDirectory(client, src);
+    const context = await getDirectory(client, src);
     const ctr = floxBase(client, Job.install)
       .withDirectory("/app", context)
       .withWorkdir("/app")
