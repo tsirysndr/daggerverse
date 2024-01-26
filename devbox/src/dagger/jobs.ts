@@ -23,7 +23,7 @@ export async function run(
 ): Promise<Container | string> {
   let id = "";
   await connect(async (client: Client) => {
-    const context = getDirectory(client, src);
+    const context = await getDirectory(client, src);
 
     const ctr = devboxBase(client, Job.run)
       .withDirectory("/app", context)
@@ -48,7 +48,7 @@ export async function dev(
 ): Promise<Container | string> {
   let id = "";
   await connect(async (client: Client) => {
-    const context = getDirectory(client, src);
+    const context = await getDirectory(client, src);
     const ctr = devboxBase(client, Job.dev)
       .withDirectory("/app", context)
       .withWorkdir("/app");
@@ -73,8 +73,8 @@ export async function install(
 ): Promise<Container | string> {
   let id = "";
   await connect(async (client: Client) => {
-    const context = getDirectory(client, src);
-    const ctr = devboxBase(client, Job.install)
+    const context = await getDirectory(client, src);
+    const ctr = await devboxBase(client, Job.install)
       .withDirectory("/app", context)
       .withWorkdir("/app")
       .withExec(["devbox", "global", "add", ...pkgs]);
