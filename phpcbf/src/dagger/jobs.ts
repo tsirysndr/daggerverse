@@ -23,7 +23,7 @@ export async function check(
 ): Promise<Directory | string> {
   let id = "";
   await connect(async (client: Client) => {
-    const context = getDirectory(client, src);
+    const context = await getDirectory(client, src);
     const ctr = client
       .pipeline(Job.check)
       .container()
