@@ -1,6 +1,6 @@
 # Module: Conftest
 
-![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.3-yellow)
+![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.7-green)
 
 A Dagger Module for testing configuration files using [Conftest](https://github.com/open-policy-agent/conftest).
 
