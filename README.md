@@ -33,6 +33,7 @@ This is my collection of [Dagger](https://dagger.io) Modules that I use in my pr
 | [scorecard](./scorecard/)   | Calculates [scorecard](https://github.com/ossf/scorecard) for a given repository |
 | [shellcheck](./shellcheck/) | Lint Shell scripts with [shellcheck](https://github.com/koalaman/shellcheck) |
 | [terraform-docs](./terraform-docs/) | Generate documentation from Terraform modules in various output formats [terraform-docs](https://terraform-docs.io/) |
+| [wiremock](./wiremock/)     | [wiremock](https://wiremock.org/): A tool for mocking HTTP services |
 | [yamllint](./yamllint/)     | Lint Yaml files with [yamllint](https://github.com/adrienverge/yamllint) |
 
 ## 📝 License
