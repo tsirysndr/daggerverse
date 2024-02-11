@@ -1,6 +1,6 @@
 # Module: Checkmake
 
-![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.7-green)
+![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.8-green)
 
 Daggerized version of [checkmake](https://github.com/mrtazz/checkmake).
 

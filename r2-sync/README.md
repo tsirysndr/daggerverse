@@ -1,6 +1,6 @@
 # Module: R2 Sync
 
-![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.7-green)
+![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.8-green)
 
 Sync files from local directory to Cloudflare [R2](https://www.cloudflare.com/developer-platform/r2/).
 
@@ -19,7 +19,7 @@ dagger -m github.com/tsirysndr/daggerverse/r2-sync \
 ```
 
 ```sh
-dagger shell -m github.com/tsirysndr/daggerverse/r2-sync dev --src <source>
+dagger call -m github.com/tsirysndr/daggerverse/r2-sync dev --src <source> shell
 ```
 
 ## Example
@@ -35,5 +35,5 @@ dagger -m github.com/tsirysndr/daggerverse/r2-sync \
 ```
 
 ```sh
-dagger shell -m github.com/tsirysndr/daggerverse/r2-sync dev --src .
+dagger call -m github.com/tsirysndr/daggerverse/r2-sync dev --src . shell
 ```

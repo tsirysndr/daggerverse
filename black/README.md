@@ -1,6 +1,6 @@
 # Module: Black
 
-![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.7-green)
+![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.8-green)
 
 Daggerized version of [black](https://github.com/python/black).
 
@@ -14,5 +14,5 @@ dagger -m github.com/tsirysndr/daggerverse/black call format --src <source>
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/black call format --src .
-dagger shell -m github.com/tsirysndr/daggerverse/black dev --src .
+dagger call -m github.com/tsirysndr/daggerverse/black dev --src . shell
 ```

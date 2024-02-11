@@ -1,6 +1,6 @@
 # Module: Wiremock
 
-![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.7-green)
+![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.8-green)
 
 Daggerized version of [wiremock](https://wiremock.org/).
 
@@ -10,5 +10,5 @@ Daggerized version of [wiremock](https://wiremock.org/).
 ## Usage
 
 ```sh
-dagger -m github.com/tsirysndr/daggerverse/wiremock up --native wiremock --mappings ./mappings
+dagger -m github.com/tsirysndr/daggerverse/wiremock wiremock --mappings ./mappings up --native
 ```

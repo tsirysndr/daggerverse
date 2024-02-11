@@ -1,6 +1,6 @@
 # Module: Ansible
 
-![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.7-green)
+![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.8-green)
 
 Daggerized version of [ansible](https://github.com/cytopia/docker-ansible).
 
@@ -14,5 +14,5 @@ dagger -m github.com/tsirysndr/daggerverse/ansible call playbook --src <source> 
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/ansible call playbook --src . --playbook playbook.yml
-dagger shell -m github.com/tsirysndr/daggerverse/ansible dev --src .
+dagger call -m github.com/tsirysndr/daggerverse/ansible dev --src . shell
 ```

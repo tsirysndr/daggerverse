@@ -1,6 +1,6 @@
 # Module: Conftest
 
-![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.7-green)
+![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.8-green)
 
 A Dagger Module for testing configuration files using [Conftest](https://github.com/open-policy-agent/conftest).
 
@@ -15,7 +15,7 @@ dagger -m github.com/tsirysndr/daggerverse/conftest call test \
 ```
 
 ```sh
-dagger shell -m github.com/tsirysndr/daggerverse/conftest dev --src <source>
+dagger call -m github.com/tsirysndr/daggerverse/conftest dev --src <source> shell
 ```
 
 ## Example
@@ -29,5 +29,5 @@ dagger -m github.com/tsirysndr/daggerverse/conftest call test \
 ```
 
 ```sh
-dagger shell -m github.com/tsirysndr/daggerverse/conftest dev --src .
+dagger call -m github.com/tsirysndr/daggerverse/conftest dev --src . shell
 ```
