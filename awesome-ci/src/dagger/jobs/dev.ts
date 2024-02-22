@@ -1,8 +1,3 @@
-/**
- * @module awesome-ci
- * @desciption Awesome Continuous Integration - Lot's of tools for git, file and static source code analysis.
- */
-
 import { Directory, Container } from "../../../deps.ts";
 import { Client } from "../../../sdk/client.gen.ts";
 import { connect } from "../../../sdk/connect.ts";
