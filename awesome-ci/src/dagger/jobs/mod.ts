@@ -1,3 +1,8 @@
+/**
+ * @module awesome-ci
+ * @description Awesome Continuous Integration - Lot's of tools for git, file and static source code analysis.
+ */
+
 import { Container } from "../../../deps.ts";
 
 export enum Job {
