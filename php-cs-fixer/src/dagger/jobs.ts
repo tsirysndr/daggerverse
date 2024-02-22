@@ -1,3 +1,8 @@
+/**
+ * @module php-cs-fixer
+ * @description This module provides a function to run php-cs-fixer on PHP files.
+ */
+
 import Client, { Directory, Container } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory } from "./lib.ts";

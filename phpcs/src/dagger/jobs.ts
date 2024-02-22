@@ -1,3 +1,8 @@
+/**
+ * @module phpcs
+ * @description This module provides a function to run phpcs on PHP files.
+ */
+
 import Client, { Directory, Container } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory } from "./lib.ts";

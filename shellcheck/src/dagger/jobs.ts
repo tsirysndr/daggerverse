@@ -1,3 +1,8 @@
+/**
+ * @module shellcheck
+ * @description This module provides a function to lint a shell script with ShellCheck.
+ */
+
 import Client, { Directory } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory } from "./lib.ts";

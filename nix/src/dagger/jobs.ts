@@ -1,3 +1,8 @@
+/**
+ * @module nix
+ * @description This module provides a function to setup Nix with DeterminateSystems Nix Installer.
+ */
+
 import Client, { Directory, Container } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory } from "./lib.ts";

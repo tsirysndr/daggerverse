@@ -1,3 +1,8 @@
+/**
+ * @module rtx
+ * @description This module provides a function to create a development environment with rtx installed and activated in the current directory.
+ */
+
 import Client, { Directory, Container } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory } from "./lib.ts";

@@ -1,3 +1,8 @@
+/**
+ * @module open-policy-agent
+ * @description This module provides a function to evaluate a rego query and to create a development environment with Open Policy Agent installed.
+ */
+
 import Client, { Directory, Container } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory } from "./lib.ts";

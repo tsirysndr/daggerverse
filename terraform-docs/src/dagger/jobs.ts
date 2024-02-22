@@ -1,3 +1,8 @@
+/**
+ * @module terraform-docs
+ * @description This module provides a function to generate Terraform modules documentation.
+ */
+
 import { Directory, Container, File } from "../../deps.ts";
 import { Client } from "../../sdk/client.gen.ts";
 import { connect } from "../../sdk/connect.ts";

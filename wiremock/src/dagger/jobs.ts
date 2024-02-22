@@ -1,3 +1,8 @@
+/**
+ * @module wiremock
+ * @description This module provides a function to start wiremock server and load mappings and files.
+ */
+
 import { Directory, Service } from "../../deps.ts";
 import { dag } from "../../sdk/client.gen.ts";
 import { getDirectory } from "./lib.ts";

@@ -1,3 +1,8 @@
+/**
+ * @module Conftest
+ * @description This module provides a set of functions to test your configuration files using Conftest and to create a development environment with Conftest installed.
+ */
+
 import Client, { Directory, Container } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory } from "./lib.ts";

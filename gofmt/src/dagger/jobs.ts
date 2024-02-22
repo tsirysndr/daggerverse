@@ -1,3 +1,8 @@
+/**
+ * @module gofmt
+ * @description This module provides a function to format Go code.
+ */
+
 import Client, { Directory, Container } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory } from "./lib.ts";

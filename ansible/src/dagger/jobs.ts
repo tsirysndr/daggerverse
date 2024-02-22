@@ -1,3 +1,8 @@
+/**
+ * @module ansible
+ * @description This module provides a set of functions to run ansible playbooks and to create a development environment with ansible installed.
+ */
+
 import Client, { Directory, Container } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory } from "./lib.ts";

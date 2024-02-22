@@ -1,3 +1,7 @@
+/**
+ * @module pkgx
+ * @description This module provides a set of functions to install packages and to create a development environment with pkgx installed.
+ */
 import Client, { Directory, Container } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory } from "./lib.ts";

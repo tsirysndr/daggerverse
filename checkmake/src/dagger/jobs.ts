@@ -1,3 +1,8 @@
+/**
+ * @module checkmake
+ * @description This module provides a set of functions to lint Makefiles and to create a development environment with checkmake installed.
+ */
+
 import Client, { Directory, Container } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory } from "./lib.ts";

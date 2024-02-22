@@ -1,3 +1,8 @@
+/**
+ * @module devbox
+ * @description This module provides a set of functions to run commands inside devbox shell and to create a development environment with devbox installed.
+ */
+
 import Client, { Directory, Container } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory, devboxBase } from "./lib.ts";

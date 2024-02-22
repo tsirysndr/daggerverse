@@ -1,3 +1,8 @@
+/**
+ * @module ansible-lint
+ * @description This module provides a set of functions to lint ansible YAML files and to create a development environment with ansible-lint installed.
+ */
+
 import Client, { Directory, Container } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory } from "./lib.ts";

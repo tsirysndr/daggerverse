@@ -1,3 +1,8 @@
+/**
+ * @module scorecard
+ * @description This module provides a function to calculate the scorecard for a given repository.
+ */
+
 import Client, { Secret } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getGithubAuthToken } from "./lib.ts";

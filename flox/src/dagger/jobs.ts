@@ -1,3 +1,8 @@
+/**
+ * @module flox
+ * @description This module provides a set of functions to run flox commands and to create a development environment with flox installed.
+ */
+
 import Client, { Directory, Container } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory, floxBase } from "./lib.ts";

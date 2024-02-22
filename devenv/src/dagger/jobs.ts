@@ -1,3 +1,8 @@
+/**
+ * @module devenv
+ * @description This module provides a set of functions to run a command inside devenv shell, return a container with devenv installed, and build the devenv shell and run any pre-commit hooks.
+ */
+
 import Client, { Directory, Container } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory, devenvBase } from "./lib.ts";

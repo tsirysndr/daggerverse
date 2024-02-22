@@ -1,3 +1,8 @@
+/**
+ * @module r2-sync
+ * @description This module provides a set of functions to upload files to Cloudlare R2 bucket and to create a development environment with AWS CLI installed.
+ */
+
 import { Directory, Container, Secret } from "../../deps.ts";
 import { connect } from "../../sdk/connect.ts";
 import { Client } from "../../sdk/client.gen.ts";
