@@ -1,3 +1,8 @@
+/**
+ * @module awesome-ci
+ * @desciption Awesome Continuous Integration - Lot's of tools for git, file and static source code analysis.
+ */
+
 import { jobDescriptions } from "./jobs/desc.ts";
 import { dev } from "./jobs/dev.ts";
 import { fileCr } from "./jobs/file-cr.ts";
