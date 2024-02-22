@@ -1,6 +1,6 @@
 # Module: Rtx
 
-![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.8-green)
+![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.11-green)
 
 Returns a Container with [rtx](https://github.com/jdx/rtx) installed.
 

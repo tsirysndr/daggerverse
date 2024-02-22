@@ -1,6 +1,6 @@
 # Module: Open Policy Agent
 
-![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.8-green)
+![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.11-green)
 
 A Dagger Module for validating configuration files using [Open Policy Agent](https://www.openpolicyagent.org/).
 
