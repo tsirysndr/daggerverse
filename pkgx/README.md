@@ -14,7 +14,7 @@ dagger call -m github.com/tsirysndr/daggerverse/pkgx dev --src <source> terminal
 ## Example
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/pkgx install --pkgs jq,gh shell
+dagger call -m github.com/tsirysndr/daggerverse/pkgx install --pkgs jq,gh terminal
 dagger call -m github.com/tsirysndr/daggerverse/pkgx dev --src. terminal
 ```
 
