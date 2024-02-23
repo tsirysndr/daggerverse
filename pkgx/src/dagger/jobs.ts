@@ -26,7 +26,8 @@ export async function install(pkgs: string[]): Promise<Container | string> {
       .pipeline(Job.install)
       .container()
       .from("pkgxdev/pkgx:latest")
-      .withExec(["pkgx", "install", ...pkgs]);
+      .withExec(["pkgx", "install", ...pkgs])
+      .withDefaultTerminalCmd(["bash", "-i"]);
 
     const result = await ctr.stdout();
     console.log(result);

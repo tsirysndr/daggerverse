@@ -33,7 +33,8 @@ export async function run(
     const ctr = devboxBase(client, Job.run)
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["bash", "-c", `devbox run -- ${command}`]);
+      .withExec(["bash", "-c", `devbox run -- ${command}`])
+      .withDefaultTerminalCmd(["bash", "-i"]);
 
     await ctr.stdout();
     id = await ctr.id();
