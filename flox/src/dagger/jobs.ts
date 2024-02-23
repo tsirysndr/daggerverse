@@ -54,8 +54,8 @@ export async function install(
     const ctr = floxBase(client, Job.install)
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["flox", "install", ...pkgs]);
-    ctr.withDefaultTerminalCmd(["bash", "-i"]);
+      .withExec(["flox", "install", ...pkgs])
+      .withDefaultTerminalCmd(["bash", "-i"]);
 
     await ctr.stdout();
     id = await ctr.id();
