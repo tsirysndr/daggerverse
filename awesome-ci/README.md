@@ -7,11 +7,11 @@ Returns a Container with [awesome-ci](https://github.com/cytopia/awesome-ci) ins
 ## Usage
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/awesome-ci dev --src <source> shell
+dagger call -m github.com/tsirysndr/daggerverse/awesome-ci dev --src <source> terminal
 ```
 
 ## Example
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/awesome-ci dev --src . shell
+dagger call -m github.com/tsirysndr/daggerverse/awesome-ci dev --src. terminal
 ```

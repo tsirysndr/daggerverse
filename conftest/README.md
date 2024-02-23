@@ -15,7 +15,7 @@ dagger -m github.com/tsirysndr/daggerverse/conftest call test \
 ```
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/conftest dev --src <source> shell
+dagger call -m github.com/tsirysndr/daggerverse/conftest dev --src <source> terminal
 ```
 
 ## Example
@@ -29,5 +29,5 @@ dagger -m github.com/tsirysndr/daggerverse/conftest call test \
 ```
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/conftest dev --src . shell
+dagger call -m github.com/tsirysndr/daggerverse/conftest dev --src. terminal
 ```

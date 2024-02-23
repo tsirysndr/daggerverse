@@ -7,13 +7,13 @@ Returns a Container with Nix installed using [DeterminateSystems/nix-installer](
 ## Usage
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/nix setup-nix shell
+dagger call -m github.com/tsirysndr/daggerverse/nix setup-nix terminal
 ```
 
 ## Example
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/nix setup-nix shell
+dagger call -m github.com/tsirysndr/daggerverse/nix setup-nix terminal
 ```
 
 ## Arguments

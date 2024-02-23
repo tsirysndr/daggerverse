@@ -14,5 +14,5 @@ dagger -m github.com/tsirysndr/daggerverse/black call format --src <source>
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/black call format --src .
-dagger call -m github.com/tsirysndr/daggerverse/black dev --src . shell
+dagger call -m github.com/tsirysndr/daggerverse/black dev --src. terminal
 ```

@@ -19,7 +19,7 @@ dagger -m github.com/tsirysndr/daggerverse/r2-sync \
 ```
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/r2-sync dev --src <source> shell
+dagger call -m github.com/tsirysndr/daggerverse/r2-sync dev --src <source> terminal
 ```
 
 ## Example
@@ -35,5 +35,5 @@ dagger -m github.com/tsirysndr/daggerverse/r2-sync \
 ```
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/r2-sync dev --src . shell
+dagger call -m github.com/tsirysndr/daggerverse/r2-sync dev --src. terminal
 ```

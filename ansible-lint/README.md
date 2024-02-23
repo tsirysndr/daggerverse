@@ -14,5 +14,5 @@ dagger -m github.com/tsirysndr/daggerverse/ansible-lint call lint --src <source>
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/ansible-lint call lint --src . 
-dagger call -m github.com/tsirysndr/daggerverse/ansible-lint dev --src . shell
+dagger call -m github.com/tsirysndr/daggerverse/ansible-lint dev --src. terminal
 ```

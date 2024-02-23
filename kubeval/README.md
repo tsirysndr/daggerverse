@@ -14,5 +14,5 @@ dagger -m github.com/tsirysndr/daggerverse/kubeval call lint --src <source>
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/kubeval call lint --src . 
-dagger call -m github.com/tsirysndr/daggerverse/kubeval dev --src . shell
+dagger call -m github.com/tsirysndr/daggerverse/kubeval dev --src. terminal
 ```

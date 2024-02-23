@@ -7,11 +7,11 @@ Returns a Container with [rtx](https://github.com/jdx/rtx) installed.
 ## Usage
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/rtx dev --src <source> shell
+dagger call -m github.com/tsirysndr/daggerverse/rtx dev --src <source> terminal
 ```
 
 ## Example
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/rtx dev --src . shell
+dagger call -m github.com/tsirysndr/daggerverse/rtx dev --src. terminal
 ```

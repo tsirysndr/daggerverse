@@ -84,4 +84,5 @@ export const floxBase = (client: Client, name: string) =>
       "--accept-flake-config",
       "github:flox/floxpkgs#flox.fromCatalog",
     ])
-    .withExec(["flox", "--version"]);
+    .withExec(["flox", "--version"])
+    .withExec(["sh", "-c", `echo 'eval "$(flox activate)"' >> ~/.bashrc`]);

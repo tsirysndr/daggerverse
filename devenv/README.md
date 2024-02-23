@@ -7,5 +7,5 @@ Returns a Container with [Devenv](https://devenv.sh/) installed.
 ## Usage
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/devenv dev shell
+dagger call -m github.com/tsirysndr/daggerverse/devenv dev terminal
 ```

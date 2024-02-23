@@ -15,7 +15,7 @@ dagger -m github.com/tsirysndr/daggerverse/open-policy-agent call evaluate \
 ```
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/open-policy-agent dev --src <source> shell
+dagger call -m github.com/tsirysndr/daggerverse/open-policy-agent dev --src <source> terminal
 ```
 
 ## Example
@@ -29,5 +29,5 @@ dagger -m github.com/tsirysndr/daggerverse/open-policy-agent call evaluate \
 ```
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/open-policy-agent dev --src . shell
+dagger call -m github.com/tsirysndr/daggerverse/open-policy-agent dev --src. terminal
 ```

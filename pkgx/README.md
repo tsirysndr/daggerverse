@@ -7,15 +7,15 @@ Returns a Container with the package specified in the [pkgx](https://pkgx.sh/) a
 ## Usage
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/pkgx install --pkgs <packages> shell
-dagger call -m github.com/tsirysndr/daggerverse/pkgx dev --src <source> shell
+dagger call -m github.com/tsirysndr/daggerverse/pkgx install --pkgs <packages> terminal
+dagger call -m github.com/tsirysndr/daggerverse/pkgx dev --src <source> terminal
 ```
 
 ## Example
 
 ```sh
 dagger call -m github.com/tsirysndr/daggerverse/pkgx install --pkgs jq,gh shell
-dagger call -m github.com/tsirysndr/daggerverse/pkgx dev --src . shell
+dagger call -m github.com/tsirysndr/daggerverse/pkgx dev --src. terminal
 ```
 
 ## Install Arguments

@@ -7,8 +7,8 @@ Returns a Container with [flox](https://flox.dev/) installed.
 ## Usage
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/flox dev shell
-dagger call -m github.com/tsirysndr/daggerverse/flox install --pkgs <packages> shell
+dagger call -m github.com/tsirysndr/daggerverse/flox dev terminal
+dagger call -m github.com/tsirysndr/daggerverse/flox install --pkgs <packages> terminal
 ```
 
 ## Example
