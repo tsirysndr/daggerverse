@@ -55,6 +55,7 @@ export async function install(
       .withDirectory("/app", context)
       .withWorkdir("/app")
       .withExec(["flox", "install", ...pkgs]);
+    ctr.withDefaultTerminalCmd(["bash", "-i"]);
 
     await ctr.stdout();
     id = await ctr.id();
