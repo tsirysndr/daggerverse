@@ -33,8 +33,7 @@ export async function run(
     const ctr = devboxBase(client, Job.run)
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["bash", "-c", `devbox run -- ${command}`])
-      .withDefaultTerminalCmd(["bash", "-i"]);
+      .withExec(["bash", "-c", `devbox run -- ${command}`]);
 
     await ctr.stdout();
     id = await ctr.id();
@@ -57,7 +56,8 @@ export async function dev(
     const context = await getDirectory(client, src);
     const ctr = devboxBase(client, Job.dev)
       .withDirectory("/app", context)
-      .withWorkdir("/app");
+      .withWorkdir("/app")
+      .withDefaultTerminalCmd(["bash", "-i"]);
 
     await ctr.stdout();
     id = await ctr.id();
@@ -83,7 +83,8 @@ export async function install(
     const ctr = await devboxBase(client, Job.install)
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["devbox", "global", "add", ...pkgs]);
+      .withExec(["devbox", "global", "add", ...pkgs])
+      .withDefaultTerminalCmd(["bash", "-i"]);
 
     await ctr.stdout();
     id = await ctr.id();
