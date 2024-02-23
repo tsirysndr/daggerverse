@@ -14,5 +14,5 @@ dagger call -m github.com/tsirysndr/daggerverse/flox install --pkgs <packages> t
 ## Example
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/flox install --pkgs gh,jq shell
+dagger call -m github.com/tsirysndr/daggerverse/flox install --pkgs gh,jq terminal
 ```
