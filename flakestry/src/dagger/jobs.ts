@@ -70,7 +70,7 @@ export async function publish(
       .withExec([
         "sh",
         "-c",
-        'nix flake show --json --all-systems > outputs.json 2> outputs.err || echo "nix flake show --json --all-systems failed',
+        'nix flake show --json --all-systems > outputs.json 2> outputs.err || echo "nix flake show --json --all-systems failed"',
       ])
       .withExec([
         "bash",
