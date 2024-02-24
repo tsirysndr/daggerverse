@@ -59,23 +59,23 @@ export async function publish(
       })
       .withDirectory("/app", context)
       .withWorkdir("/app")
-      .withExec(["sh", "-c", "echo null > metadata.err"])
-      .withExec(["sh", "-c", "echo null > metadata.json"])
-      .withExec(["sh", "-c", "echo null > outputs.json"])
       .withExec([
         "bash",
         "-c",
-        'nix flake metadata --json > metadata.json 2> metadata.err || echo "nix flake metadata --json failed"',
-      ])
-      .withExec([
-        "sh",
-        "-c",
-        'nix flake show --json --all-systems > outputs.json 2> outputs.err || echo "nix flake show --json --all-systems failed"',
-      ])
-      .withExec([
-        "bash",
-        "-c",
-        "[ ! -e metadata.json ] && echo null > metadata.json; exit 0",
+        `\
+        echo null > metadata.err
+        echo null > metadata.json
+        echo null > outputs.json
+        nix flake metadata --json > metadata.json 2> metadata.err || echo "nix flake metadata --json failed"
+        nix flake show --json --all-systems > outputs.json 2> outputs.err || echo "nix flake show --json --all-systems failed"
+
+        if [ ! -e metadata.json ]; then
+            echo null > metadata.json
+        fi
+        if [ ! -e outputs.json ]; then
+            echo null > outputs.json
+        fi
+      `,
       ])
       .withEnvVariable("VERSION", Deno.env.get("VERSION") || version)
       .withEnvVariable("REF", Deno.env.get("REF") || ref)
@@ -94,11 +94,6 @@ export async function publish(
         "IGNORE_CONFLICTS",
         Deno.env.get("IGNORE_CONFLICTS") || `${ignoreConflicts}`
       )
-      .withExec([
-        "bash",
-        "-c",
-        "[ ! -e outputs.json ] && echo null > outputs.json; exit 0",
-      ])
       .withExec([
         "bash",
         "-c",
