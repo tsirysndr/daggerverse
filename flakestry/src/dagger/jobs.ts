@@ -1,6 +1,6 @@
 /**
  * @module flakestry
- * @description Publish a flake from Github to flakestry.dev
+ * @description Publish a flake from Github to flakestry.dev ❄️
  */
 import { Directory, Container } from "../../deps.ts";
 import { Secret, Client } from "../../sdk/client.gen.ts";
