@@ -11,6 +11,7 @@ dagger call -m github.com/tsirysndr/daggerverse/flakestry publish \
   --src . \
   --version v0.1.0 \
   --gh-token GH_TOKEN \
+  --ref REF \
   --actions-id-token-request-token ACTIONS_ID_TOKEN_REQUEST_TOKEN \
   --actions-id-token-request-url ACTIONS_ID_TOKEN_REQUEST_URL
 ```
@@ -22,6 +23,7 @@ dagger call -m github.com/tsirysndr/daggerverse/flakestry publish \
 | src                            | Directory containing the flake to be published to flakestry.   | true     |
 | version                        | Version of the flake to be published to flakestry.           | true     |
 | gh-token                       | GitHub Access Token                          | true     |
+| ref                            | Git sha reference of the flake to be published to flakestry.   | true     |
 | actions-id-token-request-token | GitHub Actions ID token request token.                 | true     |
 | actions-id-token-request-url   | GitHub Actions ID token request URL.                   | true     |
 | url                            | URL of the flakestry API                                 | false    |
