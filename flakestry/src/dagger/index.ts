@@ -1,4 +1,4 @@
 import pipeline from "./pipeline.ts";
-import { setupNix, jobDescriptions } from "./jobs.ts";
+import { publish, jobDescriptions } from "./jobs.ts";
 
-export { pipeline, setupNix, jobDescriptions };
+export { pipeline, publish, jobDescriptions };
