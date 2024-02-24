@@ -26,6 +26,7 @@ dagger install github.com/tsirysndr/daggerverse/jsonlint
 | [conftest](./conftest/)     | Test your configuration files using [Conftest](https://conftest.dev/) |
 | [devbox](./devbox/)         | Instant, easy, and predictable development environments |
 | [devenv](./devenv/)         | Fast, Declarative, Reproducible, and Composable Developer Environments |
+| [flakestry](./flakestry/)   | Publish a flake to [flakestry](https://flakestry.dev) |
 | [flox](./flox/)             | Harness the power of Nix |
 | [gofmt](./gofmt/)           | Format Go source code with [gofmt](https://godoc.org/cmd/gofmt) |
 | [golint](./golint/)         | Lint Go source code with [golint](https://github.com/golang/lint) |
