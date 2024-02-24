@@ -1,6 +1,4 @@
 export { assertEquals } from "https://deno.land/std@0.191.0/testing/asserts.ts";
-import { Client } from "./sdk/client.gen.ts";
-export default Client;
 
 export { Directory, Container } from "./sdk/client.gen.ts";
 export type { DirectoryID } from "./sdk/client.gen.ts";

@@ -1,5 +1,5 @@
-import Client, { Directory, DirectoryID } from "../../deps.ts";
-import { Secret, SecretID } from "../../sdk/client.gen.ts";
+import { Directory, DirectoryID } from "../../deps.ts";
+import { Secret, SecretID, Client } from "../../sdk/client.gen.ts";
 
 export const getDirectory = async (
   client: Client,

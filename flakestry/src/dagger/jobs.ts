@@ -2,9 +2,8 @@
  * @module flakestry
  * @description Publish a flake from Github to flakestry.dev
  */
-
-import Client, { Directory, Container } from "../../deps.ts";
-import { Secret } from "../../sdk/client.gen.ts";
+import { Directory, Container } from "../../deps.ts";
+import { Secret, Client } from "../../sdk/client.gen.ts";
 import { connect } from "../../sdk/connect.ts";
 import { getDirectory, getGithubToken } from "./lib.ts";
 
