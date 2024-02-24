@@ -66,6 +66,8 @@ export async function publish(
         echo null > metadata.err
         echo null > metadata.json
         echo null > outputs.json
+        nix flake metadata --json 
+        nix flake show --json --all-systems
         nix flake metadata --json > metadata.json 2> metadata.err || echo "nix flake metadata --json failed"
         nix flake show --json --all-systems > outputs.json 2> outputs.err || echo "nix flake show --json --all-systems failed"
 
