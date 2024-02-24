@@ -4,8 +4,9 @@
  */
 
 import Client, { Directory, Container } from "../../deps.ts";
+import { Secret } from "../../sdk/client.gen.ts";
 import { connect } from "../../sdk/connect.ts";
-import { getDirectory } from "./lib.ts";
+import { getDirectory, getGithubToken } from "./lib.ts";
 
 export enum Job {
   publish = "publish",
@@ -23,7 +24,7 @@ export async function publish(
   src: string | Directory,
   version: string,
   ref: string,
-  ghToken: string,
+  ghToken: Secret | string,
   actionsIdTokenRequestToken: string,
   actionsIdTokenRequestUrl: string,
   url = "https://flakestry.dev",
@@ -78,7 +79,7 @@ export async function publish(
       ])
       .withEnvVariable("VERSION", Deno.env.get("VERSION") || version)
       .withEnvVariable("REF", Deno.env.get("REF") || ref)
-      .withEnvVariable("GH_TOKEN", Deno.env.get("GH_TOKEN") || ghToken)
+      .withSecretVariable("GH_TOKEN", (await getGithubToken(client, ghToken))!)
       .withEnvVariable("URL", Deno.env.get("URL") || url)
       .withEnvVariable(
         "ACTIONS_ID_TOKEN_REQUEST_TOKEN",

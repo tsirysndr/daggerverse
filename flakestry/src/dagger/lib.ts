@@ -1,4 +1,5 @@
 import Client, { Directory, DirectoryID } from "../../deps.ts";
+import { Secret, SecretID } from "../../sdk/client.gen.ts";
 
 export const getDirectory = async (
   client: Client,
@@ -21,4 +22,26 @@ export const getDirectory = async (
   return client.host
     ? client.host().directory(src)
     : client.currentModule().source().directory(src);
+};
+
+export const getGithubToken = async (
+  client: Client,
+  token: string | Secret
+) => {
+  if (Deno.env.get("GH_TOKEN")) {
+    return client.setSecret("GH_TOKEN", Deno.env.get("GH_TOKEN")!);
+  }
+  if (token && typeof token === "string") {
+    try {
+      const secret = client.loadSecretFromID(token as SecretID);
+      await secret.id();
+      return secret;
+    } catch (_) {
+      return client.setSecret("GH_TOKEN", token);
+    }
+  }
+  if (token && token instanceof Secret) {
+    return token;
+  }
+  return undefined;
 };
