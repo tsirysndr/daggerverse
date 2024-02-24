@@ -38,7 +38,7 @@ export async function publish(
       .container()
       .from("ubuntu:latest")
       .withExec(["apt-get", "update"])
-      .withExec(["apt-get", "install", "-y", "curl", "jq"])
+      .withExec(["apt-get", "install", "-y", "curl", "jq", "git"])
       .withExec([
         "sh",
         "-c",
