@@ -4,6 +4,15 @@
 
 This is my collection of [Dagger](https://dagger.io) Modules that I use in my projects.
 
+## 🚀 Usage
+
+Use the `dagger install` command to install the module you want to use.
+See [dagger](https://docs.dagger.io/cli/465058/install/) for more information about the `dagger` CLI.
+
+```sh
+# e.g. Install the jsonlint module ⚡️
+dagger install github.com/tsirysndr/daggerverse/jsonlint
+```
 
 ## 🧩 Modules
 
