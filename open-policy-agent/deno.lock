@@ -1,35 +1,9 @@
 {
   "version": "3",
-  "packages": {
-    "specifiers": {
-      "npm:nexus": "npm:nexus@1.3.0_graphql@16.8.1"
-    },
-    "npm": {
-      "graphql@16.8.1": {
-        "integrity": "sha512-59LZHPdGZVh695Ud9lRzPBVTtlX9ZCV150Er2W43ro37wVof0ctenSaskPPjN7lVTIN8mSZt8PHUNKZuNQUuxw==",
-        "dependencies": {}
-      },
-      "iterall@1.3.0": {
-        "integrity": "sha512-QZ9qOMdF+QLHxy1QIpUHUU1D5pS2CG2P69LF6L6CPjPYA/XMOmKV3PZpawHoAjHNyB0swdVTRxdYT4tbBbxqwg==",
-        "dependencies": {}
-      },
-      "nexus@1.3.0_graphql@16.8.1": {
-        "integrity": "sha512-w/s19OiNOs0LrtP7pBmD9/FqJHvZLmCipVRt6v1PM8cRUYIbhEswyNKGHVoC4eHZGPSnD+bOf5A3+gnbt0A5/A==",
-        "dependencies": {
-          "graphql": "graphql@16.8.1",
-          "iterall": "iterall@1.3.0",
-          "tslib": "tslib@2.6.2"
-        }
-      },
-      "tslib@2.6.2": {
-        "integrity": "sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==",
-        "dependencies": {}
-      }
-    }
-  },
   "remote": {
     "https://cdn.jsdelivr.net/gh/tsirysndr/tar@v0.1.1/deps.ts": "096395daebc7ed8a18f0484e4ffcc3a7f70e50946735f7df9611a7fcfd8272cc",
     "https://cdn.jsdelivr.net/gh/tsirysndr/tar@v0.1.1/mod.ts": "e269d71c72ae68e82c1960e5db2a0c7419c97c9683ef717de0ab75d90f364713",
+    "https://cdn.jsdelivr.net/gh/tsirysndr/tar@v0.1.1/src/interface.ts": "3d4371b7590e90af7b191b93f8681ea7add6f5dca0d26a4d171701de09707c4f",
     "https://cdn.jsdelivr.net/gh/tsirysndr/tar@v0.1.1/src/tar.ts": "9b02eaaa784b225ad7a23d2769cd492adf113ea7c11c02e3646849e98f4ae43b",
     "https://cdn.skypack.dev/-/lodash@v4.17.21-K6GEbP02mWFnLA45zAmi/dist=es2019,mode=imports/optimized/lodash.js": "10c4df47937ffc78548d136dd535a021df5f57182a653260d715c0690dd22978",
     "https://cdn.skypack.dev/lodash": "8280de0b3efd87f06ea0eb330d15b8de32c059556023b8c6524e9eb9e4844dc0",

@@ -1,44 +1,6 @@
 {
   "version": "3",
-  "packages": {
-    "specifiers": {
-      "npm:nexus": "npm:nexus@1.3.0_graphql@16.8.1"
-    },
-    "npm": {
-      "graphql@16.8.1": {
-        "integrity": "sha512-59LZHPdGZVh695Ud9lRzPBVTtlX9ZCV150Er2W43ro37wVof0ctenSaskPPjN7lVTIN8mSZt8PHUNKZuNQUuxw==",
-        "dependencies": {}
-      },
-      "iterall@1.3.0": {
-        "integrity": "sha512-QZ9qOMdF+QLHxy1QIpUHUU1D5pS2CG2P69LF6L6CPjPYA/XMOmKV3PZpawHoAjHNyB0swdVTRxdYT4tbBbxqwg==",
-        "dependencies": {}
-      },
-      "nexus@1.3.0_graphql@16.8.1": {
-        "integrity": "sha512-w/s19OiNOs0LrtP7pBmD9/FqJHvZLmCipVRt6v1PM8cRUYIbhEswyNKGHVoC4eHZGPSnD+bOf5A3+gnbt0A5/A==",
-        "dependencies": {
-          "graphql": "graphql@16.8.1",
-          "iterall": "iterall@1.3.0",
-          "tslib": "tslib@2.6.2"
-        }
-      },
-      "tslib@2.6.2": {
-        "integrity": "sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==",
-        "dependencies": {}
-      }
-    }
-  },
   "remote": {
-    "https://cdn.jsdelivr.net/gh/tsirysndr/daggerverse/nix/deps.ts": "e5e54a0614631d6eacfae7a91fe0b8e6c080b4209c67ff94ea5545fdc70ca204",
-    "https://cdn.jsdelivr.net/gh/tsirysndr/daggerverse/nix/mod.ts": "1a698ea4384782b4bf2554675a7352c8c0616499c916856a7565f85c8e34e158",
-    "https://cdn.jsdelivr.net/gh/tsirysndr/daggerverse/nix/sdk/client.gen.ts": "6a2ab92d9dcf3afb15d8d9c581d55244905e7b66009c09a5d9e3ad31f23e3f1e",
-    "https://cdn.jsdelivr.net/gh/tsirysndr/daggerverse/nix/sdk/connect.ts": "7002e624c42d77c388da45beb0f0174a44b3da95fbbcd51a927e4a1d51ca5728",
-    "https://cdn.jsdelivr.net/gh/tsirysndr/daggerverse/nix/sdk/utils.ts": "37344c95ef06de30e4bfe5ac998d06a19b41097bce380508f3bbbfdad27e1272",
-    "https://cdn.jsdelivr.net/gh/tsirysndr/daggerverse/nix/src/dagger/index.ts": "60cec2df06bae34f167b87503b70f4ae8eb4eac831202a620c1d889cc81cd855",
-    "https://cdn.jsdelivr.net/gh/tsirysndr/daggerverse/nix/src/dagger/jobs.ts": "1dbf727cc49590712d7c6abede35f9c93579e1e19742771d4c7d1aed67af2f19",
-    "https://cdn.jsdelivr.net/gh/tsirysndr/daggerverse/nix/src/dagger/lib.ts": "1e4baaeb1fe6c195e1a21e1201cd44749275b1d3d92850bf760b7c0721b20903",
-    "https://cdn.jsdelivr.net/gh/tsirysndr/daggerverse/nix/src/dagger/pipeline.ts": "9f94343370e48f40a4b93b205d3a99d070e33767578fd25fc9ebb2124febabde",
-    "https://cdn.jsdelivr.net/gh/tsirysndr/daggerverse/nix/src/dagger/queries.ts": "171943d1caddd4317a56e4de60ec3d34406152d89865468b877f09d00e7b0a3f",
-    "https://cdn.jsdelivr.net/gh/tsirysndr/daggerverse/nix/src/dagger/schema.ts": "cbbea0d56233695fe542d55cd9a9cff7b9aeff0f26344fda954e12d44f2d6a45",
     "https://cdn.jsdelivr.net/gh/tsirysndr/tar@v0.1.1/deps.ts": "096395daebc7ed8a18f0484e4ffcc3a7f70e50946735f7df9611a7fcfd8272cc",
     "https://cdn.jsdelivr.net/gh/tsirysndr/tar@v0.1.1/mod.ts": "e269d71c72ae68e82c1960e5db2a0c7419c97c9683ef717de0ab75d90f364713",
     "https://cdn.jsdelivr.net/gh/tsirysndr/tar@v0.1.1/src/interface.ts": "3d4371b7590e90af7b191b93f8681ea7add6f5dca0d26a4d171701de09707c4f",
