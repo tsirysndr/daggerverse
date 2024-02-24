@@ -17,6 +17,8 @@ See [dagger](https://docs.dagger.io/cli/465058/install/) for more information ab
 dagger install github.com/tsirysndr/daggerverse/jsonlint
 ```
 
+See [documentation](https://docs.dagger.io/zenith/) for more information about dagger modules.
+
 ## 🧩 Modules
 
 | Module                      | Description |
