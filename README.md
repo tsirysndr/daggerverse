@@ -3,7 +3,7 @@
 # Daggerverse 🪐 🌌
 
 [![validate modules](https://github.com/tsirysndr/daggerverse/actions/workflows/ci.yml/badge.svg)](https://github.com/tsirysndr/daggerverse/actions/workflows/ci.yml)
-![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.10.0-blue?color=3D66FF&labelColor=000)
+![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.10.0-blue?color=3D66FF)
 
 This is my collection of [Dagger](https://dagger.io) Modules that I use in my projects.
 
