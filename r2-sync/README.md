@@ -1,6 +1,6 @@
 # Module: R2 Sync
 
-![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.10.0-green)
+![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.10.0-blue?color=3D66FF)
 
 Sync files from local directory to Cloudflare [R2](https://www.cloudflare.com/developer-platform/r2/).
 

@@ -1,6 +1,6 @@
 # Module: Devbox
 
-![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.10.0-green)
+![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.10.0-blue?color=3D66FF)
 
 Returns a Container with [Devbox](https://www.jetpack.io/devbox) installed.
 
