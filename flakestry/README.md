@@ -1,6 +1,6 @@
 # Module: Flakestry
 
-![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.11-green)
+![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.10.0-green)
 
 Publish a [Nix Flake](https://nix.dev/concepts/flakes/) from a Github Repository to [flakestry](https://flakestry.dev).
 

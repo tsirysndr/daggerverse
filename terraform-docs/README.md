@@ -1,6 +1,6 @@
 # Module: terraform-docs
 
-![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.11-green)
+![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.10.0-green)
 
 Daggerized version of [terraform-docs](https://terraform-docs.io/).
 

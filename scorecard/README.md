@@ -1,6 +1,6 @@
 # Module: Scorecard
 
-![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.9.11-green)
+![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.10.0-green)
 
 Calculates the [scorecard](https://github.com/ossf/scorecard) for a given repository.
 
