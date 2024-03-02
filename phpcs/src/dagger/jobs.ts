@@ -24,7 +24,7 @@ export async function check(
   src: Directory | string,
   path = ".",
   tag = "latest"
-) {
+): Promise<Directory | string> {
   const context = await getDirectory(src);
   const ctr = dag
     .pipeline(Job.check)
