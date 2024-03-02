@@ -5,14 +5,22 @@
 
 Daggerized version of [checkmake](https://github.com/mrtazz/checkmake).
 
-## Usage
+## 🚀 Usage
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/checkmake call lint --src <source>
 ```
 
-## Example
+## 🧑‍🔬 Example
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/checkmake call lint --src .
+```
+
+## 🧑‍💻 Programmatic usage
+
+```typescript
+import { lint } from 'jsr:@daggerverse/checkmake';
+
+await lint(".");
 ```
