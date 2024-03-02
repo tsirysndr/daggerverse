@@ -5,14 +5,23 @@
 
 Returns a Container with [awesome-ci](https://github.com/cytopia/awesome-ci) installed.
 
-## Usage
+## 🚀 Usage
 
 ```sh
 dagger call -m github.com/tsirysndr/daggerverse/awesome-ci dev --src <source> terminal
 ```
 
-## Example
+## 🧑‍🔬 Example
 
 ```sh
 dagger call -m github.com/tsirysndr/daggerverse/awesome-ci dev --src. terminal
 ```
+
+## 🧑‍💻 Programmatic usage
+
+```typescript
+import { gitConflicts } from 'jsr:@daggerverse/awesome-ci';
+
+await gitConflicts(".");
+```
+

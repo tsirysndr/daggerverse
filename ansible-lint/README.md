@@ -5,15 +5,23 @@
 
 Daggerized version of [ansible](https://github.com/ansible/ansible-lint).
 
-## Usage
+## 🚀 Usage
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/ansible-lint call lint --src <source>
 ```
 
-## Example
+## 🧑‍🔬 Example
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/ansible-lint call lint --src . 
 dagger call -m github.com/tsirysndr/daggerverse/ansible-lint dev --src. terminal
+```
+
+## 🧑‍💻 Programmatic usage
+
+```typescript
+import { lint } from 'jsr:@daggerverse/ansible-lint';
+
+await lint(".");
 ```
