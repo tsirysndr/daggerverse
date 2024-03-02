@@ -5,15 +5,23 @@
 
 Daggerized version of [ansible](https://github.com/cytopia/docker-ansible).
 
-## Usage
+## 🚀 Usage
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/ansible call playbook --src <source> --playbook <playbook>
 ```
 
-## Example
+## 🧑‍🔬 Example
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/ansible call playbook --src . --playbook playbook.yml
 dagger call -m github.com/tsirysndr/daggerverse/ansible dev --src. terminal
+```
+
+## 🧑‍💻 Programmatic usage
+
+```typescript
+import { playbook } from 'jsr:@daggerverse/ansible';
+
+await playbook(".", "playbook.yml");
 ```
