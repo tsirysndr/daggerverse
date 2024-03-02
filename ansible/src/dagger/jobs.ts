@@ -2,9 +2,7 @@
  * @module ansible
  * @description This module provides a set of functions to run ansible playbooks and to create a development environment with ansible installed.
  */
-
-import Client, { Directory, Container } from "../../deps.ts";
-import { connect } from "../../sdk/connect.ts";
+import { dag, Directory, Container } from "../../deps.ts";
 import { getDirectory } from "./lib.ts";
 
 export enum Job {
@@ -27,20 +25,16 @@ export async function playbook(
   playbook: string,
   tag = "latest"
 ): Promise<string> {
-  let stdout = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = client
-      .pipeline(Job.playbook)
-      .container()
-      .from(`cytopia/ansible:${tag}`)
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withExec(["ansible-playbook", playbook]);
+  const context = await getDirectory(src);
+  const ctr = dag
+    .pipeline(Job.playbook)
+    .container()
+    .from(`cytopia/ansible:${tag}`)
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withExec(["ansible-playbook", playbook]);
 
-    stdout = await ctr.stdout();
-  });
-  return stdout;
+  return ctr.stdout();
 }
 
 /**
@@ -54,20 +48,16 @@ export async function dev(
   src: string | Directory | undefined = ".",
   tag = "latest"
 ): Promise<Container | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = client
-      .pipeline(Job.dev)
-      .container()
-      .from(`cytopia/ansible:${tag}`)
-      .withDirectory("/app", context)
-      .withWorkdir("/app");
+  const context = await getDirectory(src);
+  const ctr = dag
+    .pipeline(Job.dev)
+    .container()
+    .from(`cytopia/ansible:${tag}`)
+    .withDirectory("/app", context)
+    .withWorkdir("/app");
 
-    await ctr.stdout();
-    id = await ctr.id();
-  });
-  return id;
+  await ctr.stdout();
+  return ctr.id();
 }
 
 export type JobExec =

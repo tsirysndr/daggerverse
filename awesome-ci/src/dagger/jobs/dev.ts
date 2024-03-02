@@ -3,9 +3,7 @@
  * @description Awesome Continuous Integration - Lot's of tools for git, file and static source code analysis.
  */
 
-import { Directory, Container } from "../../../deps.ts";
-import { Client } from "../../../sdk/client.gen.ts";
-import { connect } from "../../../sdk/connect.ts";
+import { dag, Directory, Container } from "../../../deps.ts";
 import { getDirectory } from "../lib.ts";
 import { Job } from "./mod.ts";
 
@@ -18,19 +16,15 @@ import { Job } from "./mod.ts";
 export async function dev(
   src: string | Directory | undefined = "."
 ): Promise<Container | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = client
-      .pipeline(Job.dev)
-      .container()
-      .from("cytopia/awesome-ci")
-      .withDirectory("/app", context)
-      .withWorkdir("/app");
+  const context = await getDirectory(src);
+  const ctr = dag
+    .pipeline(Job.dev)
+    .container()
+    .from("cytopia/awesome-ci")
+    .withDirectory("/app", context)
+    .withWorkdir("/app");
 
-    const result = await ctr.stdout();
-    console.log(result);
-    id = await ctr.id();
-  });
-  return id;
+  const result = await ctr.stdout();
+  console.log(result);
+  return ctr.id();
 }

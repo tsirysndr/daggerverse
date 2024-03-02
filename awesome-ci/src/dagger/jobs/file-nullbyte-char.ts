@@ -1,6 +1,4 @@
-import { Directory } from "../../../deps.ts";
-import { Client } from "../../../sdk/client.gen.ts";
-import { connect } from "../../../sdk/connect.ts";
+import { dag, Directory } from "../../../deps.ts";
 import { getDirectory } from "../lib.ts";
 import { Job } from "./mod.ts";
 
@@ -19,28 +17,24 @@ export async function fileNullByteChar(
   ignore?: string,
   extensions?: string
 ): Promise<string> {
-  let stdout = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const args = [];
+  const context = await getDirectory(src);
+  const args = [];
 
-    if (ignore) {
-      args.push(`--ignore="${ignore}"`);
-    }
+  if (ignore) {
+    args.push(`--ignore="${ignore}"`);
+  }
 
-    if (extensions) {
-      args.push(`--extensions="${extensions}"`);
-    }
+  if (extensions) {
+    args.push(`--extensions="${extensions}"`);
+  }
 
-    const ctr = client
-      .pipeline(Job.fileNullByteChar)
-      .container()
-      .from("cytopia/awesome-ci")
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withExec(["file-nullbyte-char", `--path=${path}`, ...args]);
+  const ctr = dag
+    .pipeline(Job.fileNullByteChar)
+    .container()
+    .from("cytopia/awesome-ci")
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withExec(["file-nullbyte-char", `--path=${path}`, ...args]);
 
-    stdout = await ctr.stdout();
-  });
-  return stdout;
+  return ctr.stdout();
 }

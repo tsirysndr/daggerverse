@@ -1,8 +1,6 @@
-import { Directory, DirectoryID } from "../../deps.ts";
-import { Client } from "../../sdk/client.gen.ts";
+import { dag, Directory, DirectoryID } from "../../deps.ts";
 
 export const getDirectory = async (
-  client: Client,
   src: string | Directory | undefined = "."
 ) => {
   if (src instanceof Directory) {
@@ -10,16 +8,16 @@ export const getDirectory = async (
   }
   if (typeof src === "string") {
     try {
-      const directory = client.loadDirectoryFromID(src as DirectoryID);
+      const directory = dag.loadDirectoryFromID(src as DirectoryID);
       await directory.id();
       return directory;
     } catch (_) {
-      return client.host
-        ? client.host().directory(src)
-        : client.currentModule().source().directory(src);
+      return dag.host
+        ? dag.host().directory(src)
+        : dag.currentModule().source().directory(src);
     }
   }
-  return client.host
-    ? client.host().directory(src)
-    : client.currentModule().source().directory(src);
+  return dag.host
+    ? dag.host().directory(src)
+    : dag.currentModule().source().directory(src);
 };
