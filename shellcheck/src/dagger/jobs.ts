@@ -3,8 +3,7 @@
  * @description This module provides a function to lint a shell script with ShellCheck.
  */
 
-import Client, { Directory } from "../../deps.ts";
-import { connect } from "../../sdk/connect.ts";
+import { dag, Directory } from "../../deps.ts";
 import { getDirectory } from "./lib.ts";
 
 export enum Job {
@@ -32,7 +31,6 @@ export async function lint(
   severity?: string,
   check?: string
 ): Promise<string> {
-  let result = "";
   const args: string[] = [];
 
   if (format) args.push("-f", format);
@@ -40,19 +38,16 @@ export async function lint(
   if (severity) args.push("-S", severity);
   if (check) args.push("-o", check);
 
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = client
-      .pipeline(Job.lint)
-      .container()
-      .from("koalaman/shellcheck-alpine:latest")
-      .withDirectory("/app", context, { exclude })
-      .withWorkdir("/app")
-      .withExec(["sh", "-c", `shellcheck ${args.join(" ")} ${files}`]);
+  const context = await getDirectory(src);
+  const ctr = dag
+    .pipeline(Job.lint)
+    .container()
+    .from("koalaman/shellcheck-alpine:latest")
+    .withDirectory("/app", context, { exclude })
+    .withWorkdir("/app")
+    .withExec(["sh", "-c", `shellcheck ${args.join(" ")} ${files}`]);
 
-    result = await ctr.stdout();
-  });
-  return result;
+  return ctr.stdout();
 }
 
 export type JobExec = (repo: string) => Promise<string>;

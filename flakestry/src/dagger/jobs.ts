@@ -2,9 +2,8 @@
  * @module flakestry
  * @description Publish a flake from Github to flakestry.dev ❄️
  */
-import { Directory, Container } from "../../deps.ts";
-import { Secret, Client } from "../../sdk/client.gen.ts";
-import { connect } from "../../sdk/connect.ts";
+import { dag, Directory, Container } from "../../deps.ts";
+import { Secret } from "../../sdk/client.gen.ts";
 import { getDirectory, getGithubToken } from "./lib.ts";
 
 export enum Job {
@@ -29,39 +28,37 @@ export async function publish(
   url = "https://flakestry.dev",
   ignoreConflicts = false
 ): Promise<string> {
-  let output = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = client
-      .pipeline(Job.publish)
-      .container()
-      .from("ubuntu:latest")
-      .withExec(["apt-get", "update"])
-      .withExec(["apt-get", "install", "-y", "curl", "jq", "git"])
-      .withExec([
-        "sh",
-        "-c",
-        `curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install linux \
+  const context = await getDirectory(src);
+  const ctr = dag
+    .pipeline(Job.publish)
+    .container()
+    .from("ubuntu:latest")
+    .withExec(["apt-get", "update"])
+    .withExec(["apt-get", "install", "-y", "curl", "jq", "git"])
+    .withExec([
+      "sh",
+      "-c",
+      `curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install linux \
           --extra-conf "sandbox = false" \
           --init none \
           --no-confirm
         `,
-      ])
-      .withExec([
-        "sed",
-        "-i",
-        "s/auto-allocate-uids = true/auto-allocate-uids = false/g",
-        "/etc/nix/nix.conf",
-      ])
-      .withEnvVariable("PATH", "${PATH}:/nix/var/nix/profiles/default/bin", {
-        expand: true,
-      })
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withExec([
-        "bash",
-        "-c",
-        `\
+    ])
+    .withExec([
+      "sed",
+      "-i",
+      "s/auto-allocate-uids = true/auto-allocate-uids = false/g",
+      "/etc/nix/nix.conf",
+    ])
+    .withEnvVariable("PATH", "${PATH}:/nix/var/nix/profiles/default/bin", {
+      expand: true,
+    })
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withExec([
+      "bash",
+      "-c",
+      `\
         echo null > metadata.err
         echo null > metadata.json
         echo null > outputs.json
@@ -77,28 +74,28 @@ export async function publish(
             echo null > outputs.json
         fi
       `,
-      ])
-      .withEnvVariable("VERSION", Deno.env.get("VERSION") || version)
-      .withEnvVariable("REF", Deno.env.get("REF") || ref)
-      .withSecretVariable("GH_TOKEN", (await getGithubToken(client, ghToken))!)
-      .withEnvVariable("URL", Deno.env.get("URL") || url)
-      .withEnvVariable(
-        "ACTIONS_ID_TOKEN_REQUEST_TOKEN",
-        Deno.env.get("ACTIONS_ID_TOKEN_REQUEST_TOKEN") ||
-          actionsIdTokenRequestToken
-      )
-      .withEnvVariable(
-        "ACTIONS_ID_TOKEN_REQUEST_URL",
-        Deno.env.get("ACTIONS_ID_TOKEN_REQUEST_URL") || actionsIdTokenRequestUrl
-      )
-      .withEnvVariable(
-        "IGNORE_CONFLICTS",
-        Deno.env.get("IGNORE_CONFLICTS") || `${ignoreConflicts}`
-      )
-      .withExec([
-        "bash",
-        "-c",
-        `\
+    ])
+    .withEnvVariable("VERSION", Deno.env.get("VERSION") || version)
+    .withEnvVariable("REF", Deno.env.get("REF") || ref)
+    .withSecretVariable("GH_TOKEN", (await getGithubToken(ghToken))!)
+    .withEnvVariable("URL", Deno.env.get("URL") || url)
+    .withEnvVariable(
+      "ACTIONS_ID_TOKEN_REQUEST_TOKEN",
+      Deno.env.get("ACTIONS_ID_TOKEN_REQUEST_TOKEN") ||
+        actionsIdTokenRequestToken
+    )
+    .withEnvVariable(
+      "ACTIONS_ID_TOKEN_REQUEST_URL",
+      Deno.env.get("ACTIONS_ID_TOKEN_REQUEST_URL") || actionsIdTokenRequestUrl
+    )
+    .withEnvVariable(
+      "IGNORE_CONFLICTS",
+      Deno.env.get("IGNORE_CONFLICTS") || `${ignoreConflicts}`
+    )
+    .withExec([
+      "bash",
+      "-c",
+      `\
         RESPONSE=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=$URL")
         OIDC=$(echo $RESPONSE | jq -r '.value')
         README=$(find . -iname "README*" -maxdepth 1 -print -quit)
@@ -123,14 +120,11 @@ export async function publish(
              -X POST $URL/api/publish \
         || ([ "$IGNORE_CONFLICTS" = 'true' ] && grep -qxF 409 http_code)
         `,
-      ]);
+    ]);
 
-    const stdout = await ctr.stdout();
-    const stderr = await ctr.stderr();
-    output = stdout + "\n" + stderr;
-  });
-
-  return output;
+  const stdout = await ctr.stdout();
+  const stderr = await ctr.stderr();
+  return stdout + "\n" + stderr;
 }
 
 export type JobExec = (

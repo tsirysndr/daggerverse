@@ -3,8 +3,7 @@
  * @description This module provides a set of functions to format Python code with black and to create a development environment with black installed.
  */
 
-import Client, { Directory, Container } from "../../deps.ts";
-import { connect } from "../../sdk/connect.ts";
+import { dag, Directory, Container } from "../../deps.ts";
 import { getDirectory } from "./lib.ts";
 
 export enum Job {
@@ -25,21 +24,17 @@ export async function format(
   src: Directory | string,
   path = "."
 ): Promise<Directory | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = client
-      .pipeline(Job.format)
-      .container()
-      .from("cytopia/black")
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withExec([path]);
+  const context = await getDirectory(src);
+  const ctr = dag
+    .pipeline(Job.format)
+    .container()
+    .from("cytopia/black")
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withExec([path]);
 
-    await ctr.stdout();
-    id = await ctr.directory("/app").id();
-  });
-  return id;
+  await ctr.stdout();
+  return ctr.directory("/app").id();
 }
 
 /**
@@ -51,22 +46,18 @@ export async function format(
 export async function dev(
   src: string | Directory | undefined = "."
 ): Promise<Container | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = client
-      .pipeline(Job.dev)
-      .container()
-      .from("cytopia/black")
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withEntrypoint(["/bin/ash"]);
+  const context = await getDirectory(src);
+  const ctr = dag
+    .pipeline(Job.dev)
+    .container()
+    .from("cytopia/black")
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withEntrypoint(["/bin/sh"]);
 
-    const result = await ctr.stdout();
-    console.log(result);
-    id = await ctr.id();
-  });
-  return id;
+  const result = await ctr.stdout();
+  console.log(result);
+  return ctr.id();
 }
 
 export type JobExec = (

@@ -3,8 +3,7 @@
  * @description This module provides a function to lint Go code.
  */
 
-import Client, { Directory, Container } from "../../deps.ts";
-import { connect } from "../../sdk/connect.ts";
+import { dag, Directory, Container } from "../../deps.ts";
 import { getDirectory } from "./lib.ts";
 
 export enum Job {
@@ -24,21 +23,17 @@ export async function lint(
   src: Directory | string,
   path = "."
 ): Promise<Directory | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = client
-      .pipeline(Job.lint)
-      .container()
-      .from(`cytopia/golint`)
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withExec(["-set_exit_status", path]);
+  const context = await getDirectory(src);
+  const ctr = dag
+    .pipeline(Job.lint)
+    .container()
+    .from(`cytopia/golint`)
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withExec(["-set_exit_status", path]);
 
-    await ctr.stdout();
-    id = await ctr.directory("/app").id();
-  });
-  return id;
+  await ctr.stdout();
+  return ctr.directory("/app").id();
 }
 export type JobExec = (
   src: string,

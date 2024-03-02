@@ -2,8 +2,7 @@
  * @module kubeval
  * @description This module provides a function to lint Kubernetes files and to create a development environment with kubeval installed.
  */
-import Client, { Directory, Container } from "../../deps.ts";
-import { connect } from "../../sdk/connect.ts";
+import { dag, Directory, Container } from "../../deps.ts";
 import { getDirectory } from "./lib.ts";
 
 export enum Job {
@@ -24,21 +23,17 @@ export async function lint(
   src: Directory | string,
   files = "*.yml"
 ): Promise<Directory | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = client
-      .pipeline(Job.lint)
-      .container()
-      .from("cytopia/kubeval")
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withExec([files]);
+  const context = await getDirectory(src);
+  const ctr = dag
+    .pipeline(Job.lint)
+    .container()
+    .from("cytopia/kubeval")
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withExec([files]);
 
-    await ctr.stdout();
-    id = await ctr.directory("/app").id();
-  });
-  return id;
+  await ctr.stdout();
+  return ctr.directory("/app").id();
 }
 
 /**
@@ -50,21 +45,17 @@ export async function lint(
 export async function dev(
   src: string | Directory | undefined = "."
 ): Promise<Container | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = client
-      .pipeline(Job.dev)
-      .container()
-      .from("cytopia/kubeval")
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withEntrypoint(["/bin/sh"]);
+  const context = await getDirectory(src);
+  const ctr = dag
+    .pipeline(Job.dev)
+    .container()
+    .from("cytopia/kubeval")
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withEntrypoint(["/bin/sh"]);
 
-    await ctr.stdout();
-    id = await ctr.id();
-  });
-  return id;
+  await ctr.stdout();
+  return ctr.id();
 }
 
 export type JobExec =

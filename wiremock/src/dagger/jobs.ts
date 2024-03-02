@@ -30,12 +30,12 @@ export async function wiremock(
     .from("wiremock/wiremock:3.3.1");
 
   if (mappings) {
-    const _mappings = await getDirectory(dag, mappings);
+    const _mappings = await getDirectory(mappings);
     ctr = ctr.withDirectory("/home/wiremock/mappings", _mappings);
   }
 
   if (files) {
-    const _files = await getDirectory(dag, files);
+    const _files = await getDirectory(files);
     ctr = ctr.withDirectory("/home/wiremock/__files", _files);
   }
 

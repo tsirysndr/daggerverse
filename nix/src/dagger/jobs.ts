@@ -3,8 +3,7 @@
  * @description This module provides a function to setup Nix with DeterminateSystems Nix Installer ❄️
  */
 
-import Client, { Directory, Container } from "../../deps.ts";
-import { connect } from "../../sdk/connect.ts";
+import { dag, Directory, Container } from "../../deps.ts";
 import { getDirectory } from "./lib.ts";
 
 export enum Job {
@@ -22,43 +21,38 @@ export const exclude = [];
 export async function setupNix(
   src?: string | Directory
 ): Promise<Container | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    let ctr = client
-      .pipeline(Job.setupNix)
-      .container()
-      .from("ubuntu:latest")
-      .withExec(["apt-get", "update"])
-      .withExec(["apt-get", "install", "-y", "curl"])
-      .withExec([
-        "sh",
-        "-c",
-        `curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install linux \
+  let ctr = dag
+    .pipeline(Job.setupNix)
+    .container()
+    .from("ubuntu:latest")
+    .withExec(["apt-get", "update"])
+    .withExec(["apt-get", "install", "-y", "curl"])
+    .withExec([
+      "sh",
+      "-c",
+      `curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install linux \
           --extra-conf "sandbox = false" \
           --init none \
           --no-confirm
         `,
-      ])
-      .withExec([
-        "sed",
-        "-i",
-        "s/auto-allocate-uids = true/auto-allocate-uids = false/g",
-        "/etc/nix/nix.conf",
-      ])
-      .withEnvVariable("PATH", "${PATH}:/nix/var/nix/profiles/default/bin", {
-        expand: true,
-      });
+    ])
+    .withExec([
+      "sed",
+      "-i",
+      "s/auto-allocate-uids = true/auto-allocate-uids = false/g",
+      "/etc/nix/nix.conf",
+    ])
+    .withEnvVariable("PATH", "${PATH}:/nix/var/nix/profiles/default/bin", {
+      expand: true,
+    });
 
-    if (src) {
-      const context = await getDirectory(client, src);
-      ctr = ctr.withDirectory("/app", context).withWorkdir("/app");
-    }
+  if (src) {
+    const context = await getDirectory(src);
+    ctr = ctr.withDirectory("/app", context).withWorkdir("/app");
+  }
 
-    await ctr.stdout();
-    id = await ctr.id();
-  });
-
-  return id;
+  await ctr.stdout();
+  return ctr.id();
 }
 
 export type JobExec = (src?: string) =>

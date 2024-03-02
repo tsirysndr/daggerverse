@@ -3,8 +3,7 @@
  * @description This module provides a set of functions to run commands inside devbox shell and to create a development environment with devbox installed.
  */
 
-import Client, { Directory, Container } from "../../deps.ts";
-import { connect } from "../../sdk/connect.ts";
+import { Directory, Container } from "../../deps.ts";
 import { getDirectory, devboxBase } from "./lib.ts";
 
 export enum Job {
@@ -26,20 +25,15 @@ export async function run(
   src: string | Directory = ".",
   command: string
 ): Promise<Container | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
+  const context = await getDirectory(src);
 
-    const ctr = devboxBase(client, Job.run)
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withExec(["bash", "-c", `devbox run -- ${command}`]);
+  const ctr = devboxBase(Job.run)
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withExec(["bash", "-c", `devbox run -- ${command}`]);
 
-    await ctr.stdout();
-    id = await ctr.id();
-  });
-
-  return id;
+  await ctr.stdout();
+  return ctr.id();
 }
 
 /**
@@ -51,19 +45,14 @@ export async function run(
 export async function dev(
   src: string | Directory | undefined = "."
 ): Promise<Container | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = devboxBase(client, Job.dev)
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withDefaultTerminalCmd(["bash", "-i"]);
+  const context = await getDirectory(src);
+  const ctr = devboxBase(Job.dev)
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withDefaultTerminalCmd(["bash", "-i"]);
 
-    await ctr.stdout();
-    id = await ctr.id();
-  });
-
-  return id;
+  await ctr.stdout();
+  return ctr.id();
 }
 
 /**
@@ -77,20 +66,15 @@ export async function install(
   src: string | Directory | undefined = ".",
   pkgs: string[]
 ): Promise<Container | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = await devboxBase(client, Job.install)
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withExec(["devbox", "global", "add", ...pkgs])
-      .withDefaultTerminalCmd(["bash", "-i"]);
+  const context = await getDirectory(src);
+  const ctr = await devboxBase(Job.install)
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withExec(["devbox", "global", "add", ...pkgs])
+    .withDefaultTerminalCmd(["bash", "-i"]);
 
-    await ctr.stdout();
-    id = await ctr.id();
-  });
-
-  return id;
+  await ctr.stdout();
+  return ctr.id();
 }
 
 export type JobExec =

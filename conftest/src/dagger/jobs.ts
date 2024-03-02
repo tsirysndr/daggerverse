@@ -3,8 +3,7 @@
  * @description This module provides a set of functions to test your configuration files using Conftest and to create a development environment with Conftest installed.
  */
 
-import Client, { Directory, Container } from "../../deps.ts";
-import { connect } from "../../sdk/connect.ts";
+import { dag, Directory, Container } from "../../deps.ts";
 import { getDirectory } from "./lib.ts";
 
 export enum Job {
@@ -26,25 +25,21 @@ export async function test(
   policy = "policy",
   output = "stdout"
 ): Promise<string> {
-  let result = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = client
-      .pipeline(Job.test)
-      .container()
-      .from("pkgxdev/pkgx:latest")
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withExec(["pkgx", "install", "conftest"])
-      .withExec([
-        "bash",
-        "-c",
-        `conftest test ${files} -p ${policy} -o ${output}`,
-      ]);
+  const context = await getDirectory(src);
+  const ctr = dag
+    .pipeline(Job.test)
+    .container()
+    .from("pkgxdev/pkgx:latest")
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withExec(["pkgx", "install", "conftest"])
+    .withExec([
+      "bash",
+      "-c",
+      `conftest test ${files} -p ${policy} -o ${output}`,
+    ]);
 
-    result = await ctr.stdout();
-  });
-  return result;
+  return ctr.stdout();
 }
 
 /**
@@ -56,22 +51,18 @@ export async function test(
 export async function dev(
   src: string | Directory | undefined = "."
 ): Promise<Container | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = client
-      .pipeline(Job.dev)
-      .container()
-      .from("pkgxdev/pkgx:latest")
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withExec(["pkgx", "install", "conftest"]);
+  const context = await getDirectory(src);
+  const ctr = dag
+    .pipeline(Job.dev)
+    .container()
+    .from("pkgxdev/pkgx:latest")
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withExec(["pkgx", "install", "conftest"]);
 
-    await ctr.stdout();
+  await ctr.stdout();
 
-    id = await ctr.id();
-  });
-  return id;
+  return ctr.id();
 }
 
 export type JobExec = (

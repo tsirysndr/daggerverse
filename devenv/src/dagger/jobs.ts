@@ -3,8 +3,7 @@
  * @description This module provides a set of functions to run a command inside devenv shell, return a container with devenv installed, and build the devenv shell and run any pre-commit hooks.
  */
 
-import Client, { Directory, Container } from "../../deps.ts";
-import { connect } from "../../sdk/connect.ts";
+import { Directory, Container } from "../../deps.ts";
 import { getDirectory, devenvBase } from "./lib.ts";
 
 export enum Job {
@@ -26,20 +25,15 @@ export async function run(
   src: string | Directory = ".",
   command: string
 ): Promise<Container | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
+  const context = await getDirectory(src);
 
-    const ctr = devenvBase(client, Job.run)
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withExec(["bash", "-c", `devenv shell ${command}`]);
+  const ctr = devenvBase(Job.run)
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withExec(["bash", "-c", `devenv shell ${command}`]);
 
-    await ctr.stdout();
-    id = await ctr.id();
-  });
-
-  return id;
+  await ctr.stdout();
+  return ctr.id();
 }
 
 /**
@@ -51,18 +45,13 @@ export async function run(
 export async function dev(
   src: string | Directory | undefined = "."
 ): Promise<Container | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = devenvBase(client, Job.dev)
-      .withDirectory("/app", context)
-      .withWorkdir("/app");
+  const context = await getDirectory(src);
+  const ctr = devenvBase(Job.dev)
+    .withDirectory("/app", context)
+    .withWorkdir("/app");
 
-    await ctr.stdout();
-    id = await ctr.id();
-  });
-
-  return id;
+  await ctr.stdout();
+  return ctr.id();
 }
 
 /**
@@ -74,19 +63,14 @@ export async function dev(
 export async function ci(
   src: string | Directory | undefined = "."
 ): Promise<Container | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = devenvBase(client, Job.ci)
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withExec(["bash", "-c", "devenv ci"]);
+  const context = await getDirectory(src);
+  const ctr = devenvBase(Job.ci)
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withExec(["bash", "-c", "devenv ci"]);
 
-    await ctr.stdout();
-    id = await ctr.id();
-  });
-
-  return id;
+  await ctr.stdout();
+  return ctr.id();
 }
 
 export type JobExec =

@@ -3,8 +3,7 @@
  * @description This module provides a function to lint Makefiles
  */
 
-import Client, { Directory, Container } from "../../deps.ts";
-import { connect } from "../../sdk/connect.ts";
+import { dag, Directory, Container } from "../../deps.ts";
 import { getDirectory } from "./lib.ts";
 
 export enum Job {
@@ -24,21 +23,17 @@ export async function lint(
   src: Directory | string,
   files = "Makefile"
 ): Promise<Directory | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = client
-      .pipeline(Job.lint)
-      .container()
-      .from("cytopia/checkmake")
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withExec([files]);
+  const context = await getDirectory(src);
+  const ctr = dag
+    .pipeline(Job.lint)
+    .container()
+    .from("cytopia/checkmake")
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withExec([files]);
 
-    await ctr.stdout();
-    id = await ctr.directory("/app").id();
-  });
-  return id;
+  await ctr.stdout();
+  return ctr.directory("/app").id();
 }
 
 export type JobExec =

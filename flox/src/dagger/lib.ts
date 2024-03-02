@@ -1,7 +1,6 @@
-import Client, { Directory, DirectoryID } from "../../deps.ts";
+import { dag, Directory, DirectoryID } from "../../deps.ts";
 
 export const getDirectory = async (
-  client: Client,
   src: string | Directory | undefined = "."
 ) => {
   if (src instanceof Directory) {
@@ -9,29 +8,29 @@ export const getDirectory = async (
   }
   if (typeof src === "string") {
     try {
-      const directory = client.loadDirectoryFromID(src as DirectoryID);
+      const directory = dag.loadDirectoryFromID(src as DirectoryID);
       await directory.id();
       return directory;
     } catch (_) {
-      return client.host
-        ? client.host().directory(src)
-        : client.currentModule().source().directory(src);
+      return dag.host
+        ? dag.host().directory(src)
+        : dag.currentModule().source().directory(src);
     }
   }
-  return client.host
-    ? client.host().directory(src)
-    : client.currentModule().source().directory(src);
+  return dag.host
+    ? dag.host().directory(src)
+    : dag.currentModule().source().directory(src);
 };
 
-export const nixBase = (client: Client, name: string) =>
-  client
+export const nixBase = (name: string) =>
+  dag
     .pipeline(name)
     .container()
     .from("ubuntu:latest")
     .withExec(["apt-get", "update"])
     .withExec(["apt-get", "install", "-y", "curl", "git"])
-    .withMountedCache("/nix", client.cacheVolume("nix-cache-dir"))
-    .withMountedCache("/etc/nix", client.cacheVolume("nix-etc-config"))
+    .withMountedCache("/nix", dag.cacheVolume("nix-cache-dir"))
+    .withMountedCache("/etc/nix", dag.cacheVolume("nix-etc-config"))
     .withExec([
       "sh",
       "-c",
@@ -65,8 +64,8 @@ export const nixBase = (client: Client, name: string) =>
       expand: true,
     });
 
-export const floxBase = (client: Client, name: string) =>
-  nixBase(client, name)
+export const floxBase = (name: string) =>
+  nixBase(name)
     .withExec(["adduser", "--disabled-password", "flox"])
     .withExec(["addgroup", "flox", "nixbld"])
     .withExec([

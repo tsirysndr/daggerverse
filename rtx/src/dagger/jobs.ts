@@ -3,8 +3,7 @@
  * @description This module provides a function to create a development environment with rtx installed and activated in the current directory.
  */
 
-import Client, { Directory, Container } from "../../deps.ts";
-import { connect } from "../../sdk/connect.ts";
+import { dag, Directory, Container } from "../../deps.ts";
 import { getDirectory } from "./lib.ts";
 
 export enum Job {
@@ -22,27 +21,22 @@ export const exclude = [];
 export async function dev(
   src: string | Directory | undefined = "."
 ): Promise<Container | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = client
-      .pipeline(Job.dev)
-      .container()
-      .from("pkgxdev/pkgx:latest")
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withExec(["apt-get", "update"])
-      .withExec(["apt-get", "install", "-y", "libssl1.1"])
-      .withExec(["pkgx", "install", "rtx", "git", "curl", "wget"])
-      .withExec(["sh", "-c", `echo 'eval "$(rtx activate bash)"' >> ~/.bashrc`])
-      .withExec(["bash", "-c", "source ~/.bashrc"])
-      .withExec(["rtx", "install"]);
+  const context = await getDirectory(src);
+  const ctr = dag
+    .pipeline(Job.dev)
+    .container()
+    .from("pkgxdev/pkgx:latest")
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withExec(["apt-get", "update"])
+    .withExec(["apt-get", "install", "-y", "libssl1.1"])
+    .withExec(["pkgx", "install", "rtx", "git", "curl", "wget"])
+    .withExec(["sh", "-c", `echo 'eval "$(rtx activate bash)"' >> ~/.bashrc`])
+    .withExec(["bash", "-c", "source ~/.bashrc"])
+    .withExec(["rtx", "install"]);
 
-    const result = await ctr.stdout();
-    console.log(result);
-    id = await ctr.id();
-  });
-  return id;
+  await ctr.stdout();
+  return ctr.id();
 }
 
 export type JobExec =

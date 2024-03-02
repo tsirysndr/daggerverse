@@ -3,8 +3,7 @@
  * @description This module provides a function to lint JSON files.
  */
 
-import Client, { Directory, Container } from "../../deps.ts";
-import { connect } from "../../sdk/connect.ts";
+import { dag, Directory, Container } from "../../deps.ts";
 import { getDirectory } from "./lib.ts";
 
 export enum Job {
@@ -26,26 +25,22 @@ export async function lint(
   files = "*.json",
   ignore?: string
 ): Promise<Directory | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const args = [];
+  const context = await getDirectory(src);
+  const args = [];
 
-    if (ignore) {
-      args.push("-i", `'${ignore}'`);
-    }
-    const ctr = client
-      .pipeline(Job.lint)
-      .container()
-      .from("cytopia/jsonlint")
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withExec([...args, files]);
+  if (ignore) {
+    args.push("-i", `'${ignore}'`);
+  }
+  const ctr = dag
+    .pipeline(Job.lint)
+    .container()
+    .from("cytopia/jsonlint")
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withExec([...args, files]);
 
-    await ctr.stdout();
-    id = await ctr.directory("/app").id();
-  });
-  return id;
+  await ctr.stdout();
+  return ctr.directory("/app").id();
 }
 
 export type JobExec =

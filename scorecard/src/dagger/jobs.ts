@@ -3,8 +3,7 @@
  * @description This module provides a function to calculate the scorecard for a given repository.
  */
 
-import Client, { Secret } from "../../deps.ts";
-import { connect } from "../../sdk/connect.ts";
+import { dag, Secret } from "../../deps.ts";
 import { getGithubAuthToken } from "./lib.ts";
 
 export enum Job {
@@ -28,7 +27,6 @@ export async function calc(
   checks?: string,
   token?: Secret | string
 ): Promise<string> {
-  let result = "";
   const args: string[] = [];
 
   if (format) {
@@ -39,25 +37,22 @@ export async function calc(
     args.push("--checks", checks);
   }
 
-  await connect(async (client: Client) => {
-    const secret = await getGithubAuthToken(client, token);
+  const secret = await getGithubAuthToken(token);
 
-    let baseCtr = client
-      .pipeline(Job.calc)
-      .container()
-      .from(
-        "gcr.io/openssf/scorecard@sha256:c16e433f68799fe69dc0f9675c7ba5d2553846b57262550c86c71165269a7961"
-      );
+  let baseCtr = dag
+    .pipeline(Job.calc)
+    .container()
+    .from(
+      "gcr.io/openssf/scorecard@sha256:c16e433f68799fe69dc0f9675c7ba5d2553846b57262550c86c71165269a7961"
+    );
 
-    if (secret) {
-      baseCtr = baseCtr.withSecretVariable("GITHUB_AUTH_TOKEN", secret);
-    }
+  if (secret) {
+    baseCtr = baseCtr.withSecretVariable("GITHUB_AUTH_TOKEN", secret);
+  }
 
-    const ctr = baseCtr.withExec(["--repo", repo, ...args]);
+  const ctr = baseCtr.withExec(["--repo", repo, ...args]);
 
-    result = await ctr.stdout();
-  });
-  return result;
+  return ctr.stdout();
 }
 
 export type JobExec = (repo: string) => Promise<string>;

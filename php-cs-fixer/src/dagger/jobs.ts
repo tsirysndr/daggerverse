@@ -3,8 +3,7 @@
  * @description This module provides a function to run php-cs-fixer on PHP files.
  */
 
-import Client, { Directory, Container } from "../../deps.ts";
-import { connect } from "../../sdk/connect.ts";
+import { dag, Directory, Container } from "../../deps.ts";
 import { getDirectory } from "./lib.ts";
 
 export enum Job {
@@ -26,22 +25,19 @@ export async function fix(
   path = ".",
   tag = "latest"
 ): Promise<Directory | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = client
-      .pipeline(Job.fix)
-      .container()
-      .from(`cytopia/php-cs-fixer:${tag}`)
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withExec([path]);
+  const context = await getDirectory(src);
+  const ctr = dag
+    .pipeline(Job.fix)
+    .container()
+    .from(`cytopia/php-cs-fixer:${tag}`)
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withExec([path]);
 
-    await ctr.stdout();
-    id = await ctr.directory("/app").id();
-  });
-  return id;
+  await ctr.stdout();
+  return ctr.directory("/app").id();
 }
+
 export type JobExec = (
   src: string,
   path?: string

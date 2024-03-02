@@ -2,8 +2,7 @@
  * @module pkgx
  * @description This module provides a set of functions to install packages and to create a development environment with pkgx installed.
  */
-import Client, { Directory, Container } from "../../deps.ts";
-import { connect } from "../../sdk/connect.ts";
+import { dag, Directory, Container } from "../../deps.ts";
 import { getDirectory } from "./lib.ts";
 
 export enum Job {
@@ -20,20 +19,15 @@ export const exclude = [];
  * @returns {string}
  */
 export async function install(pkgs: string[]): Promise<Container | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const ctr = client
-      .pipeline(Job.install)
-      .container()
-      .from("pkgxdev/pkgx:latest")
-      .withExec(["pkgx", "install", ...pkgs])
-      .withDefaultTerminalCmd(["bash", "-i"]);
+  const ctr = dag
+    .pipeline(Job.install)
+    .container()
+    .from("pkgxdev/pkgx:latest")
+    .withExec(["pkgx", "install", ...pkgs])
+    .withDefaultTerminalCmd(["bash", "-i"]);
 
-    const result = await ctr.stdout();
-    console.log(result);
-    id = await ctr.id();
-  });
-  return id;
+  await ctr.stdout();
+  return ctr.id();
 }
 
 /**
@@ -45,22 +39,17 @@ export async function install(pkgs: string[]): Promise<Container | string> {
 export async function dev(
   src: string | Directory | undefined = "."
 ): Promise<Container | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = client
-      .pipeline(Job.dev)
-      .container()
-      .from("pkgxdev/pkgx:latest")
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withExec(["bash", "-c", "source ~/.bashrc && dev"]);
+  const context = await getDirectory(src);
+  const ctr = dag
+    .pipeline(Job.dev)
+    .container()
+    .from("pkgxdev/pkgx:latest")
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withExec(["bash", "-c", "source ~/.bashrc && dev"]);
 
-    const result = await ctr.stdout();
-    console.log(result);
-    id = await ctr.id();
-  });
-  return id;
+  await ctr.stdout();
+  return ctr.id();
 }
 
 export type JobExec =

@@ -3,9 +3,7 @@
  * @description This module provides a set of functions to upload files to Cloudlare R2 bucket and to create a development environment with AWS CLI installed.
  */
 
-import { Directory, Container, Secret } from "../../deps.ts";
-import { connect } from "../../sdk/connect.ts";
-import { Client } from "../../sdk/client.gen.ts";
+import { dag, Directory, Container, Secret } from "../../deps.ts";
 import { getDirectory, getAccessKey, getSecretKey } from "./lib.ts";
 
 export enum Job {
@@ -34,50 +32,42 @@ export async function upload(
   endpointUrl: string,
   region = "us-east-1"
 ): Promise<string> {
-  let result = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const _accessKey = await getAccessKey(client, accessKey);
-    const _secretKey = await getSecretKey(client, secretKey);
+  const context = await getDirectory(src);
+  const _accessKey = await getAccessKey(accessKey);
+  const _secretKey = await getSecretKey(secretKey);
 
-    if (!_accessKey || !_secretKey) {
-      console.error("Missing ACCESS_KEY or SECRET_KEY");
-      Deno.exit(1);
-    }
+  if (!_accessKey || !_secretKey) {
+    console.error("Missing ACCESS_KEY or SECRET_KEY");
+    Deno.exit(1);
+  }
 
-    const ctr = client
-      .pipeline(Job.dev)
-      .container()
-      .from("pkgxdev/pkgx:latest")
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withExec(["pkgx", "install", "aws"])
-      .withSecretVariable("ACCESS_KEY", _accessKey)
-      .withSecretVariable("SECRET_KEY", _secretKey)
-      .withExec([
-        "bash",
-        "-c",
-        "aws configure set aws_access_key_id $ACCESS_KEY",
-      ])
-      .withExec([
-        "bash",
-        "-c",
-        "aws configure set aws_secret_access_key $SECRET_KEY",
-      ])
-      .withExec(["bash", "-c", `aws configure set region ${region}`])
-      .withExec([
-        "aws",
-        "s3",
-        "sync",
-        ".",
-        "--endpoint-url",
-        endpointUrl,
-        `s3://${bucket}`,
-        "--delete",
-      ]);
-    result = await ctr.stdout();
-  });
-  return result;
+  const ctr = dag
+    .pipeline(Job.dev)
+    .container()
+    .from("pkgxdev/pkgx:latest")
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withExec(["pkgx", "install", "aws"])
+    .withSecretVariable("ACCESS_KEY", _accessKey)
+    .withSecretVariable("SECRET_KEY", _secretKey)
+    .withExec(["bash", "-c", "aws configure set aws_access_key_id $ACCESS_KEY"])
+    .withExec([
+      "bash",
+      "-c",
+      "aws configure set aws_secret_access_key $SECRET_KEY",
+    ])
+    .withExec(["bash", "-c", `aws configure set region ${region}`])
+    .withExec([
+      "aws",
+      "s3",
+      "sync",
+      ".",
+      "--endpoint-url",
+      endpointUrl,
+      `s3://${bucket}`,
+      "--delete",
+    ]);
+  return ctr.stdout();
 }
 
 /**
@@ -89,22 +79,17 @@ export async function upload(
 export async function dev(
   src: string | Directory | undefined = "."
 ): Promise<Container | string> {
-  let id = "";
-  await connect(async (client: Client) => {
-    const context = await getDirectory(client, src);
-    const ctr = client
-      .pipeline(Job.dev)
-      .container()
-      .from("pkgxdev/pkgx:latest")
-      .withDirectory("/app", context)
-      .withWorkdir("/app")
-      .withExec(["pkgx", "install", "aws"]);
+  const context = await getDirectory(src);
+  const ctr = dag
+    .pipeline(Job.dev)
+    .container()
+    .from("pkgxdev/pkgx:latest")
+    .withDirectory("/app", context)
+    .withWorkdir("/app")
+    .withExec(["pkgx", "install", "aws"]);
 
-    const result = await ctr.stdout();
-    console.log(result);
-    id = await ctr.id();
-  });
-  return id;
+  await ctr.stdout();
+  return ctr.id();
 }
 
 export type JobExec =
