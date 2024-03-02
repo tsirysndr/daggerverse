@@ -1,6 +1,7 @@
 # Module: R2 Sync
 
-![dagger-min-version](https://img.shields.io/badge/dagger%20version-v0.10.0-blue?color=3D66FF)
+![dagger-min-version](https://img.shields.io/badge/dagger-v0.10.0-blue?color=3D66FF)
+![deno compatibility](https://shield.deno.dev/deno/^1.41)
 
 Sync files from local directory to Cloudflare [R2](https://www.cloudflare.com/developer-platform/r2/).
 
