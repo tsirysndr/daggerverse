@@ -1,27 +1,20 @@
-export { assertEquals } from "https://deno.land/std@0.191.0/testing/asserts.ts";
-import { Client } from "./sdk/client.gen.ts";
-export default Client;
+export { assertEquals } from "jsr:@std/testing@0.218.2/asserts";
 
-export { dag, Container, Directory } from "./sdk/client.gen.ts";
-export type { DirectoryID } from "./sdk/client.gen.ts";
-export { brightGreen } from "https://deno.land/std@0.191.0/fmt/colors.ts";
-export { withDevbox } from "https://nix.fluentci.io/v0.5.3/src/dagger/steps.ts";
-export { stringifyTree } from "https://esm.sh/stringify-tree@1.1.1";
-import gql from "https://esm.sh/graphql-tag@2.12.6";
+export type { DirectoryID, SecretID } from "./sdk/client.gen.ts";
+export { dag, Directory, Secret, Container } from "./sdk/client.gen.ts";
+export { brightGreen } from "jsr:@std/fmt@0.218.2/colors";
+export { stringifyTree } from "npm:stringify-tree@1.1.1";
+import { gql } from "npm:graphql-request@6.1.0";
 export { gql };
+export { dirname, join, resolve } from "jsr:@std/path@0.218.2";
+export { parse } from "jsr:@std/flags@0.218.2";
 
-export {
-  dirname,
-  join,
-  resolve,
-} from "https://deno.land/std@0.203.0/path/mod.ts";
-export { parse } from "https://deno.land/std@0.205.0/flags/mod.ts";
-export { snakeCase, camelCase } from "https://cdn.skypack.dev/lodash";
+import * as _ from "npm:lodash@4.17.21";
+const snakeCase = _.default.snakeCase;
+const camelCase = _.default.camelCase;
+export { snakeCase, camelCase };
 
-export {
-  ClientError,
-  GraphQLClient,
-} from "https://esm.sh/v128/graphql-request@6.1.0";
+export { ClientError, GraphQLClient } from "npm:graphql-request@6.1.0";
 export {
   DaggerSDKError,
   UnknownDaggerError,
@@ -35,15 +28,10 @@ export {
   EngineSessionConnectionTimeoutError,
   NotAwaitedRequestError,
   ERROR_CODES,
-} from "https://esm.sh/@dagger.io/dagger@0.9.3";
+} from "./sdk/common/errors/index.ts";
 
-export type {
-  CallbackFct,
-  ConnectOpts,
-} from "https://sdk.fluentci.io/v0.3.0/mod.ts";
-
-export * as FluentGitlabCI from "https://deno.land/x/fluent_gitlab_ci@v0.4.2/mod.ts";
-export * as FluentGithubActions from "https://deno.land/x/fluent_github_actions@v0.2.1/mod.ts";
-export * as FluentCircleCI from "https://deno.land/x/fluent_circleci@v0.2.5/mod.ts";
-export * as FluentAzurePipelines from "https://deno.land/x/fluent_azure_pipelines@v0.2.0/mod.ts";
-export * as FluentAWSCodePipeline from "https://deno.land/x/fluent_aws_codepipeline@v0.2.3/mod.ts";
+export * as FluentGitlabCI from "jsr:@tsirysndr/fluent-gitlab-ci@0.5";
+export * as FluentGithubActions from "jsr:@tsirysndr/fluent-gh-actions@0.3";
+export * as FluentCircleCI from "jsr:@tsirysndr/fluent-circleci@0.3";
+export * as FluentAzurePipelines from "jsr:@tsirysndr/fluent-az-pipelines@0.3";
+export * as FluentAWSCodePipeline from "jsr:@tsirysndr/fluent-codepipeline@0.3";
