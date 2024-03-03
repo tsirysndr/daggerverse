@@ -23,7 +23,6 @@ dagger -m github.com/tsirysndr/daggerverse/scorecard call calc --repo github.com
 import { calc } from 'jsr:@daggerverse/scorecard';
 
 await calc(
-  ".",
   "github.com/ossf-tests/scorecard-check-branch-protection-e2e"
 );
 ```
