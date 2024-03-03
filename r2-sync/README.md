@@ -7,7 +7,7 @@ Sync files from local directory to Cloudflare [R2](https://www.cloudflare.com/de
 
 It uses aws-cli, so you can use it on any S3 compatible storage.
 
-## Usage
+## 🚀 Usage
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/r2-sync \
@@ -23,7 +23,7 @@ dagger -m github.com/tsirysndr/daggerverse/r2-sync \
 dagger call -m github.com/tsirysndr/daggerverse/r2-sync dev --src <source> terminal
 ```
 
-## Example
+## 🧑‍🔬 Example
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/r2-sync \
@@ -37,4 +37,18 @@ dagger -m github.com/tsirysndr/daggerverse/r2-sync \
 
 ```sh
 dagger call -m github.com/tsirysndr/daggerverse/r2-sync dev --src. terminal
+```
+
+## 🧑‍💻 Programmatic usage
+
+```typescript
+import { lint } from 'jsr:@daggerverse/r2-sync';
+
+await upload(
+  ".",
+  "demo",
+  Deno.env.get("ACCESS_KEY")!,
+  Deno.env.get("SECRET_KEY")!,
+  `https://${Deno.env.get("ACCOUNT_ID")!}.r2.cloudflarestorage.com`
+);
 ```

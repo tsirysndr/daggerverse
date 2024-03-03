@@ -1,4 +1,7 @@
 {
+  "name": "@daggerverse/r2-sync",
+  "version": "0.1.0",
+  "exports": "./mod.ts",
   "importMap": "import_map.json",
   "tasks": {
     "esm:add": "deno run -A https://esm.sh/v128 add",
