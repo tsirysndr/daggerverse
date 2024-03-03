@@ -5,14 +5,22 @@
 
 Daggerized version of [jsonlint](https://github.com/zaach/jsonlint).
 
-## Usage
+## 🚀 Usage
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/jsonlint call lint --src <source>
 ```
 
-## Example
+## 🧑‍🔬 Example
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/jsonlint call lint --src .
+```
+
+## 🧑‍💻 Programmatic usage
+
+```typescript
+import { lint } from 'jsr:@daggerverse/jsonlint';
+
+await lint(".");
 ```
