@@ -45,3 +45,27 @@ jobs:
           deno run -A src/dagger/list_jobs.ts
           dagger functions
         working-directory: ${{ matrix.modules }}
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    strategy:
+      matrix:
+        modules:
+          - ansible
+          - ansible-lint
+          - awesome-ci
+          - checkmake
+          - flakestry
+          - jsonlint
+          - r2-sync
+          - scorecard
+          - terraform-docs
+          - yamllint
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish package
+        run: npx jsr publish
+        working-directory: ${{ matrix.modules }}
