@@ -12,7 +12,7 @@ dagger call -m github.com/tsirysndr/daggerverse/flakestry publish \
   --src . \
   --version v0.1.0 \
   --gh-token GH_TOKEN \
-  --ref REF \
+  --ref $REF \
   --actions-id-token-request-token ACTIONS_ID_TOKEN_REQUEST_TOKEN \
   --actions-id-token-request-url ACTIONS_ID_TOKEN_REQUEST_URL
 ```
