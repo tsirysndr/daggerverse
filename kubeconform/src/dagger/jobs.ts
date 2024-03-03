@@ -15,11 +15,6 @@ export const exclude = [];
 /**
  * Validate Kubernetes manifests
  *
- * @example
- * ```ts
- * import { lint } from "jsr:@daggerverse/kubeconform";
- * await lint(".", "json");
- * ```
  * @function
  * @description Lint Kubernetes files.
  * @param {string | Directory} src
