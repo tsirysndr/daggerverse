@@ -1,4 +1,4 @@
-name: validate modules
+name: ci
 on:
   push:
     branches:
@@ -62,6 +62,7 @@ jobs:
           - jsonlint
           - r2-sync
           - scorecard
+          - shellcheck
           - terraform-docs
           - yamllint
     steps:
