@@ -16,3 +16,11 @@ dagger -m github.com/tsirysndr/daggerverse/terraform-docs call generate --src <s
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/terraform-docs call generate --src .
 ```
+
+## 🧑‍💻 Programmatic usage
+
+```typescript
+import { generate } from 'jsr:@daggerverse/terraform-docs';
+
+await generate(".");
+```
