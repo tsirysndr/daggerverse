@@ -5,14 +5,25 @@
 
 Calculates the [scorecard](https://github.com/ossf/scorecard) for a given repository.
 
-## Usage
+## 🚀 Usage
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/scorecard call calc --repo <repository>
 ```
 
-## Example
+## 🧑‍🔬 Example
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/scorecard call calc --repo github.com/ossf-tests/scorecard-check-branch-protection-e2e
+```
+
+## 🧑‍💻 Programmatic usage
+
+```typescript
+import { calc } from 'jsr:@daggerverse/scorecard';
+
+await calc(
+  ".",
+  "github.com/ossf-tests/scorecard-check-branch-protection-e2e"
+);
 ```
