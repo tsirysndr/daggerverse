@@ -5,14 +5,22 @@
 
 Daggerized version of [yamllint](https://github.com/adrienverge/yamllint).
 
-## Usage
+## 🚀 Usage
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/yamllint call lint --src <source>
 ```
 
-## Example
+## 🧑‍🔬 Example
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/yamllint call lint --src .
+```
+
+## 🧑‍💻 Programmatic usage
+
+```typescript
+import { lint } from 'jsr:@daggerverse/yamllint';
+
+await lint(".");
 ```
