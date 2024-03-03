@@ -5,13 +5,13 @@
 
 Daggerized version of [terraform-docs](https://terraform-docs.io/).
 
-## Usage
+## 🚀 Usage
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/terraform-docs call generate --src <source>
 ```
 
-## Example
+## 🧑‍🔬 Example
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/terraform-docs call generate --src .
