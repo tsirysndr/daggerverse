@@ -37,6 +37,7 @@ See [documentation](https://docs.dagger.io/zenith/) for more information about d
 | [gofmt](./gofmt/)           | Format Go source code with [gofmt](https://godoc.org/cmd/gofmt) |
 | [golint](./golint/)         | Lint Go source code with [golint](https://github.com/golang/lint) |
 | [jsonlint](./jsonlint/)     | Lint JSON files with [jsonlint](https://github.com/zaach/jsonlint) |
+| [kubeconform](./kubeconform/)       | Lint Kubernetes files with [kubconform](https://github.com/yannh/kubeconform) |
 | [kubeval](./kubeval/)       | Lint Kubernetes files with [kubeval](https://github.com/instrumenta/kubeval) |
 | [nix](./nix)                | Nix package manager |
 | [open-policy-agent](./open-policy-agent/)  | Daggerized version of [Open Policy Agent](https://www.openpolicyagent.org/) |

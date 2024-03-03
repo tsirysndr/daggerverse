@@ -22,6 +22,7 @@ jobs:
           - gofmt
           - golint
           - jsonlint
+          - kubeconform
           - kubeval
           - nix
           - open-policy-agent
@@ -60,6 +61,7 @@ jobs:
           - checkmake
           - flakestry
           - jsonlint
+          - kubeconform
           - r2-sync
           - scorecard
           - shellcheck
