@@ -1,4 +1,4 @@
 {
-  "name": "kubeval",
+  "name": "kubeconform",
   "sdk": "github.com/fluentci-io/daggerverse/deno-sdk@main"
 }
