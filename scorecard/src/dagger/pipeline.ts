@@ -1,4 +1,5 @@
 import * as jobs from "./jobs.ts";
+import { env } from "../../deps.ts";
 
 const { calc, runnableJobs } = jobs;
 
@@ -8,7 +9,7 @@ export default async function pipeline(src = ".", args: string[] = []) {
     return;
   }
 
-  await calc(Deno.env.get("REPO")!);
+  await calc(env.get("REPO")!);
 }
 
 async function runSpecificJobs(args: jobs.Job[]) {
@@ -17,6 +18,6 @@ async function runSpecificJobs(args: jobs.Job[]) {
     if (!job) {
       throw new Error(`Job ${name} not found`);
     }
-    await job(Deno.env.get("REPO")!);
+    await job(env.get("REPO")!);
   }
 }

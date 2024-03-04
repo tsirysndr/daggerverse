@@ -9,6 +9,10 @@ export { gql };
 export { dirname, join, resolve } from "jsr:@std/path@0.218.2";
 export { parse } from "jsr:@std/flags@0.218.2";
 
+import * as env from "jsr:@tsirysndr/env-js@0.1.2";
+export { env };
+export { exit } from "jsr:@tsirysndr/exit-js@0.1.0";
+
 import * as _ from "npm:lodash@4.17.21";
 const snakeCase = _.default.snakeCase;
 const camelCase = _.default.camelCase;

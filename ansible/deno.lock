@@ -11,6 +11,8 @@
       "jsr:@std/path@0.218.2": "jsr:@std/path@0.218.2",
       "jsr:@std/testing@0.217.0": "jsr:@std/testing@0.217.0",
       "jsr:@std/testing@0.218.2": "jsr:@std/testing@0.218.2",
+      "jsr:@tsirysndr/env-js@0.1.2": "jsr:@tsirysndr/env-js@0.1.2",
+      "jsr:@tsirysndr/exit-js@0.1.0": "jsr:@tsirysndr/exit-js@0.1.0",
       "jsr:@tsirysndr/fluent-az-pipelines@0.3": "jsr:@tsirysndr/fluent-az-pipelines@0.3.0",
       "jsr:@tsirysndr/fluent-circleci@0.3": "jsr:@tsirysndr/fluent-circleci@0.3.0",
       "jsr:@tsirysndr/fluent-codepipeline@0.3": "jsr:@tsirysndr/fluent-codepipeline@0.3.0",
@@ -66,6 +68,12 @@
         "dependencies": [
           "jsr:@std/assert@^0.218.2"
         ]
+      },
+      "@tsirysndr/env-js@0.1.2": {
+        "integrity": "16a8cf4e60c8b43f4d62dd762006de40d56e5b144a56c0954a11f99ee12c5d3a"
+      },
+      "@tsirysndr/exit-js@0.1.0": {
+        "integrity": "4ea378ce2575931426bcf60d4588c9e9cf489fa93d3907cd9ee60feb38960230"
       },
       "@tsirysndr/fluent-az-pipelines@0.3.0": {
         "integrity": "a2a23089a186b0f04e45daa7a9df98527c54b845842c1ebe3b7f2cf03e5aec0d",

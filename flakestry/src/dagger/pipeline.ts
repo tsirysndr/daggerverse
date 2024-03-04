@@ -1,4 +1,5 @@
 import * as jobs from "./jobs.ts";
+import { env } from "../../deps.ts";
 
 const { publish, runnableJobs } = jobs;
 
@@ -10,13 +11,13 @@ export default async function pipeline(src = ".", args: string[] = []) {
 
   await publish(
     src,
-    Deno.env.get("VERSION")!,
-    Deno.env.get("REF")!,
-    Deno.env.get("GH_TOKEN")!,
-    Deno.env.get("ACTIONS_ID_TOKEN_REQUEST_TOKEN")!,
-    Deno.env.get("ACTIONS_ID_TOKEN_REQUEST_URL")!,
-    Deno.env.get("URL"),
-    Deno.env.get("IGNORE_CONFLICTS") === "true"
+    env.get("VERSION")!,
+    env.get("REF")!,
+    env.get("GH_TOKEN")!,
+    env.get("ACTIONS_ID_TOKEN_REQUEST_TOKEN")!,
+    env.get("ACTIONS_ID_TOKEN_REQUEST_URL")!,
+    env.get("URL"),
+    env.get("IGNORE_CONFLICTS") === "true"
   );
 }
 
@@ -28,13 +29,13 @@ async function runSpecificJobs(args: jobs.Job[], src: string) {
     }
     await job(
       src,
-      Deno.env.get("VERSION")!,
-      Deno.env.get("REF")!,
-      Deno.env.get("GH_TOKEN")!,
-      Deno.env.get("ACTIONS_ID_TOKEN_REQUEST_TOKEN")!,
-      Deno.env.get("ACTIONS_ID_TOKEN_REQUEST_URL")!,
-      Deno.env.get("URL"),
-      Deno.env.get("IGNORE_CONFLICTS") === "true"
+      env.get("VERSION")!,
+      env.get("REF")!,
+      env.get("GH_TOKEN")!,
+      env.get("ACTIONS_ID_TOKEN_REQUEST_TOKEN")!,
+      env.get("ACTIONS_ID_TOKEN_REQUEST_URL")!,
+      env.get("URL"),
+      env.get("IGNORE_CONFLICTS") === "true"
     );
   }
 }

@@ -2,7 +2,7 @@
  * @module flakestry
  * @description Publish a flake from Github to flakestry.dev ❄️
  */
-import { dag, Directory, Container } from "../../deps.ts";
+import { dag, env, Directory, Container } from "../../deps.ts";
 import { Secret } from "../../sdk/client.gen.ts";
 import { getDirectory, getGithubToken } from "./lib.ts";
 
@@ -77,22 +77,21 @@ export async function publish(
         fi
       `,
     ])
-    .withEnvVariable("VERSION", Deno.env.get("VERSION") || version)
-    .withEnvVariable("REF", Deno.env.get("REF") || ref)
+    .withEnvVariable("VERSION", env.get("VERSION") || version)
+    .withEnvVariable("REF", env.get("REF") || ref)
     .withSecretVariable("GH_TOKEN", (await getGithubToken(ghToken))!)
-    .withEnvVariable("URL", Deno.env.get("URL") || url)
+    .withEnvVariable("URL", env.get("URL") || url)
     .withEnvVariable(
       "ACTIONS_ID_TOKEN_REQUEST_TOKEN",
-      Deno.env.get("ACTIONS_ID_TOKEN_REQUEST_TOKEN") ||
-        actionsIdTokenRequestToken
+      env.get("ACTIONS_ID_TOKEN_REQUEST_TOKEN") || actionsIdTokenRequestToken
     )
     .withEnvVariable(
       "ACTIONS_ID_TOKEN_REQUEST_URL",
-      Deno.env.get("ACTIONS_ID_TOKEN_REQUEST_URL") || actionsIdTokenRequestUrl
+      env.get("ACTIONS_ID_TOKEN_REQUEST_URL") || actionsIdTokenRequestUrl
     )
     .withEnvVariable(
       "IGNORE_CONFLICTS",
-      Deno.env.get("IGNORE_CONFLICTS") || `${ignoreConflicts}`
+      env.get("IGNORE_CONFLICTS") || `${ignoreConflicts}`
     )
     .withExec([
       "bash",
