@@ -2,6 +2,7 @@
 
 ![dagger-min-version](https://img.shields.io/badge/dagger-v0.10.0-blue?color=3D66FF)
 ![deno compatibility](https://shield.deno.dev/deno/^1.41)
+[![](https://jsr.io/badges/@daggerverse/terraform-docs)](https://jsr.io/@daggerverse/terraform-docs)
 
 Daggerized version of [terraform-docs](https://terraform-docs.io/).
 

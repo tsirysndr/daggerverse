@@ -2,6 +2,7 @@
 
 ![dagger-min-version](https://img.shields.io/badge/dagger-v0.10.0-blue?color=3D66FF)
 ![deno compatibility](https://shield.deno.dev/deno/^1.41)
+[![](https://jsr.io/badges/@daggerverse/flakestry)](https://jsr.io/@daggerverse/flakestry)
 
 Publish a [Nix Flake](https://nix.dev/concepts/flakes/) from a Github Repository to [flakestry](https://flakestry.dev).
 
