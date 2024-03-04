@@ -1,4 +1,11 @@
-import { dag, Directory, DirectoryID, Secret, SecretID } from "../../deps.ts";
+import {
+  dag,
+  env,
+  Directory,
+  DirectoryID,
+  Secret,
+  SecretID,
+} from "../../deps.ts";
 
 export const getDirectory = async (
   src: string | Directory | undefined = "."
@@ -23,8 +30,8 @@ export const getDirectory = async (
 };
 
 export const getAccessKey = async (token?: string | Secret) => {
-  if (Deno.env.get("ACCESS_KEY")) {
-    return dag.setSecret("ACCESS_KEY", Deno.env.get("ACCESS_KEY")!);
+  if (env.get("ACCESS_KEY")) {
+    return dag.setSecret("ACCESS_KEY", env.get("ACCESS_KEY")!);
   }
   if (token && typeof token === "string") {
     try {
@@ -42,8 +49,8 @@ export const getAccessKey = async (token?: string | Secret) => {
 };
 
 export const getSecretKey = async (token?: string | Secret) => {
-  if (Deno.env.get("SECRET_KEY")) {
-    return dag.setSecret("SECRET_KEY", Deno.env.get("SECRET_KEY")!);
+  if (env.get("SECRET_KEY")) {
+    return dag.setSecret("SECRET_KEY", env.get("SECRET_KEY")!);
   }
   if (token && typeof token === "string") {
     try {

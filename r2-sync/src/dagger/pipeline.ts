@@ -1,4 +1,5 @@
 import * as jobs from "./jobs.ts";
+import { env } from "../../deps.ts";
 
 const { upload, runnableJobs } = jobs;
 
@@ -10,11 +11,11 @@ export default async function pipeline(src = ".", args: string[] = []) {
 
   await upload(
     src,
-    Deno.env.get("ACCESS_KEY")!,
-    Deno.env.get("SECRET_KEY")!,
-    Deno.env.get("BUCKET")!,
-    Deno.env.get("ENDPOINT_URL")!,
-    Deno.env.get("REGION")
+    env.get("ACCESS_KEY")!,
+    env.get("SECRET_KEY")!,
+    env.get("BUCKET")!,
+    env.get("ENDPOINT_URL")!,
+    env.get("REGION")
   );
 }
 
@@ -26,11 +27,11 @@ async function runSpecificJobs(args: jobs.Job[], src: string) {
     }
     await job(
       src,
-      Deno.env.get("ACCESS_KEY")!,
-      Deno.env.get("SECRET_KEY")!,
-      Deno.env.get("BUCKET")!,
-      Deno.env.get("ENDPOINT_URL")!,
-      Deno.env.get("REGION")
+      env.get("ACCESS_KEY")!,
+      env.get("SECRET_KEY")!,
+      env.get("BUCKET")!,
+      env.get("ENDPOINT_URL")!,
+      env.get("REGION")
     );
   }
 }

@@ -3,7 +3,7 @@
  * @description This module provides a set of functions to upload files to Cloudlare R2 bucket and to create a development environment with AWS CLI installed.
  */
 
-import { dag, Directory, Container, Secret } from "../../deps.ts";
+import { dag, exit, Directory, Container, Secret } from "../../deps.ts";
 import { getDirectory, getAccessKey, getSecretKey } from "./lib.ts";
 
 export enum Job {
@@ -40,7 +40,8 @@ export async function upload(
 
   if (!_accessKey || !_secretKey) {
     console.error("Missing ACCESS_KEY or SECRET_KEY");
-    Deno.exit(1);
+    exit(1);
+    return "";
   }
 
   const ctr = dag
