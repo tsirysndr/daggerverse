@@ -13,6 +13,8 @@ export enum Job {
 export const exclude = [];
 
 /**
+ * Lint JSON files
+ *
  * @function
  * @description Lint JSON files.
  * @param {string | Directory | undefined} src

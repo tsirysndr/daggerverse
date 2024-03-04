@@ -3,6 +3,8 @@ import { getDirectory } from "../lib.ts";
 import { Job } from "./mod.ts";
 
 /**
+ * Scan files and check if they contain CR (Carriage Return only)
+ *
  * @function
  * @description Scan files and check if they contain CR (Carriage Return only).
  * @param {string | Directory | undefined} src

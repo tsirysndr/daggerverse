@@ -3,6 +3,8 @@ import { getDirectory } from "../lib.ts";
 import { Job } from "./mod.ts";
 
 /**
+ * Scan files and check if they contain exactly one trailing newline
+ *
  * @function
  * @description Scan files and check if they contain exactly one trailing newline.
  * @param {string | Directory | undefined} src

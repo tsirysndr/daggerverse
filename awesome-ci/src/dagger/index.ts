@@ -24,10 +24,8 @@ import { syntaxPython } from "./jobs/syntax-python.ts";
 import { syntaxRuby } from "./jobs/syntax-ruby.ts";
 import { syntaxScss } from "./jobs/syntax-scss.ts";
 import { syntaxSh } from "./jobs/syntax-sh.ts";
-import pipeline from "./pipeline.ts";
 
 export {
-  pipeline,
   dev,
   gitConflicts,
   gitIgnored,

@@ -3,6 +3,8 @@ import { getDirectory } from "../lib.ts";
 import { Job } from "./mod.ts";
 
 /**
+ * Scan files and check if they contain a null-byte character (\x00)
+ *
  * @function
  * @description Scan files and check if they contain a null-byte character (\x00).
  * @param {string | Directory | undefined} src

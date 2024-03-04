@@ -13,6 +13,8 @@ export enum Job {
 export const exclude = [];
 
 /**
+ * Lint Makefiles
+ *
  * @function
  * @description Lint Makefiles.
  * @param {string | Directory | undefined} src

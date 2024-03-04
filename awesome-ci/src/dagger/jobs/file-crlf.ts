@@ -3,6 +3,8 @@ import { getDirectory } from "../lib.ts";
 import { Job } from "./mod.ts";
 
 /**
+ * Scan files and check if they contain CRLF (Windows Line Feeds)
+ *
  * @function
  * @description Scan files and check if they contain CRLF (Windows Line Feeds).
  * @param {string | Directory | undefined} src

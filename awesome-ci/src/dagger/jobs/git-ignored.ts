@@ -3,6 +3,8 @@ import { getDirectory } from "../lib.ts";
 import { Job } from "./mod.ts";
 
 /**
+ * Scan git directory and see if ignored files are still in git cache
+ *
  * @function
  * @description Scan git directory and see if ignored files are still in git cache.
  * @param {string | Directory | undefined} src

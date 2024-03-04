@@ -3,6 +3,8 @@ import { getDirectory } from "../lib.ts";
 import { Job } from "./mod.ts";
 
 /**
+ * Scan PHP files for PHP syntax errors
+ *
  * @function
  * @description Scan PHP files for PHP syntax errors.
  * @param {string | Directory | undefined} src

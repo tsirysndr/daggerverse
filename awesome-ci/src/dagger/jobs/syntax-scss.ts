@@ -3,6 +3,8 @@ import { getDirectory } from "../lib.ts";
 import { Job } from "./mod.ts";
 
 /**
+ * Scan SCSS files for SCSS syntax errors
+ *
  * @function
  * @description Scan SCSS files for SCSS syntax errors.
  * @param {string | Directory | undefined} src

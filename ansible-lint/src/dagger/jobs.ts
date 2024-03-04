@@ -14,6 +14,8 @@ export enum Job {
 export const exclude = [];
 
 /**
+ * Lint ansible YAML files
+ *
  * @function
  * @description Lint ansible YAML files.
  * @param {string | Directory | undefined} src

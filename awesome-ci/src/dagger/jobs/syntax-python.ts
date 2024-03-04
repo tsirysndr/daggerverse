@@ -3,6 +3,8 @@ import { getDirectory } from "../lib.ts";
 import { Job } from "./mod.ts";
 
 /**
+ * Scan Python files for Python syntax errors
+ *
  * @function
  * @description Scan Python files for Python syntax errors.
  * @param {string | Directory | undefined} src

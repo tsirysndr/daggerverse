@@ -13,6 +13,8 @@ export enum Job {
 export const exclude = [];
 
 /**
+ * Generate Terraform modules documentation
+ *
  * @function
  * @description Generate Terraform modules documentation
  * @param {string | Directory | undefined} src

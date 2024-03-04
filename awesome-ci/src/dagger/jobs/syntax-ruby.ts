@@ -3,6 +3,8 @@ import { getDirectory } from "../lib.ts";
 import { Job } from "./mod.ts";
 
 /**
+ * Scan Ruby files for Ruby syntax errors
+ *
  * @function
  * @description Scan Ruby files for Ruby syntax errors.
  * @param {string | Directory | undefined} src

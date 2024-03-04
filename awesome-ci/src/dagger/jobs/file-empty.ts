@@ -3,6 +3,8 @@ import { getDirectory } from "../lib.ts";
 import { Job } from "./mod.ts";
 
 /**
+ * Scan files and check if they are empty (0 bytes)
+ *
  * @function
  * @description Scan files and check if they are empty (0 bytes).
  * @param {string | Directory | undefined} src

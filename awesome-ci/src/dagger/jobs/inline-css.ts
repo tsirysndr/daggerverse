@@ -3,6 +3,8 @@ import { getDirectory } from "../lib.ts";
 import { Job } from "./mod.ts";
 
 /**
+ * Scan files and check if they contain inline css code
+ *
  * @function
  * @description Scan files and check if they contain inline css code.
  * @param {string | Directory | undefined} src

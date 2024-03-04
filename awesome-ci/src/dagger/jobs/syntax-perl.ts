@@ -3,6 +3,8 @@ import { getDirectory } from "../lib.ts";
 import { Job } from "./mod.ts";
 
 /**
+ * Scan Perl files for Perl syntax errors
+ *
  * @function
  * @description Scan Perl files for Perl syntax errors.
  * @param {string | Directory | undefined} src

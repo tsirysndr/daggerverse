@@ -13,6 +13,8 @@ export enum Job {
 export const exclude = [];
 
 /**
+ * Calculates the scorecard for a given repository
+ *
  * @function
  * @description Calculates the scorecard for a given repository.
  * @param {string} repo

@@ -13,6 +13,8 @@ export enum Job {
 export const exclude = [];
 
 /**
+ * Lint a shell script with ShellCheck
+ * 
  * @function
  * @description Lint a shell script with ShellCheck.
  * @param {Directory | string} src

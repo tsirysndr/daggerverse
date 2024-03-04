@@ -14,8 +14,10 @@ export enum Job {
 export const exclude = [];
 
 /**
+ * Upload files to Cloudlare R2 bucket
+ *
  * @function
- * @description Uploads files to Cloudlare R2 bucket.
+ * @description Upload files to Cloudlare R2 bucket.
  * @param {string | Directory | undefined} src
  * @param {Secret | string} accessKey
  * @param {Secret | string} secretKey

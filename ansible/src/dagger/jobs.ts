@@ -13,8 +13,10 @@ export enum Job {
 export const exclude = [];
 
 /**
+ * Run a playbook
+ *
  * @function
- * @description Runs a playbook.
+ * @description Run a playbook.
  * @param {string | Directory | undefined} src
  * @param {string} playbook
  * @param {string} tag

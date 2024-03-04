@@ -3,6 +3,8 @@ import { getDirectory } from "../lib.ts";
 import { Job } from "./mod.ts";
 
 /**
+ * Scan files for JSON syntax errors
+ *
  * @function
  * @description Scan files for JSON syntax errors.
  * @param {string | Directory | undefined} src

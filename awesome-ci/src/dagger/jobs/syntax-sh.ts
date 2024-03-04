@@ -3,6 +3,8 @@ import { getDirectory } from "../lib.ts";
 import { Job } from "./mod.ts";
 
 /**
+ * Scan sh files for /bin/sh syntax errors
+ *
  * @function
  * @description Scan sh files for /bin/sh syntax errors.
  * @param {string | Directory | undefined} src

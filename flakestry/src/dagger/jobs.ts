@@ -13,6 +13,8 @@ export enum Job {
 export const exclude = [];
 
 /**
+ * Publish a flake to flakestry.dev
+ *
  * @function
  * @description Publish a flake to flakestry.dev
  * @param {string | Directory} src

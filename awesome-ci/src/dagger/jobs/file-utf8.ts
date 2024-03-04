@@ -3,6 +3,8 @@ import { getDirectory } from "../lib.ts";
 import { Job } from "./mod.ts";
 
 /**
+ * Scan files and check if they have a non UTF-8 encoding
+ *
  * @function
  * @description Scan files and check if they have a non UTF-8 encoding.
  * @param {string | Directory | undefined} src

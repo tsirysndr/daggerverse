@@ -3,6 +3,8 @@ import { getDirectory } from "../lib.ts";
 import { Job } from "./mod.ts";
 
 /**
+ * Scan files for Markdown syntax errors
+ *
  * @function
  * @description Scan files for Markdown syntax errors.
  * @param {string | Directory | undefined} src
