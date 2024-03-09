@@ -69,6 +69,9 @@ jobs:
           - yamllint
     steps:
       - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.41
       - name: Publish package
-        run: npx jsr publish --allow-slow-types
+        run: deno publish --allow-slow-types
         working-directory: ${{ matrix.modules }}
