@@ -40,6 +40,7 @@ See [documentation](https://docs.dagger.io/zenith/) for more information about d
 | [kubeconform](./kubeconform/)       | Lint Kubernetes files with [kubconform](https://github.com/yannh/kubeconform) |
 | [kubeval](./kubeval/)       | Lint Kubernetes files with [kubeval](https://github.com/instrumenta/kubeval) |
 | [nix](./nix)                | Nix package manager |
+| [nixpacks](./nixpacks/)     | Build an OCI image of your project using [nixpacks](https://nixpacks.com/) |
 | [open-policy-agent](./open-policy-agent/)  | Daggerized version of [Open Policy Agent](https://www.openpolicyagent.org/) |
 | [phpcbf](./phpcbf/)         | Daggerized version of [phpcbf](https://github.com/squizlabs/PHP_CodeSniffer) |
 | [phpcs](./phpcs/)           | PHP Code Sniffer [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) |

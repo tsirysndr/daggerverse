@@ -46,7 +46,8 @@ export async function dev(
     .from("pkgxdev/pkgx:latest")
     .withDirectory("/app", context)
     .withWorkdir("/app")
-    .withExec(["bash", "-c", "source ~/.bashrc && dev"]);
+    .withExec(["bash", "-c", "source ~/.bashrc && dev"])
+    .withDefaultTerminalCmd(["bash", "-i"]);
 
   await ctr.stdout();
   return ctr.id();
