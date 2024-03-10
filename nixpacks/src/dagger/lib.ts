@@ -40,6 +40,10 @@ export const docker = (version = "24.0", cached = false) => {
     );
   }
   return ctr
+    .withExec(["apk", "update"])
+    .withExec(["apk", "add", "ca-certificates"])
+    .withExec(["sh", "-c", "rm -rf /var/cache/apk/*"])
+    .withExec(["update-ca-certificates"])
     .withExec(
       [
         "dockerd",
