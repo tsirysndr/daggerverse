@@ -28,6 +28,7 @@ export async function build(
   path: string | undefined = "."
 ): Promise<string> {
   const context = await getDirectory(src);
+  const buildx = dag.container().from("docker/buildx-bin").file("/buildx");
   const ctr = dag
     .pipeline(Job.build)
     .container()
@@ -36,6 +37,9 @@ export async function build(
     .withExec(["pkgx", "install", "nixpacks", "docker"])
     .withExec(["nixpacks", "--version"])
     .withExec(["docker", "-v"])
+    .withExec(["mkdir", "-p", "/root/.docker/cli-plugins"])
+    .withFile("/root/.docker/cli-plugins/docker-buildx", buildx)
+    .withExec(["docker", "buildx", "version"])
     .withDirectory("/app", context)
     .withWorkdir("/app")
     .withServiceBinding("dockerd", docker("25.0.3", true))
@@ -90,6 +94,7 @@ export async function dev(
   src: string | Directory | undefined = "."
 ): Promise<Container | string> {
   const context = await getDirectory(src);
+  const buildx = dag.container().from("docker/buildx-bin").file("/buildx");
   const ctr = dag
     .pipeline(Job.dev)
     .container()
@@ -98,6 +103,9 @@ export async function dev(
     .withExec(["pkgx", "install", "nixpacks", "docker"])
     .withExec(["nixpacks", "--version"])
     .withExec(["docker", "-v"])
+    .withExec(["mkdir", "-p", "/root/.docker/cli-plugins"])
+    .withFile("/root/.docker/cli-plugins/docker-buildx", buildx)
+    .withExec(["docker", "buildx", "version"])
     .withDirectory("/app", context)
     .withWorkdir("/app")
     .withServiceBinding("dockerd", docker("25.0.3", true))

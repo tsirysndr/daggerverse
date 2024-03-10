@@ -26,6 +26,7 @@ export const docker = (version = "24.0", cached = false) => {
   let ctr = dag
     .container()
     .from(`docker:${version}-dind`)
+    .withEnvVariable("DOCKER_CLI_EXPERIMENTAL", "enabled")
     .withoutEntrypoint()
     .withExposedPort(2375);
 
