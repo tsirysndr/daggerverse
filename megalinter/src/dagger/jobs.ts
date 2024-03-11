@@ -17,21 +17,30 @@ export const exclude = [];
  * @function
  * @description Lint files.
  * @param {string | Directory | undefined} src
+ * @param {string} version
  * @returns {Directory | string}
  */
 export async function lint(
-  src: Directory | string
+  src: Directory | string,
+  version: string = "v7"
 ): Promise<Directory | string> {
   const context = await getDirectory(src);
   const ctr = dag
     .pipeline(Job.lint)
     .container()
-    .from("oxsecurity/megalinter:v7")
+    .from(`oxsecurity/megalinter:${version}`)
     .withDirectory("/app", context)
     .withEnvVariable("DEFAULT_WORKSPACE", "/app")
-    .withWorkdir("/app");
+    .withEnvVariable("REPORT_OUTPUT_FOLDER", "/app/megalinter-reports")
+    .withWorkdir("/app")
+    .withoutEntrypoint()
+    .withExec(["/entrypoint.sh"])
+    .withExec(["ls", "-la", "/app"]);
 
   await ctr.stdout();
+
+  console.log(await ctr.directory("/app").entries());
+
   return ctr.directory("/app/megalinter-reports").id();
 }
 export type JobExec = (

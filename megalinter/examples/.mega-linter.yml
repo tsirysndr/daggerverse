@@ -22,6 +22,8 @@ DISABLE:
 
 SHOW_ELAPSED_TIME: true
 
-FILEIO_REPORTER: true
+FILEIO_REPORTER: false
+REPORT_OUTPUT_FOLDER: /app/megalinter-reports
+ANSIBLE_ANSIBLE_LINT_DIRECTORY: playbooks
 # Uncomment if you want MegaLinter to detect errors but not block CI to pass
 # DISABLE_ERRORS: true
