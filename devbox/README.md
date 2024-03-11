@@ -2,10 +2,13 @@
 
 ![dagger-min-version](https://img.shields.io/badge/dagger-v0.10.0-blue?color=3D66FF)
 ![deno compatibility](https://shield.deno.dev/deno/^1.41)
+[![](https://jsr.io/badges/@daggerverse/devbox)](https://jsr.io/@daggerverse/devbox)
+[![ci](https://github.com/tsirysndr/daggerverse/actions/workflows/ci.yml/badge.svg)](https://github.com/tsirysndr/daggerverse/actions/workflows/ci.yml)
+
 
 Returns a Container with [Devbox](https://www.jetpack.io/devbox) installed.
 
-## Usage
+## 🚀 Usage
 
 ```sh
 dagger call -m github.com/tsirysndr/daggerverse/devbox dev terminal
@@ -13,8 +16,16 @@ dagger call -m github.com/tsirysndr/daggerverse/devbox run --command <command> -
 dagger call -m github.com/tsirysndr/daggerverse/devbox install --pkgs <packages> terminal
 ```
 
-## Example
+## 🧑‍🔬 Example
 
 ```sh
 dagger call -m github.com/tsirysndr/daggerverse/devbox install --pkgs git,curl terminal
+```
+
+## 🧑‍💻 Programmatic usage
+
+```typescript
+import { install } from 'jsr:@daggerverse/devbox';
+
+await install(".", ["git", "curl", "jq"]);
 ```

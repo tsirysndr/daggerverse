@@ -15,6 +15,8 @@ export enum Job {
 export const exclude = [];
 
 /**
+ * Run a command
+ *
  * @function
  * @description Run a command
  * @param src {string | Directory | undefined}
@@ -37,6 +39,8 @@ export async function run(
 }
 
 /**
+ * Return a container with a dev environment
+ *
  * @function
  * @description Return a container with a dev environment
  * @param src {string | Directory | undefined}
@@ -56,6 +60,8 @@ export async function dev(
 }
 
 /**
+ * Install packages in a Docker Container and return it
+ *
  * @function
  * @description Install packages in a Docker Container and return it
  * @param {string | Directory | undefined} src

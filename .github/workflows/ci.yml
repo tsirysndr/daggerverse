@@ -61,6 +61,7 @@ jobs:
           - black
           - checkmake
           - conftest
+          - devbox
           - flakestry
           - jsonlint
           - kubeconform
