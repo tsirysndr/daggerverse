@@ -17,12 +17,10 @@ export const exclude = [];
  * @function
  * @description Lint files.
  * @param {string | Directory | undefined} src
- * @param {string} path
  * @returns {Directory | string}
  */
 export async function lint(
-  src: Directory | string,
-  path = "."
+  src: Directory | string
 ): Promise<Directory | string> {
   const context = await getDirectory(src);
   const ctr = dag
@@ -30,8 +28,7 @@ export async function lint(
     .container()
     .from("oxsecurity/megalinter:v7")
     .withDirectory("/app", context)
-    .withWorkdir("/app")
-    .withExec([path]);
+    .withWorkdir("/app");
 
   await ctr.stdout();
   return ctr.directory("/app/megalinter-reports").id();

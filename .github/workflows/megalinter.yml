@@ -17,7 +17,7 @@ jobs:
         run: |
           deno run -A src/dagger/list_jobs.ts
           dagger functions
-          dagger call lint --src . --path examples
+          dagger call lint --src examples
         working-directory: megalinter
   publish:
     needs: test
