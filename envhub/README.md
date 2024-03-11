@@ -17,7 +17,7 @@ dagger -m github.com/tsirysndr/daggerverse/envhub call \
 ## 🧑‍🔬 Example
 
 ```sh
-dagger -m github.com/tsirysndr/daggerverse/megalinter call \
+dagger -m github.com/tsirysndr/daggerverse/envhub call \
   use --environment github:tsirysndr/dotfiles-example \
   --src .
 ```
