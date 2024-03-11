@@ -5,7 +5,7 @@
 [![](https://jsr.io/badges/@daggerverse/nixpacks)](https://jsr.io/@daggerverse/nixpacks)
 [![ci](https://github.com/tsirysndr/daggerverse/actions/workflows/ci.yml/badge.svg)](https://github.com/tsirysndr/daggerverse/actions/workflows/nixpacks.yml)
 
-This is [Dagger](https://dagger.io) module for building an OCI image of your project using [nixpacks](https://nixpacks.com/).
+This is a [Dagger](https://dagger.io) module for building an OCI image of your project using [nixpacks](https://nixpacks.com/).
 
 ## 🚀 Usage
 
