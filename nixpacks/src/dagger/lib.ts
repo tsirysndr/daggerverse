@@ -1,4 +1,11 @@
-import { dag, Directory, DirectoryID, CacheSharingMode } from "../../deps.ts";
+import {
+  dag,
+  Directory,
+  DirectoryID,
+  Secret,
+  SecretID,
+  CacheSharingMode,
+} from "../../deps.ts";
 
 export const getDirectory = async (
   src: string | Directory | undefined = "."
@@ -56,4 +63,26 @@ export const docker = (version = "24.0", cached = false) => {
       }
     )
     .asService();
+};
+
+export const getRegistryPassword = async (password: string | Secret) => {
+  if (Deno.env.get("REGISTRY_PASSWORD")) {
+    return dag.setSecret(
+      "REGISTRY_PASSWORD",
+      Deno.env.get("REGISTRY_PASSWORD")!
+    );
+  }
+  if (password && typeof password === "string") {
+    try {
+      const secret = dag.loadSecretFromID(password as SecretID);
+      await secret.id();
+      return secret;
+    } catch (_) {
+      return dag.setSecret("REGISTRY_PASSWORD", password);
+    }
+  }
+  if (password && password instanceof Secret) {
+    return password;
+  }
+  return undefined;
 };

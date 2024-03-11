@@ -1,1 +1,1 @@
-export { build, plan, dev } from "./jobs.ts";
+export { build, plan, publish, dev } from "./jobs.ts";

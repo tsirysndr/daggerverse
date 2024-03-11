@@ -2,14 +2,16 @@
  * @module nixpacks
  * @description This module provides a set of functions to build an OCI image from your project using nixpacks.
  */
+import { Secret } from "../../deps.ts";
 import { dag, Directory, Container, File } from "../../deps.ts";
-import { docker } from "./lib.ts";
+import { docker, getRegistryPassword } from "./lib.ts";
 import { getDirectory } from "./lib.ts";
 
 export enum Job {
   build = "build",
   plan = "plan",
   dev = "dev",
+  publish = "publish",
 }
 
 export const exclude = [];
@@ -20,7 +22,7 @@ export const exclude = [];
  * @function
  * @description Build an OCI image from your project using nixpacks
  * @param {string | Directory | undefined} src
- * @returns {string}
+ * @returns {Promise<string>}
  */
 export async function build(
   src: string | Directory,
@@ -57,7 +59,7 @@ export async function build(
  * @function
  * @description Generate a plan for building an OCI image from your project using nixpacks
  * @param {string | Directory | undefined} src
- * @returns {string}
+ * @returns {Promise<File |string>}
  */
 export async function plan(
   src: string | Directory,
@@ -90,7 +92,7 @@ export async function plan(
  * @function
  * @description Return a Container with nixpacks installed
  * @param {string | Directory | undefined} src
- * @returns {string}
+ * @returns {Promise<string>}
  */
 export async function dev(
   src: string | Directory | undefined = "."
@@ -120,6 +122,45 @@ export async function dev(
   return ctr.id();
 }
 
+/**
+ * Publish an OCI image to a registry
+ *
+ * @function
+ * @description Publish an OCI image to a registry
+ * @param {string} username
+ * @param {string | Secret} password
+ * @param {string} ref
+ * @param {string | undefined} registry
+ * @returns {Promise<string>}
+ */
+export async function publish(
+  username: string,
+  password: string | Secret,
+  ref: string,
+  registry: string | undefined = "docker.io"
+): Promise<string> {
+  const secret = await getRegistryPassword(password);
+  const ctr = dag
+    .pipeline(Job.publish)
+    .container()
+    .from("pkgxdev/pkgx:latest")
+    .withExec(["apt-get", "update"])
+    .withExec(["apt-get", "install", "-y", "ca-certificates"])
+    .withMountedCache("/root/.pkgx", dag.cacheVolume("pkgx-cache"))
+    .withExec(["pkgx", "install", "docker"])
+    .withExec(["docker", "-v"])
+    .withServiceBinding("dockerd", docker("25.0.3", true))
+    .withEnvVariable("DOCKER_HOST", "tcp://dockerd:2375")
+    .withSecretVariable("REGISTRY_PASSWORD", secret!)
+    .withExec([
+      "bash",
+      "-c",
+      `echo $REGISTRY_PASSWORD | docker login ${registry} -u ${username} --password-stdin`,
+    ])
+    .withExec(["docker", "push", ref]);
+  return ctr.stdout();
+}
+
 export type JobExec =
   | ((src: string | Directory, name: string, path?: string) => Promise<string>)
   | ((
@@ -127,11 +168,18 @@ export type JobExec =
       path?: string,
       format?: string
     ) => Promise<File | string>)
-  | ((src?: string) => Promise<Container | string>);
+  | ((src?: string) => Promise<Container | string>)
+  | ((
+      username: string,
+      password: string | Secret,
+      ref: string,
+      registry: string | undefined
+    ) => Promise<string>);
 
 export const runnableJobs: Record<Job, JobExec> = {
   [Job.build]: build,
   [Job.plan]: plan,
+  [Job.publish]: publish,
   [Job.dev]: dev,
 };
 
@@ -139,5 +187,6 @@ export const jobDescriptions: Record<Job, string> = {
   [Job.build]: "Build an OCI image from your project using nixpacks",
   [Job.plan]:
     "Generate a plan for building an OCI image from your project using nixpacks",
+  [Job.publish]: "Publish an OCI image to a registry",
   [Job.dev]: "Return a Container with nixpacks installed",
 };
