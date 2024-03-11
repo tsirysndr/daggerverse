@@ -31,5 +31,7 @@ jobs:
         with:
           deno-version: v1.41
       - name: Publish package
-        run: deno publish --allow-slow-types
+        run: |
+          rm -rf examples
+          deno publish --allow-slow-types
         working-directory: megalinter
