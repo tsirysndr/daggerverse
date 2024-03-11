@@ -60,6 +60,7 @@ jobs:
           - awesome-ci
           - black
           - checkmake
+          - conftest
           - flakestry
           - jsonlint
           - kubeconform

@@ -14,16 +14,21 @@ export enum Job {
 export const exclude = [];
 
 /**
+ * Tests your configuration files using Conftest
+ *
  * @function
  * @description Tests your configuration files using Conftest.
  * @param {string | Directory | undefined} src
+ * @param {string} files
+ * @param {string} policy
+ * @param {string} outputFormat
  * @returns {string}
  */
 export async function test(
   src: string | Directory,
   files: string,
   policy = "policy",
-  output = "stdout"
+  outputFormat = "stdout"
 ): Promise<string> {
   const context = await getDirectory(src);
   const ctr = dag
@@ -36,13 +41,15 @@ export async function test(
     .withExec([
       "bash",
       "-c",
-      `conftest test ${files} -p ${policy} -o ${output}`,
+      `conftest test ${files} -p ${policy} -o ${outputFormat}`,
     ]);
 
   return ctr.stdout();
 }
 
 /**
+ * Returns a container with conftest installed
+ *
  * @function
  * @description Returns a container with conftest installed.
  * @param {string | Directory | undefined} src
@@ -69,7 +76,7 @@ export type JobExec = (
   src: string | Directory,
   files: string,
   policy?: string,
-  output?: string
+  outputFormat?: string
 ) => Promise<Container | string>;
 
 export const runnableJobs: Record<Job, JobExec> = {

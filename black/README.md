@@ -19,7 +19,7 @@ dagger -m github.com/tsirysndr/daggerverse/black call \
   format --src .
 
 dagger -m github.com/tsirysndr/daggerverse/black call \
-  dev --src. terminal
+  dev --src . terminal
 ```
 
 ## 🧑‍💻 Programmatic usage

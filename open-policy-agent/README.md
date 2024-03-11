@@ -30,5 +30,5 @@ dagger -m github.com/tsirysndr/daggerverse/open-policy-agent call evaluate \
 ```
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/open-policy-agent dev --src. terminal
+dagger call -m github.com/tsirysndr/daggerverse/open-policy-agent dev --src . terminal
 ```

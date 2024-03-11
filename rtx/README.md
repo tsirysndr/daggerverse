@@ -14,5 +14,5 @@ dagger call -m github.com/tsirysndr/daggerverse/rtx dev --src <source> terminal
 ## Example
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/rtx dev --src. terminal
+dagger call -m github.com/tsirysndr/daggerverse/rtx dev --src . terminal
 ```

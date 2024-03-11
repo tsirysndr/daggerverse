@@ -37,7 +37,7 @@ dagger -m github.com/tsirysndr/daggerverse/r2-sync \
 ```
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/r2-sync dev --src. terminal
+dagger call -m github.com/tsirysndr/daggerverse/r2-sync dev --src . terminal
 ```
 
 ## 🧑‍💻 Programmatic usage

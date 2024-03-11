@@ -15,7 +15,7 @@ dagger call -m github.com/tsirysndr/daggerverse/awesome-ci dev --src <source> te
 ## 🧑‍🔬 Example
 
 ```sh
-dagger call -m github.com/tsirysndr/daggerverse/awesome-ci dev --src. terminal
+dagger call -m github.com/tsirysndr/daggerverse/awesome-ci dev --src . terminal
 ```
 
 ## 🧑‍💻 Programmatic usage

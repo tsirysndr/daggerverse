@@ -16,7 +16,7 @@ dagger -m github.com/tsirysndr/daggerverse/ansible call playbook --src <source> 
 
 ```sh
 dagger -m github.com/tsirysndr/daggerverse/ansible call playbook --src . --playbook playbook.yml
-dagger call -m github.com/tsirysndr/daggerverse/ansible dev --src. terminal
+dagger call -m github.com/tsirysndr/daggerverse/ansible dev --src . terminal
 ```
 
 ## 🧑‍💻 Programmatic usage

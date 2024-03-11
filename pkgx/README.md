@@ -16,7 +16,7 @@ dagger call -m github.com/tsirysndr/daggerverse/pkgx dev --src <source> terminal
 
 ```sh
 dagger call -m github.com/tsirysndr/daggerverse/pkgx install --pkgs jq,gh terminal
-dagger call -m github.com/tsirysndr/daggerverse/pkgx dev --src. terminal
+dagger call -m github.com/tsirysndr/daggerverse/pkgx dev --src . terminal
 ```
 
 ## Install Arguments
