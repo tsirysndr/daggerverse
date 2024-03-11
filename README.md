@@ -39,7 +39,7 @@ See [documentation](https://docs.dagger.io/zenith/) for more information about d
 | [jsonlint](./jsonlint/)     | Lint JSON files with [jsonlint](https://github.com/zaach/jsonlint) |
 | [kubeconform](./kubeconform/)       | Lint Kubernetes files with [kubconform](https://github.com/yannh/kubeconform) |
 | [kubeval](./kubeval/)       | Lint Kubernetes files with [kubeval](https://github.com/instrumenta/kubeval) |
-| [megalinter](./megalinter/) | [megalinter](https://github.com/oxsecurity/megalinter) analyzes 50 languages, 22 formats, 21 tooling formats, excessive copy-pastes, spelling mistakes and security issues in your repository sources |
+| [megalinter](./megalinter/) | Daggerized version of [megalinter](https://github.com/oxsecurity/megalinter) |
 | [nix](./nix)                | Nix package manager |
 | [nixpacks](./nixpacks/)     | Build an OCI image of your project using [nixpacks](https://nixpacks.com/) |
 | [open-policy-agent](./open-policy-agent/)  | Daggerized version of [Open Policy Agent](https://www.openpolicyagent.org/) |
