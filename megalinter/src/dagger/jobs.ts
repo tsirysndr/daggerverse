@@ -39,8 +39,6 @@ export async function lint(
 
   await ctr.stdout();
 
-  console.log(await ctr.directory("/app").entries());
-
   return ctr.directory("/app/megalinter-reports").id();
 }
 export type JobExec = (
