@@ -1,0 +1,35 @@
+name: ci
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/envhub.yml
+      - "envhub/**"
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Fluent CI
+        uses: fluentci-io/setup-fluentci@v4
+      - name: Run Dagger Pipelines
+        run: |
+          deno run -A src/dagger/list_jobs.ts
+          dagger functions
+          dagger call use --src . --environment github:tsirysndr/dotfiles-example
+        working-directory: envhub
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.41
+      - name: Publish package
+        run: deno publish --allow-slow-types
+        working-directory: envhub

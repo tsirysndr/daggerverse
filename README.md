@@ -32,6 +32,7 @@ See [documentation](https://docs.dagger.io/zenith/) for more information about d
 | [checkmake](./checkmake/)   | Lint Makefiles with [checkmake](https://github.com/mrtazz/checkmake) |
 | [conftest](./conftest/)     | Test your configuration files using [Conftest](https://conftest.dev/) |
 | [devbox](./devbox/)         | Instant, easy, and predictable development environments |
+| [envhub](./envhub/)         | Daggerized version of [envhub](https://github.com/tsirysndr/envhub) |
 | [devenv](./devenv/)         | Fast, Declarative, Reproducible, and Composable Developer Environments |
 | [flakestry](./flakestry/)   | Publish a flake to [flakestry](https://flakestry.dev) |
 | [flox](./flox/)             | Harness the power of Nix |
