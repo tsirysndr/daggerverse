@@ -1,0 +1,90 @@
+---
+# https://github.com/ansible/ansible-lint/issues/2464
+# https://github.com/ansible/ansible-lint/issues/2462
+# https://github.com/ansible/ansible-lint/issues/2459
+- name: Fixture to test various jinja parsing bugs that we should ignore
+  hosts: localhost
+  tasks:
+    - name: Foo {{ buildset_registry.host | ipwrap }}
+      ansible.builtin.debug:
+        msg: "{{ lookup('template', 'lookup/redis_server__env_ports.j2') | from_yaml }}"
+      loop: "{{ github_release_query.results | subelements('json.assets', {'skip_missing': True}) }}"
+    - name: Zoo
+      ansible.builtin.debug:
+        msg: "{{ lookup('ansible.builtin.ini', 'SOME_VAR', type='properties', file='/tmp/some-file') }}"
+
+    - name: Generate Dovecot main configuration file
+      ansible.builtin.template:
+        src: '{{ lookup("template_src", "etc/dovecot/dovecot.conf.j2") }}'
+        dest: "/etc/dovecot/dovecot.conf"
+        owner: "root"
+        group: "dovecot"
+        mode: "0640"
+    - name: Bug https://github.com/ansible/ansible-lint/issues/2569
+      ansible.builtin.include_tasks:
+        file: /dev/null
+      vars:
+        ns_vars: {}
+        x: "{{ lookup('ansible.builtin.template', 'namespace.yaml.j2', template_vars=ns_vars) | from_yaml }}"
+    - name: Bug https://github.com/ansible/ansible-lint/issues/3048
+      ansible.builtin.set_fact:
+        x: "{{ y.json | community.general.json_query(edition.version) }}"
+    - name: Bug https://github.com/ansible/ansible-lint/issues/3769
+      ansible.builtin.debug:
+        msg: "{{ 65534 | ansible.builtin.random(seed=inventory_hostname) }}"
+
+# https://github.com/ansible/ansible-lint/issues/2697
+- name: Test linter
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Passed linter
+      ansible.builtin.debug:
+        msg: "{{ test | to_json }}"
+      vars:
+        test:
+          one: two
+          param: "{{ ansible_host }}"
+    - name: Failed linter
+      ansible.builtin.debug:
+        msg: "{{ test | to_json }}"
+      vars:
+        test:
+          one: two
+          param: no jinja
+
+- name: Bug https://github.com/ansible/ansible-lint/issues/3048
+  hosts: localhost
+  tasks:
+    - name: "Test for bug #3048"
+      ansible.builtin.debug:
+        msg: "{{ __my_var | mandatory }}"
+      loop: "{{ a_var }}"
+      loop_control:
+        loop_var: __my_var
+      vars:
+        a_var:
+          - one
+
+- name: Bugs
+  hosts: localhost
+  tasks:
+    - name: Bug https://github.com/ansible/ansible-lint/issues/3082
+      ansible.builtin.copy:
+        content: "{{ item.cfg | to_nice_yaml(indent=2, width=9999) }}"
+        dest: "/tmp/{{ item.name }}.yaml"
+        mode: "0640"
+      with_items:
+        - name: file2
+
+    - name: Bug https://github.com/ansible/ansible-lint/issues/3136
+      ansible.builtin.debug:
+        msg: "IP is {{ foo | ansible.utils.ipaddr('address') }}"
+
+    - name: "Bug https://github.com/ansible/ansible-lint/issues/3155"
+      ansible.builtin.debug:
+        msg: "Is changed:{{ date_cmd is changed }}"
+
+    - name: Bug https://github.com/ansible/ansible-lint/issues/3908
+      ansible.builtin.debug:
+        msg: "{{ foo | ansible.builtin.mandatory(msg='My message') }}"

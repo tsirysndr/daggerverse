@@ -1,0 +1,10 @@
+---
+- name: Fixture for test_extra_vars_passed_to_command test
+  hosts: all
+  tags:
+    - baz
+    - "{{ foo }}"
+  tasks:
+    - name: Show `complex_variable` value loaded from `extra_vars`
+      ansible.builtin.debug:
+        msg: "{{ complex_variable }}"

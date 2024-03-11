@@ -1,0 +1,8 @@
+---
+- name: Fixture for test_strict
+  hosts: localhost
+  tasks:
+    - name: Display debug information
+      ansible.builtin.stat:
+        path2: echo "Hello World" # <-- args[module] due to invalid use of path2 instead of path
+      changed_when: false

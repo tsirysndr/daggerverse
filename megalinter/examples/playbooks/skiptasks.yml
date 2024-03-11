@@ -1,0 +1,64 @@
+---
+- hosts: all
+
+  tasks:
+    - name: Test latest[git]
+      action: ansible.builtin.git
+
+    - name: Test latest[hg]
+      action: ansible.builtin.hg
+
+    - name: Test command-instead-of-module
+      ansible.builtin.command: git log
+      changed_when: false
+
+    - name: Test no-free-form
+      ansible.builtin.command: creates=B chmod 644 A
+
+    - name: Test latest[git] (skip)
+      action: ansible.builtin.git
+      tags:
+        - skip_ansible_lint
+
+    - name: Test latest[hg] (skip)
+      action: ansible.builtin.hg
+      tags:
+        - skip_ansible_lint
+
+    - name: Test command-instead-of-module (skip)
+      ansible.builtin.command: git log
+      tags:
+        - skip_ansible_lint
+
+    - name: Test no-free-form (skip)
+      ansible.builtin.command: chmod 644 A
+      tags:
+        - skip_ansible_lint
+
+    - name: Test latest[git] (don't warn)
+      ansible.builtin.command: git log
+      args:
+        warn: false
+      changed_when: false
+
+    - name: Test latest[hg] (don't warn)
+      ansible.builtin.command: chmod 644 A
+      args:
+        warn: false
+        creates: B
+
+    - name: Test latest[hg] (warn)
+      ansible.builtin.command: chmod 644 A
+      args:
+        warn: true
+        creates: B
+
+    - name: Test latest[git] (don't warn single line)
+      ansible.builtin.command: warn=False chdir=/tmp/blah git log
+      changed_when: false
+
+    - name: Test latest[hg] (don't warn single line)
+      ansible.builtin.command: warn=no creates=B chmod 644 A
+
+    - name: Test latest[hg] (warn single line)
+      ansible.builtin.command: warn=yes creates=B chmod 644 A

@@ -1,0 +1,5 @@
+---
+- name: Fixture
+  hosts: all
+  roles:
+    - role_with_task_inclusions

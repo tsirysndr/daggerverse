@@ -1,0 +1,4 @@
+---
+- name: simple_task | This is named
+  ansible.builtin.assert:
+    fail_msg: foo

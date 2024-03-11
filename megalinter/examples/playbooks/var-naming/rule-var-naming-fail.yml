@@ -1,0 +1,44 @@
+---
+- name: Fixture
+  hosts: localhost
+  vars:
+    CamelCaseIsBad: false # invalid 1
+    this_is_valid: # valid because content is a dict, not a variable
+      CamelCase: ...
+      ALL_CAPS: ...
+    ALL_CAPS_ARE_BAD_TOO: ... # invalid 2
+    CamelCaseButErrorIgnored: true # noqa: var-naming
+
+  tasks:
+    - name: Foo
+      ansible.builtin.set_fact:
+        "{{ 'test_' }}var": "value" # noqa: var-naming[no-jinja]
+    - name: Bar
+      ansible.builtin.set_fact:
+        CamelCaseButErrorIgnored: true # noqa: var-naming
+    - name: Test in a block
+      vars:
+        BAD: false # invalid 3
+        MoreBad: ... # invalid 4
+      block:
+        - name: Foo
+          vars:
+            ALL_CAPS_ARE_BAD_TOO: "{{ MoreBad }}" # invalid 5
+          ansible.builtin.set_fact:
+            CamelCaseIsBad: "{{ BAD }}" # invalid 6
+    - name: Test on register
+      ansible.builtin.debug:
+        var: test_var
+      register: CamelCaseIsBad # invalid 7
+
+    - name: This should not trigger due to role name being dynamic (jinja)
+      ansible.builtin.include_role:
+        name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
+      vars:
+        nginx_logrotate_conf_enable: true
+
+    - name: This should not trigger due to containing a dot in role name
+      ansible.builtin.include_role:
+        name: "foo.bar"
+      vars:
+        bar_foo: true

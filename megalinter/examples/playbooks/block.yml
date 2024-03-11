@@ -1,0 +1,26 @@
+---
+- hosts: all
+
+  pre_tasks:
+    - { import_tasks: does-not-exist.yml }
+
+  tasks:
+    - block:
+        - name: Successful debug message
+          debug: msg='i execute normally'
+        - name: Failure command
+          ansible.builtin.command: /bin/false
+          changed_when: false
+        - name: Never reached debug message
+          debug: msg='i never execute, cause ERROR!'
+      rescue:
+        - name: Exception debug message
+          ansible.builtin.debug: msg='I caught an error'
+        - name: Another failure command
+          ansible.builtin.command: /bin/false
+          changed_when: false
+        - name: Another missed debug message
+          debug: msg='I also never execute :-('
+      always:
+        - name: Always reached debug message
+          ansible.builtin.debug: msg="this always executes"

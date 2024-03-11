@@ -1,0 +1,28 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Install ansible
+      ansible.builtin.yum: name=ansible state=latest
+
+    - name: Install ansible-lint
+      ansible.builtin.pip: name=ansible-lint
+      args:
+        state: latest
+
+    - name: Install some-package
+      ansible.builtin.package:
+        name: some-package
+        state: latest
+
+    - name: Install ansible with update_only to false
+      ansible.builtin.yum:
+        name: sudo
+        state: latest
+        update_only: false
+
+    - name: Install ansible with only_upgrade to false
+      ansible.builtin.apt:
+        name: sudo
+        state: latest
+        upgrade: true
+        only_upgrade: false

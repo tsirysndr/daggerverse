@@ -1,0 +1,37 @@
+---
+- name: Fixture to validate module options failure scenarios
+  hosts: localhost
+  tasks:
+    - name: Clone content repository
+      # module should produce: 'missing required arguments: repo'
+      ansible.builtin.git:
+        dest: /home/www
+        accept_hostkey: true
+        version: master
+        update: false
+
+    - name: Enable service httpd and ensure it is not masked
+      # module should produce: 'missing parameter(s) required by 'enabled': name'
+      ansible.builtin.systemd:
+        enabled: true
+        masked: false
+
+    - name: Enable service httpd and ensure it is not masked
+      # module should produce: 'Unsupported parameters for ansible.builtin.systemd module"
+      ansible.builtin.systemd:
+        foo: true
+
+    - name: An invalid call of setup module
+      # setup module in ansible is the only module that has a .. relative
+      # import that used to cause problems
+      ansible.builtin.setup:
+        foo: # this is a nested object which will have the __ injections
+          # that we later need to clean
+          bar: true
+
+    - name: Remove deployment dir
+      # module should produce: 'value of state must be one of: absent, directory, file, hard, link, touch, got: away'
+      ansible.builtin.file:
+        path: /opt/software/deployment
+        state: away
+        mode: "0600"

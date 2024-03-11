@@ -1,0 +1,18 @@
+---
+- hosts: bobbins
+
+  pre_tasks:
+    - ansible.builtin.include_tasks: tasks/x.yml
+
+  roles:
+    - hello
+    - { role: more_complex, t: z }
+
+  tasks:
+    - ansible.builtin.include_tasks: tasks/x.yml
+    - ansible.builtin.include_tasks: tasks/x.yml y=z
+
+  handlers:
+    - ansible.builtin.include_tasks: handlers/y.yml
+
+- ansible.builtin.include_tasks: play.yml

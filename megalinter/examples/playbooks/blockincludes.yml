@@ -1,0 +1,21 @@
+---
+- name: Fixture
+  hosts: localhost
+  vars:
+    varset: varset
+  tasks:
+    - name: Block level 1
+      block:
+        - name: Include under block level 1 # noqa: fqcn
+          include_tasks: tasks/nestedincludes.yml
+        - name: Block level 2
+          block:
+            # - include_tasks: "{{ varnotset }}.yml"
+            - name: Block level 3
+              block:
+                - name: Include under block level 3 # noqa: deprecated-module
+                  ansible.builtin.include_tasks: "{{ varset }}.yml"
+                - name: Block level 4
+                  block:
+                    - name: INCLUDE under block level 4
+                      ansible.builtin.include_tasks: tasks/directory with spaces/main.yml

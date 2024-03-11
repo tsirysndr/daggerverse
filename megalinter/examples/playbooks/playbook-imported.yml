@@ -1,0 +1,11 @@
+---
+- name: Fixture
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - ansible.builtin.command:
+        cmd: echo "no name" # should generate name[missing]
+    - name: Another task
+      ansible.builtin.debug:
+        msg: debug message

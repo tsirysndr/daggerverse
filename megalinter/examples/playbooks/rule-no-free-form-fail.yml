@@ -1,0 +1,16 @@
+---
+- name: Example with discouraged free-form syntax
+  hosts: localhost
+  tasks:
+    - name: Create a placefolder file
+      ansible.builtin.command: chdir=/tmp touch foo # <-- don't use shorthand
+      changed_when: false
+
+    - name: Use raw to echo
+      ansible.builtin.raw: executable=/bin/bash echo foo # <-- don't use executable=
+      changed_when: false
+
+    - name: Testing anything else passed to raw except for string
+      ansible.builtin.raw:
+        args: "123"
+      changed_when: false

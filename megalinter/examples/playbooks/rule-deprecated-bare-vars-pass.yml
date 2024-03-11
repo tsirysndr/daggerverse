@@ -1,0 +1,177 @@
+---
+- name: Using bare variables success
+  hosts: localhost
+  become: false
+  vars:
+    my_list:
+      - foo
+      - bar
+
+    my_list2:
+      - 1
+      - 2
+
+    my_list_of_dicts:
+      - foo: 1
+        bar: 2
+      - foo: 3
+        bar: 4
+
+    my_list_of_lists:
+      - "{{ my_list }}"
+      - "{{ my_list2 }}"
+
+    my_filenames:
+      - foo.txt
+      - bar.txt
+
+    my_dict:
+      foo: bar
+
+  tasks:
+    ### Testing with_items loops
+    - name: Use with_items loop using static list
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      with_items:
+        - foo
+        - bar
+
+    - name: Use with_items using a static hash
+      ansible.builtin.debug:
+        msg: "{{ item.key }} - {{ item.value }}"
+      with_items:
+        - { key: foo, value: 1 }
+        - { key: bar, value: 2 }
+
+    - name: Use with_items loop using variable
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      with_items: "{{ my_list }}"
+
+    ### Testing with_nested loops
+    - name: Use with_nested loop using static lists
+      ansible.builtin.debug:
+        msg: "{{ item[0] }} - {{ item[1] }}"
+      with_nested:
+        - [foo, bar]
+        - ["1", "2", "3"]
+
+    - name: Use with_nested loop using variable list and static
+      ansible.builtin.debug:
+        msg: "{{ item[0] }} - {{ item[1] }}"
+      with_nested:
+        - "{{ my_list }}"
+        - ["1", "2", "3"]
+
+    ### Testing with_dict
+    - name: Use with_dict loop using variable
+      ansible.builtin.debug:
+        msg: "{{ item.key }} - {{ item.value }}"
+      with_dict: "{{ my_dict }}"
+
+    ### Testing with_dict with a default empty dictionary
+    - name: Use with_dict loop using variable and default
+      ansible.builtin.debug:
+        msg: "{{ item.key }} - {{ item.value }}"
+      with_dict: "{{ uwsgi_ini | default({}) }}"
+
+    ### Testing with_file
+    - name: Use with_file loop using static files list
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      with_file:
+        - foo.txt
+        - bar.txt
+
+    - name: Use with_file loop using list of filenames
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      with_file: "{{ my_filenames }}"
+
+    ### Testing with_fileglob
+    - name: Use with_fileglob loop using list of *.txt
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      with_fileglob:
+        - "*.txt"
+
+    ### Testing non-list form of with_fileglob
+    - name: Use with_fileglob loop using single value *.txt
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      with_fileglob: "*.txt"
+
+    ### Testing non-list form of with_fileglob with trailing templated pattern
+    - name: Use with_fileglob loop using templated pattern
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      with_fileglob: foo{{ glob }}
+
+    ### Testing with_together
+    - name: Use with_together loop using variable lists
+      ansible.builtin.debug:
+        msg: "{{ item.0 }} - {{ item.1 }}"
+      with_together:
+        - "{{ my_list }}"
+        - "{{ my_list2 }}"
+
+    - name: Use with_subelements loop
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      with_subelements:
+        - "{{ my_list_of_dicts }}"
+        - bar
+
+    - name: Use with_sequence loop
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      with_sequence: count=2
+
+    - name: Use with_random_choice loop
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      with_random_choice: "{{ my_list }}"
+
+    - name: Use with_first_found loop with static files list
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      with_first_found:
+        - foo.txt
+        - bar.txt
+
+    - name: Use with_first_found loop with list of filenames
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      with_first_found: "{{ my_filenames }}"
+
+    - name: Use with_indexed_items loop
+      ansible.builtin.debug:
+        msg: "{{ item.0 }} {{ item.1 }}"
+      with_indexed_items: "{{ my_list }}"
+
+    - name: Use with_ini loop
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      with_ini: value[1-2] section=section1 file=foo.ini re=true
+
+    - name: Use with_inventory_hostnames loop
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      with_inventory_hostnames: all
+
+    - name: Test more complex jinja is also allowed
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      with_items: >-
+        {%- set ns = [1, 1, 2] -%}
+        {{- ns.keys | unique -}}
+
+    - name: Reproduce bug 3646
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: directory
+        mode: "{{ item.mode }}"
+      with_community.general.filetree:
+        - "../templates/SpaceVim.d/"
+      when: item.state == "directory" and ".git" not in item.path

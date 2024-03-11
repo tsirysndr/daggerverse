@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  tasks:
+    # validate that we did not trigger loop-var-prefix on playbooks
+    - name: That should pass
+      ansible.builtin.debug:
+        var: item
+      loop:
+        - foo
+        - bar
+    - name: A block
+      block:
+        - name: That should also pass
+          ansible.builtin.debug:
+            var: item
+          loop:
+            - apples
+            - oranges

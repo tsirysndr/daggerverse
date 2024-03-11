@@ -1,0 +1,7 @@
+# This file is valid YAML and passed JSON Schema validation but not ansible
+# own syntax check.
+
+- hosts: localhost
+  tasks:
+    - name: Invalid syntax
+      x.y.z.w: {}

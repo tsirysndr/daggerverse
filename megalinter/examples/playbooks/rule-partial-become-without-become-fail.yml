@@ -1,0 +1,27 @@
+---
+- name: Use of become_user without become at play level
+  hosts: localhost
+  become_user: root
+
+  tasks:
+    - name: A task without issues
+      ansible.builtin.debug:
+        msg: hello
+
+- name: Use of become_user without become at task level
+  hosts: localhost
+  tasks:
+    - name: Use of become_user without become task
+      ansible.builtin.command: whoami
+      become_user: postgres
+      changed_when: false
+
+- name: Use of become_user without become at task level
+  hosts: localhost
+  tasks:
+    - name: A block with become and become_user on different tasks
+      block:
+        - name: Sample become
+          ansible.builtin.command: whoami
+          become_user: true
+          changed_when: false

@@ -1,0 +1,19 @@
+---
+- name: Example with discouraged free-form syntax
+  hosts: localhost
+  tasks:
+    - name: Create a placefolder file
+      ansible.builtin.command: # <-- don't use shorthand
+        chdir: /tmp
+        cmd: touch foo
+      changed_when: false
+
+    - name: Use raw to echo
+      ansible.builtin.raw: echo foo # <-- don't use executable=
+      args:
+        executable: /bin/bash
+      changed_when: false
+
+    - name: Example task with usage for '=' as module params
+      ansible.builtin.debug:
+        msg: "'Hello there world'"

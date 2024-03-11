@@ -1,0 +1,9 @@
+---
+- name: Fixture
+  hosts: localhost
+  gather_facts: false
+  tags:
+    - "{{ foo }}"
+  tasks:
+    - name: Run custom module # noqa: fqcn[action]
+      fake_module: {}

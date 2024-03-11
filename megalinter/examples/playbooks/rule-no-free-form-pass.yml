@@ -1,0 +1,19 @@
+---
+- name: Example with discouraged free-form syntax
+  hosts: localhost
+  tasks:
+    - name: Create a placefolder file
+      ansible.builtin.command:
+        cmd: touch foo
+        chdir: /tmp
+      changed_when: false
+    - name: Use raw to echo
+      ansible.builtin.raw: echo foo
+      args:
+        executable: /bin/bash
+      changed_when: false
+    - name: Configure locale
+      # https://github.com/ansible/ansible-lint/issues/2573
+      ansible.builtin.command: localectl set-locale LANG=en_GB.UTF-8
+      when: not ansible_check_mode
+      changed_when: false
