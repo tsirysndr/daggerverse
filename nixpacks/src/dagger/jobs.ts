@@ -48,8 +48,7 @@ export async function build(
     .withWorkdir("/app")
     .withServiceBinding("dockerd", docker("25.0.3", true))
     .withEnvVariable("DOCKER_HOST", "tcp://dockerd:2375")
-    .withExec(["nixpacks", "build", path, "--name", name])
-    .withExec(["docker", "images"]);
+    .withExec(["nixpacks", "build", path, "--name", name]);
   return ctr.stdout();
 }
 
@@ -68,7 +67,7 @@ export async function plan(
 ): Promise<File | string> {
   const context = await getDirectory(src);
   const ctr = dag
-    .pipeline(Job.build)
+    .pipeline(Job.plan)
     .container()
     .from("pkgxdev/pkgx:latest")
     .withMountedCache("/root/.pkgx", dag.cacheVolume("pkgx-cache"))

@@ -29,11 +29,12 @@ dagger -m github.com/tsirysndr/daggerverse/nixpacks call \
 
 ## ✨ Jobs
 
-| Name    | Description                         |
-| ------- | ----------------------------------- |
-| `dev`   | Start a development environment     |
-| `plan`  | Generate build plan for the project |
-| `build` | Build an OCI image of the project   |
+| Name      | Description                         |
+| --------- | ----------------------------------- |
+| `dev`     | Start a development environment     |
+| `plan`    | Generate build plan for the project |
+| `build`   | Build an OCI image of the project   |
+| `publish` | Publish the OCI image to a registry |
 
 ## 🧑‍💻 Programmatic usage
 
