@@ -1,10 +1,11 @@
 {
+  "name": "@daggerverse/black",
+  "version": "0.1.0",
   "importMap": "import_map.json",
   "tasks": {
     "esm:add": "deno run -A https://esm.sh/v128 add",
     "esm:update": "deno run -A https://esm.sh/v128 update",
-    "esm:remove": "deno run -A https://esm.sh/v128 remove",
-    "clean": "rm -rf gen schema.graphql"
+    "esm:remove": "deno run -A https://esm.sh/v128 remove"
   },
   "fmt": {
     "exclude": [

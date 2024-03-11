@@ -14,6 +14,8 @@ export enum Job {
 export const exclude = [];
 
 /**
+ * Format Python code with black
+ *
  * @function
  * @description Format Python code with black.
  * @param {string | Directory | undefined} src
@@ -38,6 +40,8 @@ export async function format(
 }
 
 /**
+ * Returns a container with black installed
+ *
  * @function
  * @description Returns a container with black installed.
  * @param {string | Directory | undefined} src

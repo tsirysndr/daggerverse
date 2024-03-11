@@ -58,6 +58,7 @@ jobs:
           - ansible
           - ansible-lint
           - awesome-ci
+          - black
           - checkmake
           - flakestry
           - jsonlint
