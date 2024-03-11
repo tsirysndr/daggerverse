@@ -2,7 +2,7 @@
 
 ![dagger-min-version](https://img.shields.io/badge/dagger-v0.10.0-blue?color=3D66FF)
 ![deno compatibility](https://shield.deno.dev/deno/^1.41)
-[![](https://jsr.io/badges/@daggerverse/yamllint)](https://jsr.io/@daggerverse/yamllint)
+[![](https://jsr.io/badges/@daggerverse/megalinter)](https://jsr.io/@daggerverse/megalinter)
 
 Daggerized version of [megalinter](https://github.com/oxsecurity/megalinter).
 
