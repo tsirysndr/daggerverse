@@ -17,6 +17,7 @@ export enum Job {
 export const exclude = [];
 
 const DOCKER_VERSION = "25.0.3";
+const DOCKER_HOST = "tcp://dockerd:2375";
 
 /**
  * Build an OCI image from your project using nixpacks
@@ -49,7 +50,7 @@ export async function build(
     .withDirectory("/app", context)
     .withWorkdir("/app")
     .withServiceBinding("dockerd", docker(DOCKER_VERSION, true))
-    .withEnvVariable("DOCKER_HOST", "tcp://dockerd:2375")
+    .withEnvVariable("DOCKER_HOST", DOCKER_HOST)
     .withExec(["nixpacks", "build", path, "--name", name]);
   return ctr.stdout();
 }
@@ -116,7 +117,7 @@ export async function dev(
     .withDirectory("/app", context)
     .withWorkdir("/app")
     .withServiceBinding("dockerd", docker(DOCKER_VERSION, true))
-    .withEnvVariable("DOCKER_HOST", "tcp://dockerd:2375")
+    .withEnvVariable("DOCKER_HOST", DOCKER_HOST)
     .withDefaultTerminalCmd(["bash", "-i"]);
 
   await ctr.stdout();
@@ -151,7 +152,7 @@ export async function publish(
     .withExec(["pkgx", "install", "docker"])
     .withExec(["docker", "-v"])
     .withServiceBinding("dockerd", docker(DOCKER_VERSION, true))
-    .withEnvVariable("DOCKER_HOST", "tcp://dockerd:2375")
+    .withEnvVariable("DOCKER_HOST", DOCKER_HOST)
     .withSecretVariable("REGISTRY_PASSWORD", secret!)
     .withExec([
       "bash",
