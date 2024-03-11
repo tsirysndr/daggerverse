@@ -16,6 +16,8 @@ export enum Job {
 
 export const exclude = [];
 
+const DOCKER_VERSION = "25.0.3";
+
 /**
  * Build an OCI image from your project using nixpacks
  *
@@ -46,7 +48,7 @@ export async function build(
     .withExec(["docker", "buildx", "version"])
     .withDirectory("/app", context)
     .withWorkdir("/app")
-    .withServiceBinding("dockerd", docker("25.0.3", true))
+    .withServiceBinding("dockerd", docker(DOCKER_VERSION, true))
     .withEnvVariable("DOCKER_HOST", "tcp://dockerd:2375")
     .withExec(["nixpacks", "build", path, "--name", name]);
   return ctr.stdout();
@@ -113,7 +115,7 @@ export async function dev(
     .withExec(["docker", "buildx", "version"])
     .withDirectory("/app", context)
     .withWorkdir("/app")
-    .withServiceBinding("dockerd", docker("25.0.3", true))
+    .withServiceBinding("dockerd", docker(DOCKER_VERSION, true))
     .withEnvVariable("DOCKER_HOST", "tcp://dockerd:2375")
     .withDefaultTerminalCmd(["bash", "-i"]);
 
@@ -148,7 +150,7 @@ export async function publish(
     .withMountedCache("/root/.pkgx", dag.cacheVolume("pkgx-cache"))
     .withExec(["pkgx", "install", "docker"])
     .withExec(["docker", "-v"])
-    .withServiceBinding("dockerd", docker("25.0.3", true))
+    .withServiceBinding("dockerd", docker(DOCKER_VERSION, true))
     .withEnvVariable("DOCKER_HOST", "tcp://dockerd:2375")
     .withSecretVariable("REGISTRY_PASSWORD", secret!)
     .withExec([
