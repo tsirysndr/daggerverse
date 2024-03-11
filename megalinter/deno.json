@@ -11,21 +11,28 @@
   },
   "fmt": {
     "exclude": [
-      "example/",
+      "examples/",
       ".fluentci/",
       "gen/"
     ]
   },
   "lint": {
     "exclude": [
-      "example/",
+      "examples/",
       ".fluentci/",
       "gen/"
     ]
   },
   "test": {
     "exclude": [
-      "example/",
+      "examples/",
+      ".fluentci/",
+      "gen/"
+    ]
+  },
+  "publish": {
+    "exclude": [
+      "examples/",
       ".fluentci/",
       "gen/"
     ]

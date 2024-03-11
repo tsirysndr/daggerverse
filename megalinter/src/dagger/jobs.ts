@@ -18,17 +18,25 @@ export const exclude = [];
  * @description Lint files.
  * @param {string | Directory | undefined} src
  * @param {string} version
+ * @param {string} only
  * @returns {Directory | string}
  */
 export async function lint(
   src: Directory | string,
-  version: string = "v7"
+  version: string = "v7",
+  only?: string
 ): Promise<Directory | string> {
   const context = await getDirectory(src);
+  let megalinter = `oxsecurity/megalinter:${version}`;
+
+  if (only) {
+    megalinter = `oxsecurity/megalinter-only-${only}:${version}`;
+  }
+
   const ctr = dag
     .pipeline(Job.lint)
     .container()
-    .from(`oxsecurity/megalinter:${version}`)
+    .from(megalinter)
     .withDirectory("/app", context)
     .withEnvVariable("DEFAULT_WORKSPACE", "/app")
     .withEnvVariable("REPORT_OUTPUT_FOLDER", "/app/megalinter-reports")
