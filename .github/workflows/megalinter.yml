@@ -15,6 +15,7 @@ jobs:
         uses: fluentci-io/setup-fluentci@v4
       - name: Run Dagger Pipelines
         run: |
+          cp -r ../.git .
           deno run -A src/dagger/list_jobs.ts
           dagger functions
           dagger call lint --src examples
