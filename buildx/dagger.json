@@ -1,0 +1,4 @@
+{
+  "name": "buildx",
+  "sdk": "github.com/fluentci-io/daggerverse/deno-sdk@main"
+}

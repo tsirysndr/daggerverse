@@ -28,6 +28,7 @@ See [documentation](https://docs.dagger.io/zenith/) for more information about d
 | [ansible](./ansible/)       | Multiple versions and flavours of [ansible](https://github.com/ansible/ansible) |
 | [awesome-ci](./awesome-ci/) | Lot's of tools for git, file and static source code analysis. |
 | [black](./black/)           | The uncompromising Python code formatter [black](https://github.com/psf/black) |
+| [buildx](./buildx/)         | Build an OCI image of your project using [buildx](https://github.com/docker/buildx) |
 | [checkmake](./checkmake/)   | Lint Makefiles with [checkmake](https://github.com/mrtazz/checkmake) |
 | [conftest](./conftest/)     | Test your configuration files using [Conftest](https://conftest.dev/) |
 | [devbox](./devbox/)         | Instant, easy, and predictable development environments |
