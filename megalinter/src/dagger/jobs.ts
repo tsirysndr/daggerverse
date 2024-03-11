@@ -28,6 +28,7 @@ export async function lint(
     .container()
     .from("oxsecurity/megalinter:v7")
     .withDirectory("/app", context)
+    .withEnvVariable("DEFAULT_WORKSPACE", "/app")
     .withWorkdir("/app");
 
   await ctr.stdout();
