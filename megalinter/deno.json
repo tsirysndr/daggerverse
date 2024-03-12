@@ -1,5 +1,5 @@
 {
-  "name": "@daggerverse/megalinter",
+  "name": "@fx/megalinter",
   "version": "0.1.0",
   "exports": "./mod.ts",
   "importMap": "import_map.json",

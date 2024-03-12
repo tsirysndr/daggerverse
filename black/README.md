@@ -2,7 +2,7 @@
 
 ![dagger-min-version](https://img.shields.io/badge/dagger-v0.10.0-blue?color=3D66FF)
 ![deno compatibility](https://shield.deno.dev/deno/^1.41)
-[![](https://jsr.io/badges/@daggerverse/black)](https://jsr.io/@daggerverse/black)
+[![](https://jsr.io/badges/@fx/black)](https://jsr.io/@fx/black)
 
 Daggerized version of [black](https://github.com/python/black).
 
@@ -25,7 +25,7 @@ dagger -m github.com/tsirysndr/daggerverse/black call \
 ## 🧑‍💻 Programmatic usage
 
 ```typescript
-import { format } from 'jsr:@daggerverse/black';
+import { format } from 'jsr:@fx/black';
 
 await format(".");
 ```

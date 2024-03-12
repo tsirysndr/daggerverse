@@ -1,5 +1,5 @@
 {
-  "name": "@daggerverse/nixpacks",
+  "name": "@fx/nixpacks",
   "version": "0.1.1",
   "exports": "./mod.ts",
   "importMap": "import_map.json",

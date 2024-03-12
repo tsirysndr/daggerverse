@@ -2,7 +2,7 @@
 
 ![dagger-min-version](https://img.shields.io/badge/dagger-v0.10.0-blue?color=3D66FF)
 ![deno compatibility](https://shield.deno.dev/deno/^1.41)
-[![](https://jsr.io/badges/@daggerverse/ansible)](https://jsr.io/@daggerverse/ansible)
+[![](https://jsr.io/badges/@fx/ansible)](https://jsr.io/@fx/ansible)
 
 Daggerized version of [ansible](https://github.com/cytopia/docker-ansible).
 
@@ -22,7 +22,7 @@ dagger call -m github.com/tsirysndr/daggerverse/ansible dev --src . terminal
 ## 🧑‍💻 Programmatic usage
 
 ```typescript
-import { playbook } from 'jsr:@daggerverse/ansible';
+import { playbook } from 'jsr:@fx/ansible';
 
 await playbook(".", "playbook.yml");
 ```

@@ -1,5 +1,5 @@
 {
-  "name": "@daggerverse/envhub",
+  "name": "@fx/envhub",
   "version": "0.1.2",
   "exports": "./mod.ts",
   "importMap": "import_map.json",

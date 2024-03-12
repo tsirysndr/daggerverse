@@ -2,7 +2,7 @@
 
 ![dagger-min-version](https://img.shields.io/badge/dagger-v0.10.0-blue?color=3D66FF)
 ![deno compatibility](https://shield.deno.dev/deno/^1.41)
-[![](https://jsr.io/badges/@daggerverse/conftest)](https://jsr.io/@daggerverse/conftest)
+[![](https://jsr.io/badges/@fx/conftest)](https://jsr.io/@fx/conftest)
 
 A Dagger Module for testing configuration files using [Conftest](https://github.com/open-policy-agent/conftest).
 
@@ -39,7 +39,7 @@ dagger call -m github.com/tsirysndr/daggerverse/conftest dev --src . terminal
 ## 🧑‍💻 Programmatic usage
 
 ```typescript
-import { test } from 'jsr:@daggerverse/conftest';
+import { test } from 'jsr:@fx/conftest';
 
 await test(
   ".", 

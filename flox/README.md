@@ -2,7 +2,7 @@
 
 ![dagger-min-version](https://img.shields.io/badge/dagger-v0.10.0-blue?color=3D66FF)
 ![deno compatibility](https://shield.deno.dev/deno/^1.41)
-[![](https://jsr.io/badges/@daggerverse/flox)](https://jsr.io/@daggerverse/flox)
+[![](https://jsr.io/badges/@fx/flox)](https://jsr.io/@fx/flox)
 
 Returns a Container with [flox](https://flox.dev/) installed.
 
@@ -25,7 +25,7 @@ dagger -m github.com/tsirysndr/daggerverse/flox call  \
 ## 🧑‍💻 Programmatic usage
 
 ```typescript
-import { install } from 'jsr:@daggerverse/flox';
+import { install } from 'jsr:@fx/flox';
 
 await install(".", ["gh,jq"]);
 ```

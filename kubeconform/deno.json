@@ -1,5 +1,5 @@
 {
-  "name": "@daggerverse/kubeconform",
+  "name": "@fx/kubeconform",
   "version": "0.1.2",
   "exports": "./mod.ts",
   "importMap": "import_map.json",

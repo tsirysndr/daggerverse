@@ -1,5 +1,5 @@
 {
-  "name": "@daggerverse/ansible",
+  "name": "@fx/ansible",
   "version": "0.1.2",
   "exports": "./mod.ts",
   "importMap": "import_map.json",

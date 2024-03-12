@@ -2,7 +2,7 @@
 
 ![dagger-min-version](https://img.shields.io/badge/dagger-v0.10.0-blue?color=3D66FF)
 ![deno compatibility](https://shield.deno.dev/deno/^1.41)
-[![](https://jsr.io/badges/@daggerverse/devbox)](https://jsr.io/@daggerverse/devbox)
+[![](https://jsr.io/badges/@fx/devbox)](https://jsr.io/@fx/devbox)
 [![ci](https://github.com/tsirysndr/daggerverse/actions/workflows/ci.yml/badge.svg)](https://github.com/tsirysndr/daggerverse/actions/workflows/ci.yml)
 
 
@@ -25,7 +25,7 @@ dagger call -m github.com/tsirysndr/daggerverse/devbox install --pkgs git,curl t
 ## 🧑‍💻 Programmatic usage
 
 ```typescript
-import { install } from 'jsr:@daggerverse/devbox';
+import { install } from 'jsr:@fx/devbox';
 
 await install(".", ["git", "curl", "jq"]);
 ```

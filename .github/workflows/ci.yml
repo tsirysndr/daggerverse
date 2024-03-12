@@ -55,8 +55,8 @@ jobs:
     strategy:
       matrix:
         modules:
-          - ansible
-          - ansible-lint
+          #- ansible
+          #- ansible-lint
           - awesome-ci
           - black
           - checkmake

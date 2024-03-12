@@ -1,5 +1,5 @@
 {
-  "name": "@daggerverse/devbox",
+  "name": "@fx/devbox",
   "version": "0.1.0",
   "exports": "./mod.ts",
   "importMap": "import_map.json",

@@ -2,7 +2,7 @@
 
 ![dagger-min-version](https://img.shields.io/badge/dagger-v0.10.0-blue?color=3D66FF)
 ![deno compatibility](https://shield.deno.dev/deno/^1.41)
-[![](https://jsr.io/badges/@daggerverse/nix)](https://jsr.io/@daggerverse/nix)
+[![](https://jsr.io/badges/@fx/nix)](https://jsr.io/@fx/nix)
 
 Returns a Container with Nix installed using [DeterminateSystems/nix-installer](https://github.com/DeterminateSystems/nix-installer).
 
@@ -22,7 +22,7 @@ dagger -m github.com/tsirysndr/daggerverse/nix call \
 ## 👨‍💻 Programmatic usage
 
 ```typescript
-import { setupNix } from "jsr:@daggerverse/nix";
+import { setupNix } from "jsr:@fx/nix";
 
 const ctr = await setupNix(".");
 

@@ -1,5 +1,5 @@
 {
-  "name": "@daggerverse/flox",
+  "name": "@fx/flox",
   "version": "0.1.1",
   "exports": "./mod.ts",
   "importMap": "import_map.json",

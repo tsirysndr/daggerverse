@@ -2,7 +2,7 @@
 
 ![dagger-min-version](https://img.shields.io/badge/dagger-v0.10.0-blue?color=3D66FF)
 ![deno compatibility](https://shield.deno.dev/deno/^1.41)
-[![](https://jsr.io/badges/@daggerverse/nixpacks)](https://jsr.io/@daggerverse/nixpacks)
+[![](https://jsr.io/badges/@fx/nixpacks)](https://jsr.io/@fx/nixpacks)
 [![ci](https://github.com/tsirysndr/daggerverse/actions/workflows/ci.yml/badge.svg)](https://github.com/tsirysndr/daggerverse/actions/workflows/nixpacks.yml)
 
 This is a [Dagger](https://dagger.io) module for building an OCI image of your project using [nixpacks](https://nixpacks.com/).
@@ -39,7 +39,7 @@ dagger -m github.com/tsirysndr/daggerverse/nixpacks call \
 ## 🧑‍💻 Programmatic usage
 
 ```typescript
-import { plan, build } from 'jsr:@daggerverse/nixpacks';
+import { plan, build } from 'jsr:@fx/nixpacks';
 
 await plan(".");
 await build(".", "my-app");

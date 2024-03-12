@@ -2,7 +2,7 @@
 
 ![dagger-min-version](https://img.shields.io/badge/dagger-v0.10.0-blue?color=3D66FF)
 ![deno compatibility](https://shield.deno.dev/deno/^1.41)
-[![](https://jsr.io/badges/@daggerverse/terraform-docs)](https://jsr.io/@daggerverse/terraform-docs)
+[![](https://jsr.io/badges/@fx/terraform-docs)](https://jsr.io/@fx/terraform-docs)
 
 Daggerized version of [terraform-docs](https://terraform-docs.io/).
 
@@ -21,7 +21,7 @@ dagger -m github.com/tsirysndr/daggerverse/terraform-docs call generate --src .
 ## 🧑‍💻 Programmatic usage
 
 ```typescript
-import { generate } from 'jsr:@daggerverse/terraform-docs';
+import { generate } from 'jsr:@fx/terraform-docs';
 
 await generate(".");
 ```

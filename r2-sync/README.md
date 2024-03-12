@@ -2,7 +2,7 @@
 
 ![dagger-min-version](https://img.shields.io/badge/dagger-v0.10.0-blue?color=3D66FF)
 ![deno compatibility](https://shield.deno.dev/deno/^1.41)
-[![](https://jsr.io/badges/@daggerverse/r2-sync)](https://jsr.io/@daggerverse/r2-sync)
+[![](https://jsr.io/badges/@fx/r2-sync)](https://jsr.io/@fx/r2-sync)
 
 Sync files from local directory to Cloudflare [R2](https://www.cloudflare.com/developer-platform/r2/).
 
@@ -43,7 +43,7 @@ dagger call -m github.com/tsirysndr/daggerverse/r2-sync dev --src . terminal
 ## 🧑‍💻 Programmatic usage
 
 ```typescript
-import { lint } from 'jsr:@daggerverse/r2-sync';
+import { lint } from 'jsr:@fx/r2-sync';
 
 await upload(
   ".",

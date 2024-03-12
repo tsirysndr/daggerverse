@@ -2,7 +2,7 @@
 
 ![dagger-min-version](https://img.shields.io/badge/dagger-v0.10.0-blue?color=3D66FF)
 ![deno compatibility](https://shield.deno.dev/deno/^1.41)
-[![](https://jsr.io/badges/@daggerverse/scorecard)](https://jsr.io/@daggerverse/scorecard)
+[![](https://jsr.io/badges/@fx/scorecard)](https://jsr.io/@fx/scorecard)
 
 Calculates the [scorecard](https://github.com/ossf/scorecard) for a given repository.
 
@@ -21,7 +21,7 @@ dagger -m github.com/tsirysndr/daggerverse/scorecard call calc --repo github.com
 ## 🧑‍💻 Programmatic usage
 
 ```typescript
-import { calc } from 'jsr:@daggerverse/scorecard';
+import { calc } from 'jsr:@fx/scorecard';
 
 await calc(
   "github.com/ossf-tests/scorecard-check-branch-protection-e2e"
