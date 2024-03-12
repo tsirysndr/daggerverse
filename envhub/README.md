@@ -22,6 +22,13 @@ dagger -m github.com/tsirysndr/daggerverse/envhub call \
   --src .
 ```
 
+## 🛠️ Arguments
+
+| Name         | Description                                                          | Required |
+| ------------ | -------------------------------------------------------------------- | -------- |
+| src          | Optional context directory.                                          | false    |
+| environment  | Environment to use, can be a local directory or a github repository. | true     |
+
 ## 🧑‍💻 Programmatic usage
 
 ```typescript
