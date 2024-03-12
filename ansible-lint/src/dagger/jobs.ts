@@ -24,7 +24,7 @@ export const exclude = [];
  */
 export async function lint(
   src: Directory | string,
-  files = "*.yml"
+  files: string[]
 ): Promise<Directory | string> {
   const context = await getDirectory(src);
   const ctr = dag
@@ -33,7 +33,7 @@ export async function lint(
     .from("cytopia/ansible-lint")
     .withDirectory("/app", context)
     .withWorkdir("/app")
-    .withExec([files]);
+    .withExec(files);
 
   await ctr.stdout();
   return ctr.directory("/app").id();
@@ -62,7 +62,7 @@ export async function dev(
 }
 
 export type JobExec =
-  | ((src: string, files?: string) => Promise<Container | Directory | string>)
+  | ((src: string, files: string[]) => Promise<Container | Directory | string>)
   | ((src: string) => Promise<Container | Directory | string>);
 
 export const runnableJobs: Record<Job, JobExec> = {

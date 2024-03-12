@@ -8,7 +8,7 @@ export default async function pipeline(src = ".", args: string[] = []) {
     return;
   }
 
-  await lint(src, args[0]);
+  await lint(src, args);
 }
 
 async function runSpecificJobs(args: jobs.Job[], src: string) {

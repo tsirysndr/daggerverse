@@ -9,13 +9,15 @@ Daggerized version of [ansible](https://github.com/ansible/ansible-lint).
 ## 🚀 Usage
 
 ```sh
-dagger -m github.com/tsirysndr/daggerverse/ansible-lint call lint --src <source>
+dagger -m github.com/tsirysndr/daggerverse/ansible-lint call lint \
+  --src <source> --files <files>
 ```
 
 ## 🧑‍🔬 Example
 
 ```sh
-dagger -m github.com/tsirysndr/daggerverse/ansible-lint call lint --src . 
+dagger -m github.com/tsirysndr/daggerverse/ansible-lint call \
+  lint --src . --files example.yml
 dagger call -m github.com/tsirysndr/daggerverse/ansible-lint dev --src . terminal
 ```
 
@@ -24,5 +26,5 @@ dagger call -m github.com/tsirysndr/daggerverse/ansible-lint dev --src . termina
 ```typescript
 import { lint } from 'jsr:@daggerverse/ansible-lint';
 
-await lint(".");
+await lint(".", ["example.yml"]);
 ```
