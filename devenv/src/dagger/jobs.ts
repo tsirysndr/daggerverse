@@ -15,11 +15,13 @@ export enum Job {
 export const exclude = [];
 
 /**
+ * Run a command
+ *
  * @function
  * @description Run a command
- * @param src {string | Directory | undefined}
- * @param command {string}
- * @returns {string}
+ * @param {string | Directory | undefined} src
+ * @param {string} command
+ * @returns {Promise<Container |string>}
  */
 export async function run(
   src: string | Directory = ".",
@@ -37,10 +39,12 @@ export async function run(
 }
 
 /**
+ * Return a container with a dev environment
+ *
  * @function
  * @description Return a container with a dev environment
- * @param src {string | Directory | undefined}
- * @returns {string}
+ * @param {string | Directory | undefined} src
+ * @returns {Promise<Container | string>}
  */
 export async function dev(
   src: string | Directory | undefined = "."
@@ -55,10 +59,12 @@ export async function dev(
 }
 
 /**
+ * Build the devenv shell and run any pre-commit hooks
+ *
  * @function
  * @description Build the devenv shell and run any pre-commit hooks
- * @param src {string | Directory | undefined}
- * @returns {string}
+ * @param {string | Directory | undefined} src
+ * @returns {Promise<Container | string>}
  */
 export async function ci(
   src: string | Directory | undefined = "."
