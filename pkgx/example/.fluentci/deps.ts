@@ -44,7 +44,7 @@ export {
   EngineSessionConnectionTimeoutError,
   NotAwaitedRequestError,
   ERROR_CODES,
-} from "https://esm.sh/@dagger.io/dagger@0.9.3";
+} from "https://esm.sh/@dagger.io/dagger@0.10.0";
 
 export type {
   CallbackFct,

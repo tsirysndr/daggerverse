@@ -1,7 +1,7 @@
 # Github Actions
 
 [![fluentci pipeline](https://img.shields.io/badge/dynamic/json?label=pkg.fluentci.io&labelColor=%23000&color=%23460cf1&url=https%3A%2F%2Fapi.fluentci.io%2Fv1%2Fpipeline%2Fbase_pipeline&query=%24.version)](https://pkg.fluentci.io/base_pipeline)
-![deno compatibility](https://shield.deno.dev/deno/^1.34)
+![deno compatibility](https://shield.deno.dev/deno/^1.41)
 
 The following command will generate a `.github/workflows/base.yml` file in your project:
 
@@ -31,7 +31,7 @@ jobs:
         run: deno install -A -r https://cli.fluentci.io -n fluentci
       - name: Setup Dagger
         run: |
-            curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.8.1 sh
+            curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.10.0 sh
             sudo mv bin/dagger /usr/local/bin
             dagger version
       - name: Run Dagger Pipelines
