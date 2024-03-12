@@ -13,6 +13,8 @@ export enum Job {
 export const exclude = [];
 
 /**
+ * Setup Nix with DeterminateSystems Nix Installer
+ *
  * @function
  * @description Setup Nix with DeterminateSystems Nix Installer
  * @param {string | Directory | undefined} src

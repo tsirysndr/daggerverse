@@ -67,6 +67,7 @@ jobs:
           - flox
           - jsonlint
           - kubeconform
+          - nix
           - r2-sync
           - scorecard
           - shellcheck
