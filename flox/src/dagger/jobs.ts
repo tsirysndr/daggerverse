@@ -14,10 +14,12 @@ export enum Job {
 export const exclude = [];
 
 /**
+ * Return a container with flox installed
+ *
  * @function
  * @description Return a container with flox installed
  * @param {string | Directory | undefined} src
- * @returns {string}
+ * @returns {Promise<Container | string>}
  */
 export async function dev(
   src: string | Directory | undefined = "."
@@ -25,18 +27,21 @@ export async function dev(
   const context = await getDirectory(src);
   const ctr = floxBase(Job.dev)
     .withDirectory("/app", context)
-    .withWorkdir("/app");
+    .withWorkdir("/app")
+    .withDefaultTerminalCmd(["bash", "-i"]);
 
   await ctr.stdout();
   return ctr.id();
 }
 
 /**
+ * Install packages in a Docker Container and return it
+ *
  * @function
  * @description Install packages in a Docker Container and return it
- * @param src {string | Directory | undefined}
- * @param pkgs {string[]}
- * @returns {string}
+ * @param {string | Directory | undefined} src
+ * @param  {string[]} pkgs
+ * @returns {Promise<Container | string>}
  */
 export async function install(
   src: string | Directory | undefined = ".",

@@ -64,6 +64,7 @@ jobs:
           - devbox
           - devenv
           - flakestry
+          - flox
           - jsonlint
           - kubeconform
           - r2-sync
