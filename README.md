@@ -11,14 +11,14 @@ This is my collection of [Dagger](https://dagger.io) Modules that I use in my pr
 ## 🚀 Usage
 
 Use the `dagger install` command to install the module you want to use.
-See [dagger](https://docs.dagger.io/cli/465058/install/) for more information about the `dagger` CLI.
+See [dagger](https://docs.dagger.io/install) for more information about the `dagger` CLI.
 
 ```sh
 # e.g. Install the jsonlint module ⚡️
 dagger install github.com/tsirysndr/daggerverse/jsonlint
 ```
 
-See [documentation](https://docs.dagger.io/zenith/) for more information about dagger modules.
+See [documentation](https://docs.dagger.io) for more information about dagger modules.
 
 ## 🧩 Modules
 
