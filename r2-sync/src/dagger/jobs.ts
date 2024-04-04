@@ -45,7 +45,7 @@ export async function upload(
   }
 
   const ctr = dag
-    .pipeline(Job.dev)
+    .pipeline(Job.upload)
     .container()
     .from("pkgxdev/pkgx:latest")
     .withDirectory("/app", context)
