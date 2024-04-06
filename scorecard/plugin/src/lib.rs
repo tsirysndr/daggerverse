@@ -5,8 +5,14 @@ use fluentci_pdk::dag;
 pub fn calc(args: String) -> FnResult<String> {
     let stdout = dag()
         .pipeline("calc")?
-        .pkgx()?
-        .with_exec(vec!["echo", "hello from scorecard!", &args])?
+        .devbox()?
+        .with_exec(vec!["devbox", "global", "add", "scorecard"])?
+        .with_exec(vec![
+            r#"
+        eval "$(devbox global shellenv --recompute)"
+        scorecard"#,
+            &args,
+        ])?
         .stdout()?;
     Ok(stdout)
 }

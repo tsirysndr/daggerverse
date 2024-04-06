@@ -6,7 +6,8 @@ pub fn lint(args: String) -> FnResult<String> {
     let stdout = dag()
         .pipeline("lint")?
         .pkgx()?
-        .with_exec(vec!["echo", "hello from shellcheck!", &args])?
+        .with_exec(vec!["pkgx", "install", "shellcheck"])?
+        .with_exec(vec!["shellcheck", &args])?
         .stdout()?;
     Ok(stdout)
 }
