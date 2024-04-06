@@ -181,9 +181,9 @@ dependencies = [
 
 [[package]]
 name = "fluentci-pdk"
-version = "0.1.6"
+version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "29e71e3546f0449079ab9b609a9a15603e2101347668860d7ec4d0f3813efd23"
+checksum = "da29fa8fd810f23af0a87e3292f303e963940de02e3a9cdae7049c22eb523b9b"
 dependencies = [
  "extism-pdk",
  "fluentci-types",
@@ -192,9 +192,9 @@ dependencies = [
 
 [[package]]
 name = "fluentci-types"
-version = "0.1.2"
+version = "0.1.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f9a250e263100b61c739db5590036451732cefec9c24f6b79530530a0c4e2637"
+checksum = "7592ba0dd1c48f06166fa485af48c8df942e7266c62216fe01360b33e33fe047"
 dependencies = [
  "serde",
 ]
@@ -380,6 +380,7 @@ dependencies = [
 name = "r2-sync"
 version = "0.1.0"
 dependencies = [
+ "anyhow",
  "extism-pdk",
  "fluentci-pdk",
 ]
@@ -474,6 +475,14 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-ident",
+]
+
+[[package]]
+name = "teller"
+version = "0.1.0"
+dependencies = [
+ "extism-pdk",
+ "fluentci-pdk",
 ]
 
 [[package]]
