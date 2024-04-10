@@ -5,6 +5,10 @@ use fluentci_pdk::dag;
 
 #[plugin_fn]
 pub fn publish() -> FnResult<String> {
+    let url = dag().get_env("URL").unwrap_or_default();
+    if url.is_empty() {
+        dag().set_envs(vec![("URL".into(), "https://flakestry.dev".into())])?;
+    }
     let stdout = dag()
         .pipeline("publish")?
         .nix()?
