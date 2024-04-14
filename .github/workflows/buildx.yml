@@ -12,9 +12,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup Fluent CI
-        uses: fluentci-io/setup-fluentci@v4
+        uses: fluentci-io/setup-fluentci@v5
+        with:
+          wasm: true
+          plugin: rust
+          args: |
+            target_add wasm32-unknown-unknown
+            build --release --target wasm32-unknown-unknown
+          working-directory: buildx/plugin
       - name: Run Dagger Pipelines
         run: |
+          fluentci run plugin/target/wasm32-unknown-unknown/release/buildx.wasm build --platform linux/amd64,linux/arm64 -t demo:latest example
           deno run -A src/dagger/list_jobs.ts
           dagger functions
           dagger call build --src . --path example --tag demo:latest --platform linux/amd64,linux/arm64

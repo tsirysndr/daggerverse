@@ -24,7 +24,7 @@ pub fn plan(args: String) -> FnResult<String> {
         .pipeline("plan")?
         .pkgx()?
         .with_exec(vec!["pkgx", "install", "nixpacks"])?
-        .with_exec(vec!["nixpacks", "plan", &args])?
+        .with_exec(vec!["nixpacks", "plan", &args, " > plan"])?
         .stdout()?;
     Ok(stdout)
 }

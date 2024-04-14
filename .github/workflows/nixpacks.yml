@@ -12,9 +12,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup Fluent CI
-        uses: fluentci-io/setup-fluentci@v4
+        uses: fluentci-io/setup-fluentci@v5
+        with:
+          wasm: true
+          plugin: rust
+          args: |
+            target_add wasm32-unknown-unknown
+            build --release --target wasm32-unknown-unknown
+          working-directory: nixpacks/plugin
       - name: Run Dagger Pipelines
         run: |
+          fluentci run plugin/target/wasm32-unknown-unknown/release/nixpacks.wasm plan example/samples/php-api --format json
+          jq . < ./plan
+          fluentci run plugin/target/wasm32-unknown-unknown/release/nixpacks.wasm build example/samples/php-api --name php-api
           deno run -A src/dagger/list_jobs.ts
           dagger functions
           dagger call plan --src . --path example/samples/php-api --output=./plan.json
