@@ -1,4 +1,8 @@
 {
   "name": "r2-sync",
-  "sdk": "github.com/fluentci-io/daggerverse/deno-sdk@main"
+  "sdk": "github.com/fluentci-io/daggerverse/deno-sdk@main",
+  "version": "v0.1.1",
+  "description": "",
+  "author": "Tsiry Sandratraina",
+  "license": "MIT"
 }

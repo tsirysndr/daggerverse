@@ -5,14 +5,9 @@ use fluentci_pdk::dag;
 pub fn lint(args: String) -> FnResult<String> {
     let stdout = dag()
         .pipeline("lint")?
-        .devbox()?
-        .with_exec(vec!["devbox", "global", "add", "checkmake"])?
-        .with_exec(vec![
-            r#"
-        eval "$(devbox global shellenv --recompute)"
-        checkmake"#,
-            &args,
-        ])?
+        .pkgx()?
+        .with_packages(vec!["checkmake"])?
+        .with_exec(vec!["checkmake", &args])?
         .stdout()?;
     Ok(stdout)
 }

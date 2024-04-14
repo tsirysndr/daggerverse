@@ -181,9 +181,9 @@ dependencies = [
 
 [[package]]
 name = "fluentci-pdk"
-version = "0.1.7"
+version = "0.1.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "da29fa8fd810f23af0a87e3292f303e963940de02e3a9cdae7049c22eb523b9b"
+checksum = "4d8004273f0e173b96811a72cb742fc9010fc54fec89c59c2c4e7e159fc2bde7"
 dependencies = [
  "extism-pdk",
  "fluentci-types",
@@ -378,7 +378,7 @@ dependencies = [
 
 [[package]]
 name = "r2-sync"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "extism-pdk",
