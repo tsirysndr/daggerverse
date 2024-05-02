@@ -2,6 +2,7 @@ use std::vec;
 
 use extism_pdk::*;
 use fluentci_pdk::dag;
+use fluentci_types::nix::NixArgs;
 
 #[plugin_fn]
 pub fn publish() -> FnResult<String> {
@@ -11,7 +12,7 @@ pub fn publish() -> FnResult<String> {
     }
     let stdout = dag()
         .pipeline("publish")?
-        .nix()?
+        .nix(NixArgs::default())?
         .with_exec(vec![r#"
             echo null > metadata.err
             echo null > metadata.json
