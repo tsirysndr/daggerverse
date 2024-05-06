@@ -19,8 +19,10 @@ pub fn upload(args: String) -> FnResult<String> {
     let stdout = dag()
         .pipeline("upload")?
         .pkgx()?
-        .with_exec(vec!["pkgx", "install", "aws"])?
         .with_exec(vec![
+            "pkgx",
+            "+aws",
+            "+python@3.11",
             "aws",
             "configure",
             "set",
