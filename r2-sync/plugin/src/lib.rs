@@ -30,14 +30,35 @@ pub fn upload(args: String) -> FnResult<String> {
             "$AWS_ACCESS_KEY_ID",
         ])?
         .with_exec(vec![
+            "pkgx",
+            "+aws",
+            "+python@3.11",
             "aws",
             "configure",
             "set",
             "aws_secret_access_key",
             "$AWS_SECRET_ACCESS_KEY",
         ])?
-        .with_exec(vec!["aws", "configure", "set", "region", &region])?
-        .with_exec(vec!["aws", "s3", "sync", ".", &args])?
+        .with_exec(vec![
+            "pkgx",
+            "+aws",
+            "+python@3.11",
+            "aws",
+            "configure",
+            "set",
+            "region",
+            &region,
+        ])?
+        .with_exec(vec![
+            "pkgx",
+            "+aws",
+            "+python@3.11",
+            "aws",
+            "s3",
+            "sync",
+            ".",
+            &args,
+        ])?
         .stdout()?;
     Ok(stdout)
 }
