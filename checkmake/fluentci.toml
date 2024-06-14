@@ -1,0 +1,8 @@
+[package]
+authors = [
+  "Tsiry Sandratraina <tsiry.sndr@fluentci.io>",
+]
+description = "CI/CD Plugin for Checkmake"
+license = "MIT"
+name = "checkmake"
+version = "0.1.0"

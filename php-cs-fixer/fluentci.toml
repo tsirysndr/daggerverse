@@ -1,0 +1,8 @@
+[package]
+authors = [
+  "Tsiry Sandratraina <tsiry.sndr@fluentci.io>",
+]
+description = "CI/CD Plugin for php-cs-fixer"
+license = "MIT"
+name = "php-cs-fixer"
+version = "0.1.0"

@@ -1,0 +1,8 @@
+[package]
+authors = [
+  "Tsiry Sandratraina <tsiry.sndr@fluentci.io>",
+]
+description = "CI/CD Plugin for Ansible Lint"
+license = "MIT"
+name = "ansible-lint"
+version = "0.1.0"

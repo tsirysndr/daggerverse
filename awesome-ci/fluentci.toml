@@ -1,0 +1,8 @@
+[package]
+authors = [
+  "Tsiry Sandratraina <tsiry.sndr@fluentci.io>",
+]
+description = "Lot's of tools for git, file and static source code analysis"
+license = "MIT"
+name = "awesome-ci"
+version = "0.1.0"

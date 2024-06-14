@@ -1,0 +1,8 @@
+[package]
+authors = [
+  "Tsiry Sandratraina <tsiry.sndr@fluentci.io>",
+]
+description = "CI/CD Plugin for yamllint"
+license = "MIT"
+name = "yamllint"
+version = "0.1.0"
