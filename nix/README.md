@@ -1,6 +1,6 @@
 # Module: Nix
 
-![dagger-min-version](https://img.shields.io/badge/dagger-v0.10.0-blue?color=3D66FF)
+[![dagger-min-version](https://shield.fluentci.io/dagger/v0.11.7)](https://dagger.io)
 ![deno compatibility](https://shield.deno.dev/deno/^1.41)
 [![](https://jsr.io/badges/@fx/nix)](https://jsr.io/@fx/nix)
 
