@@ -1,0 +1,29 @@
+name: ci
+on:
+  push:
+    branches:
+      - main
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup example
+        run: |
+          mkdir -p example/.fluentci
+          cp -r src example/.fluentci
+          cp Cargo.toml example/.fluentci
+          cp Cargo.lock example/.fluentci
+        working-directory: devbox
+      - name: Setup Fluent CI CLI
+        uses: fluentci-io/setup-fluentci@v5
+        with:
+          wasm: true
+          plugin: .
+          args: |
+            setup
+          working-directory: devbox/example
+      - name: Show devbox version
+        run: |
+          type devbox
+          devbox version

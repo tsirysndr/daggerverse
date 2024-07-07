@@ -1,0 +1,12 @@
+[package]
+name = "devbox"
+version = "0.1.0"
+description = "This plugin downloads the devbox CLI and installs nix packages defined in your devbox.json"
+license = "MIT"
+keywords = [
+  "devbox",
+  "nix"
+]
+authors = [
+  "Tsiry Sandratraina <tsiry.sndr@fluentci.io>"
+]

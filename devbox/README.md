@@ -5,7 +5,6 @@
 [![](https://jsr.io/badges/@fx/devbox)](https://jsr.io/@fx/devbox)
 [![ci](https://github.com/tsirysndr/daggerverse/actions/workflows/ci.yml/badge.svg)](https://github.com/tsirysndr/daggerverse/actions/workflows/ci.yml)
 
-
 Returns a Container with [Devbox](https://www.jetpack.io/devbox) installed.
 
 ## 🚀 Usage
