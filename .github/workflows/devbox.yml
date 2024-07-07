@@ -4,26 +4,29 @@ on:
     branches:
       - main
 jobs:
-  example:
+  devbox-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Setup example
         run: |
           mkdir -p example/.fluentci
-          cp -r src example/.fluentci
-          cp Cargo.toml example/.fluentci
-          cp Cargo.lock example/.fluentci
+          cp -r plugin/src example/.fluentci
+          cp plugin/Cargo.toml example/.fluentci
+          cp plugin/Cargo.lock example/.fluentci
         working-directory: devbox
-      - name: Setup Fluent CI CLI
+      - name: Setup Fluent CI
         uses: fluentci-io/setup-fluentci@v5
         with:
           wasm: true
-          plugin: .
+          plugin: rust
           args: |
-            setup
-          working-directory: devbox/example
+            target_add wasm32-unknown-unknown
+            build --release --target wasm32-unknown-unknown
+          working-directory: devbox/plugin
       - name: Show devbox version
         run: |
+          fluentci run plugin/target/wasm32-unknown-unknown/release/devbox.wasm setup
           type devbox
           devbox version
+        working-directory: devbox
