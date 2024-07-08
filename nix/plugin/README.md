@@ -1,22 +1,20 @@
-# Devbox Plugin
+# Nix Plugin
 
-This plugin sets up your CI/CD pipeline with a specific version of [devbox](https://www.jetify.com/devbox/).
+This plugin sets up your CI/CD pipeline with [Nix](https://nixos.org/).
 
 ## 🚀 Usage
 
 Add the following command to your CI configuration file:
 
 ```bash
-fluentci run --wasm devbox setup
+fluentci run --wasm nix setup
 ```
 
 ## Functions
 
 | Name    | Description                                                      |
 | ------- | ---------------------------------------------------------------- |
-| setup   | Installs a specific version of devbox.                           |
-| run     |  Run a script or command in a shell with access to your packages |
-| install | Install packages                                                |
+| setup   | Downloads and installs Nix.                                      |
 
 ## Code Usage
 
@@ -34,7 +32,7 @@ use fluentci_pdk::dag;
 
 // ...
 
-dag().call("https://pkg.fluentci.io/devbox@v0.1.0?wasm=1", "setup", vec!["latest"])?;
+dag().call("https://pkg.fluentci.io/nix@v0.1.0?wasm=1", "setup", vec!["latest"])?;
 ```
 
 ## 📚 Examples
@@ -46,12 +44,11 @@ Github Actions:
   uses: fluentci-io/setup-fluentci@v5
   with:
     wasm: true
-    plugin: devbox
+    plugin: nix
     args: |
       setup
-- name: Show Devbox version
+- name: Show Nix version
   run: |
-    type devbox
-    devbox version
+    type nix
+    nix --version
 ```
-
