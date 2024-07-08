@@ -1,5 +1,6 @@
 # Module: Nix
 
+[![fluentci pipeline](https://shield.fluentci.io/x/nix)](https://pkg.fluentci.io/nix)
 [![dagger-min-version](https://shield.fluentci.io/dagger/v0.11.7)](https://dagger.io)
 ![deno compatibility](https://shield.deno.dev/deno/^1.41)
 [![](https://jsr.io/badges/@fx/nix)](https://jsr.io/@fx/nix)

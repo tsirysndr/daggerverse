@@ -1,5 +1,7 @@
 # Pkgx Plugin
 
+[![fluentci pipeline](https://shield.fluentci.io/x/pkgx)](https://pkg.fluentci.io/pkgx)
+
 This plugin sets up your CI/CD pipeline with [pkgx](https://pkgx.sh/).
 
 ## 🚀 Usage

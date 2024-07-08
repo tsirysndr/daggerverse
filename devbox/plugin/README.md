@@ -1,5 +1,7 @@
 # Devbox Plugin
 
+[![fluentci pipeline](https://shield.fluentci.io/x/devbox)](https://pkg.fluentci.io/devbox)
+
 This plugin sets up your CI/CD pipeline with a specific version of [devbox](https://www.jetify.com/devbox/).
 
 ## 🚀 Usage

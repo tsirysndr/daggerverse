@@ -1,5 +1,7 @@
 # Nix Plugin
 
+[![fluentci pipeline](https://shield.fluentci.io/x/nix)](https://pkg.fluentci.io/nix)
+
 This plugin sets up your CI/CD pipeline with [Nix](https://nixos.org/).
 
 ## 🚀 Usage
