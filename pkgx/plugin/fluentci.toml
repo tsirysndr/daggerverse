@@ -1,0 +1,11 @@
+[package]
+authors = [
+  "Tsiry Sandratraina <tsiry.sndr@fluentci.io>",
+]
+description = "This plugin downloads and install Pkgx on your CI/CD Pipeline"
+keywords = [
+  "pkgx",
+]
+license = "MIT"
+name = "pkgx"
+version = "0.1.0"

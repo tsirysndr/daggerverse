@@ -1,0 +1,19 @@
+[package]
+authors = [
+  "Tsiry Sandratraina <tsiry.sndr@fluentci.io>",
+]
+description = "Pkgx plugin for FluentCI"
+edition = "2021"
+license = "MIT"
+name = "pkgx"
+version = "0.1.0"
+
+[lib]
+crate-type = [
+  "cdylib",
+]
+
+[dependencies]
+anyhow = "1.0.82"
+extism-pdk = "1.1.0"
+fluentci-pdk = "0.2.0"

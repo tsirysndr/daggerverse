@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  nix-test:
+  pkgx-test:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
@@ -19,10 +19,12 @@ jobs:
           args: |
             target_add wasm32-unknown-unknown
             build --release --target wasm32-unknown-unknown
-          working-directory: nix/plugin
-      - name: Show nix version
+          working-directory: pkgx/plugin
+      - name: Show pkgx version
         run: |
-          fluentci run plugin/target/wasm32-unknown-unknown/release/nix.wasm setup
-          type nix
-          nix --version
-        working-directory: nix
+          fluentci run plugin/target/wasm32-unknown-unknown/release/pkgx.wasm setup
+          fluentci run plugin/target/wasm32-unknown-unknown/release/pkgx.wasm install jq
+          type jq
+          type pkgx
+          pkgx --version
+        working-directory: pkgx
