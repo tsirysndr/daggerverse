@@ -20,6 +20,8 @@ jobs:
             target_add wasm32-unknown-unknown
             build --release --target wasm32-unknown-unknown
           working-directory: buildx/plugin
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Dagger Pipelines
         run: |
           fluentci run plugin/target/wasm32-unknown-unknown/release/buildx.wasm build --platform linux/amd64,linux/arm64 -t demo:latest example
@@ -27,6 +29,8 @@ jobs:
           dagger functions
           dagger call build --src . --path example --tag demo:latest --platform linux/amd64,linux/arm64
         working-directory: buildx
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   publish:
     needs: test
     runs-on: ubuntu-latest

@@ -20,9 +20,13 @@ jobs:
             target_add wasm32-unknown-unknown
             build --release --target wasm32-unknown-unknown
           working-directory: devbox/plugin
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Show devbox version
         run: |
           fluentci run plugin/target/wasm32-unknown-unknown/release/devbox.wasm setup
           type devbox
           devbox version
         working-directory: devbox
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}

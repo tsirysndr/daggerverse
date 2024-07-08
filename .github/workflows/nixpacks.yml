@@ -20,6 +20,8 @@ jobs:
             target_add wasm32-unknown-unknown
             build --release --target wasm32-unknown-unknown
           working-directory: nixpacks/plugin
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Dagger Pipelines
         run: |
           fluentci run plugin/target/wasm32-unknown-unknown/release/nixpacks.wasm plan example/samples/php-api --format json
@@ -31,6 +33,8 @@ jobs:
           jq . < ./plan.json
           dagger call build --src . --path example/samples/php-api --name php-api
         working-directory: nixpacks
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   publish:
     needs: test
     runs-on: ubuntu-latest
