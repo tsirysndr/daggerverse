@@ -311,7 +311,8 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "extism-pdk",
- "fluentci-pdk 0.1.9",
+ "fluentci-pdk 0.2.0",
+ "fluentci-types",
 ]
 
 [[package]]

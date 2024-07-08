@@ -16,4 +16,5 @@ crate-type = [
 [dependencies]
 anyhow = "1.0.82"
 extism-pdk = "1.1.0"
-fluentci-pdk = "0.1.9"
+fluentci-pdk = "0.2.0"
+fluentci-types = "0.1.7"
