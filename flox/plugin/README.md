@@ -1,4 +1,4 @@
-# Devenv Plugin
+# Flox Plugin
 
 [![fluentci pipeline](https://shield.fluentci.io/x/flox)](https://pkg.fluentci.io/flox)
 
