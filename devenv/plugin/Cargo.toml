@@ -1,0 +1,19 @@
+[package]
+authors = [
+  "Tsiry Sandratraina <tsiry.sndr@fluentci.io>",
+]
+description = "Set up your CI/CD Pipeline with a specific version of Devenv"
+edition = "2021"
+license = "MIT"
+name = "devenv"
+version = "0.1.0"
+
+[lib]
+crate-type = [
+  "cdylib",
+]
+
+[dependencies]
+anyhow = "1.0.82"
+extism-pdk = "1.1.0"
+fluentci-pdk = "0.2.1"

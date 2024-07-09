@@ -1,0 +1,12 @@
+[package]
+authors = [
+  "Tsiry Sandratraina <tsiry.sndr@fluentci.io>",
+]
+description = "This plugin downloads the devenv CLI and installs nix packages defined in your devenv.nix"
+keywords = [
+  "devenv",
+  "nix",
+]
+license = "MIT"
+name = "devenv"
+version = "0.1.0"
