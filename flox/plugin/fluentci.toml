@@ -1,0 +1,12 @@
+[package]
+authors = [
+  "Tsiry Sandratraina <tsiry.sndr@fluentci.io>",
+]
+description = "This plugin downloads and installs flox"
+keywords = [
+  "flox",
+  "nix",
+]
+license = "MIT"
+name = "flox"
+version = "0.1.0"
