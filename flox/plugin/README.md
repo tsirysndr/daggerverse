@@ -35,7 +35,7 @@ use fluentci_pdk::dag;
 
 // ...
 
-dag().call("https://pkg.fluentci.io/flox@v0.1.0?wasm=1", "setup", vec!["latest"])?;
+dag().call("https://pkg.fluentci.io/flox@v0.1.1?wasm=1", "setup", vec!["latest"])?;
 ```
 
 ## 📚 Examples
