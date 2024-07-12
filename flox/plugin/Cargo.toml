@@ -6,7 +6,7 @@ description = "Set up your CI/CD Pipeline with a specific version of Flox"
 edition = "2021"
 license = "MIT"
 name = "flox"
-version = "0.1.0"
+version = "0.1.1"
 
 [lib]
 crate-type = [
