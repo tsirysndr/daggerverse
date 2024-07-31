@@ -1,0 +1,52 @@
+name: "Publish to Github Packages"
+on:
+  push:
+    tags:
+      - "*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "The existing tag to publish"
+        type: "string"
+        required: true
+jobs:
+  publish-wasm:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.tag || github.ref_name }}
+      - name: export PLUGIN env
+        run: |
+          export PLUGIN=$(echo ${{ inputs.tag || github.ref_name }} | awk -F'/' '{print $1}')
+          echo "PLUGIN=$PLUGIN" >> $GITHUB_ENV
+          echo "TAG=$(echo ${{ inputs.tag || github.ref_name }} | awk -F'/' '{print $2}')" >> $GITHUB_ENV
+      - name: Setup Fluent CI
+        uses: fluentci-io/setup-fluentci@v5
+        with:
+          wasm: true
+          plugin: rust
+          args: |
+            target_add wasm32-unknown-unknown
+            build --release --target wasm32-unknown-unknown -p $PLUGIN
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Log in to the Container registry
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Cache wasm-to-oci
+        uses: actions/cache@v4
+        with:
+          path: wasm-to-oci_linux-amd64.tar.gz
+          key: wasm-to-oci-${{ runner.os }}
+      - name: Publish to the Container registry
+        run: |
+          [ -f wasm-to-oci_linux-amd64.tar.gz ] || pkgx wget https://github.com/fluentci-io/wasm-to-oci/releases/download/v0.1.2/wasm-to-oci_linux-amd64.tar.gz
+          tar xvf wasm-to-oci_linux-amd64.tar.gz
+          export NAME=$(echo $PLUGIN | sed 's/-/_/g') && ./wasm-to-oci push target/wasm32-unknown-unknown/release/$NAME.wasm ghcr.io/tsirysndr/$PLUGIN:$TAG-wasm
