@@ -1,0 +1,14 @@
+[package]
+authors = [
+  "Tsiry Sandratraina <tsiry.sndr@fluentci.io>",
+]
+description = "Wiremock Plugin for FluentCI"
+keywords = [
+  "wiremock",
+  "mock",
+  "testing",
+  "api",
+]
+license = "MIT"
+name = "wiremock"
+version = "0.1.0"

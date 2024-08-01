@@ -604,6 +604,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "wiremock"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "extism-pdk",
+ "fluentci-pdk 0.2.1",
+ "fluentci-types",
+]
+
+[[package]]
 name = "yamllint"
 version = "0.1.0"
 dependencies = [

@@ -1,0 +1,33 @@
+name: ci
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/wiremock.yml
+      - "wiremock/**"
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Fluent CI
+        uses: fluentci-io/setup-fluentci@v5
+        with:
+          wasm: true
+          plugin: rust
+          args: |
+            target_add wasm32-unknown-unknown
+            build --release --target wasm32-unknown-unknown
+          working-directory: wiremock/plugin
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run Dagger Pipelines
+        run: |
+          fluentci run --wasm plugin/target/wasm32-unknown-unknown/release/wiremock.wasm start
+          fluentci run --wasm plugin/target/wasm32-unknown-unknown/release/wiremock.wasm stop
+          deno run -A src/dagger/list_jobs.ts
+          dagger functions
+        working-directory: wiremock
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
