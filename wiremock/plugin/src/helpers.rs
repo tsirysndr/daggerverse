@@ -44,7 +44,7 @@ pub fn setup() -> Result<String, Error> {
         ])?
         .with_exec(vec!["[ -f ../../mappings/github.com-ghes-2.21-stubs.json ] || pkgx wget -O ../../mappings/github.com-ghes-2.21-stubs.json  https://raw.githubusercontent.com/tsirysndr/daggerverse/main/wiremock/mappings/github.com-ghes-2.21-stubs.json"])?
         .with_exec(vec![
-            "grep -q wiremock: Procfile || echo -e 'wiremock: wiremock --port $WIREMOCK_PORT \\n' >> Procfile",
+            "grep -q wiremock: Procfile || echo -e 'wiremock: cd ../../ && wiremock --port $WIREMOCK_PORT \\n' >> Procfile",
         ])?
         .stdout()?;
 
