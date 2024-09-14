@@ -29,14 +29,14 @@ pub fn build(args: String) -> FnResult<String> {
         .with_exec(vec!["pkgx", "install", "docker", "wget"])?
         .with_exec(vec![&format!(
             r#"
-          if [ ! -f $HOME/.docker/cli-plugins/{} ]; then
+          if [ ! -f $HOME/.docker/cli-plugins/docker-buildx ]; then
             wget {};
             chmod +x {};
             mkdir -p $HOME/.docker/cli-plugins;
-            mv {} $HOME/.docker/cli-plugins;
+            mv {} $HOME/.docker/cli-plugins/docker-buildx;
           fi
         "#,
-            buildx_plugin, buildx_download_url, buildx_plugin, buildx_plugin
+            buildx_download_url, buildx_plugin, buildx_plugin
         )])?
         .with_exec(vec!["docker buildx rm builder || true"])?
         .with_exec(vec![
@@ -78,14 +78,14 @@ pub fn build_cloud(args: String) -> FnResult<String> {
         .with_exec(vec!["pkgx", "install", "docker", "wget"])?
         .with_exec(vec![&format!(
             r#"
-          if [ ! -f $HOME/.docker/cli-plugins/{} ]; then
+          if [ ! -f $HOME/.docker/cli-plugins/docker-buildx ]; then
             wget {};
             chmod +x {};
             mkdir -p $HOME/.docker/cli-plugins;
-            mv {} $HOME/.docker/cli-plugins;
+            mv {} $HOME/.docker/cli-plugins/docker-buildx;
           fi
         "#,
-            buildx_plugin, buildx_download_url, buildx_plugin, buildx_plugin
+            buildx_download_url, buildx_plugin, buildx_plugin
         )])?
         .with_exec(vec![&format!(
             "docker buildx create --driver cloud {} || true",
