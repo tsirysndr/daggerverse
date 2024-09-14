@@ -1,11 +1,11 @@
 import {
   dag,
   Directory,
-  DirectoryID,
+  type DirectoryID,
   Secret,
-  SecretID,
+  type SecretID,
   CacheSharingMode,
-} from "../../deps.ts";
+} from "../deps.ts";
 
 export const getDirectory = async (
   src: string | Directory | undefined = "."

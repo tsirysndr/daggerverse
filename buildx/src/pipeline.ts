@@ -1,4 +1,4 @@
-import { env } from "../../deps.ts";
+import { env } from "../deps.ts";
 import * as jobs from "./jobs.ts";
 
 const { build } = jobs;

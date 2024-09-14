@@ -8,15 +8,17 @@ use helpers::detect_system;
 
 #[plugin_fn]
 pub fn build(args: String) -> FnResult<String> {
-    let version = dag().get_env("BUILDX_VERSION").unwrap_or("v0.13.1".into());
+    let version = dag()
+        .get_env("BUILDX_VERSION")
+        .unwrap_or("v0.17.1-desktop.1".into());
     let version = match version.as_str() {
-        "" => "v0.13.1".into(),
+        "" => "v0.17.1-desktop.1".into(),
         _ => version,
     };
     let (os, arch) = detect_system()?;
 
     let buildx_download_url = format!(
-        "https://github.com/docker/buildx/releases/download/{}/buildx-{}.{}-{}",
+        "https://github.com/docker/buildx-desktop/releases/download/{}/buildx-{}.{}-{}",
         version, version, os, arch
     );
 

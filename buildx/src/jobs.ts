@@ -2,10 +2,10 @@
  * @module buildx
  * @description This module provides a set of functions to build an OCI image from your project using buildx.
  */
-import { Secret } from "../../deps.ts";
-import { dag, Directory, Container, File } from "../../deps.ts";
-import { docker, getRegistryPassword } from "./lib.ts";
-import { getDirectory } from "./lib.ts";
+import type { Secret } from "../deps.ts";
+import { dag, type Directory, type Container, type File } from "../deps.ts";
+import { docker, getRegistryPassword } from "./helpers.ts";
+import { getDirectory } from "./helpers.ts";
 
 export enum Job {
   build = "build",
