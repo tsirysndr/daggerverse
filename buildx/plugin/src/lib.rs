@@ -7,6 +7,49 @@ mod helpers;
 use helpers::detect_system;
 
 #[plugin_fn]
+pub fn setup(_args: String) -> FnResult<String> {
+    let version = dag()
+        .get_env("BUILDX_VERSION")
+        .unwrap_or("v0.17.1-desktop.1".into());
+    let version = match version.as_str() {
+        "" => "v0.17.1-desktop.1".into(),
+        _ => version,
+    };
+    let (os, arch) = detect_system()?;
+
+    let buildx_download_url = format!(
+        "https://github.com/docker/buildx-desktop/releases/download/{}/buildx-{}.{}-{}",
+        version, version, os, arch
+    );
+
+    let buildx_plugin = format!("buildx-{}.{}-{}", version, os, arch);
+    let stdout = dag()
+        .pipeline("build")?
+        .pkgx()?
+        .with_exec(vec!["pkgx", "install", "docker", "wget"])?
+        .with_exec(vec![&format!(
+            r#"
+          if [ ! -f $HOME/.docker/cli-plugins/docker-buildx ]; then
+            wget {};
+            chmod +x {};
+            mkdir -p $HOME/.docker/cli-plugins;
+            mv {} $HOME/.docker/cli-plugins/docker-buildx;
+          fi
+        "#,
+            buildx_download_url, buildx_plugin, buildx_plugin
+        )])?
+        .with_exec(vec!["docker buildx rm builder || true"])?
+        .with_exec(vec![
+            "docker", "buildx", "create", "--name", "builder", "--use",
+        ])?
+        .with_exec(vec!["docker", "buildx", "inspect", "--bootstrap"])?
+        .with_exec(vec!["docker", "buildx", "version"])?
+        .with_exec(vec!["docker", "-v"])?
+        .stdout()?;
+    Ok(stdout)
+}
+
+#[plugin_fn]
 pub fn build(args: String) -> FnResult<String> {
     let version = dag()
         .get_env("BUILDX_VERSION")
