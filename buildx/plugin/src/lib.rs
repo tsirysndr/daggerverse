@@ -26,7 +26,7 @@ pub fn setup(_args: String) -> FnResult<String> {
     let stdout = dag()
         .pipeline("build")?
         .pkgx()?
-        .with_exec(vec!["pkgx", "install", "docker", "wget"])?
+        .with_exec(vec!["pkgm", "install", "docker", "wget"])?
         .with_exec(vec![&format!(
             r#"
           if [ ! -f $HOME/.docker/cli-plugins/docker-buildx ]; then
@@ -69,7 +69,7 @@ pub fn build(args: String) -> FnResult<String> {
     let stdout = dag()
         .pipeline("build")?
         .pkgx()?
-        .with_exec(vec!["pkgx", "install", "docker", "wget"])?
+        .with_exec(vec!["pkgm", "install", "docker", "wget"])?
         .with_exec(vec![&format!(
             r#"
           if [ ! -f $HOME/.docker/cli-plugins/docker-buildx ]; then
@@ -119,7 +119,7 @@ pub fn build_cloud(args: String) -> FnResult<String> {
     let stdout = dag()
         .pipeline("build")?
         .pkgx()?
-        .with_exec(vec!["pkgx", "install", "docker", "wget"])?
+        .with_exec(vec!["pkgm", "install", "docker", "wget"])?
         .with_exec(vec![&format!(
             r#"
           if [ ! -f $HOME/.docker/cli-plugins/docker-buildx ]; then
@@ -165,7 +165,7 @@ pub fn publish(args: String) -> FnResult<String> {
     let stdout = dag()
         .pipeline("publish")?
         .pkgx()?
-        .with_exec(vec!["pkgx", "install", "docker"])?
+        .with_exec(vec!["pkgm, "install", "docker"])?
         .with_exec(vec!["echo $REGISTRY_PASSWORD | docker login $REGISTRY_URL -u $REGISTRY_USER --password-stdin"])?
         .with_exec(vec!["docker", "push", &args])?
         .stdout()?;
