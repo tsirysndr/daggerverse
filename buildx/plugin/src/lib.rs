@@ -26,11 +26,11 @@ pub fn setup(_args: String) -> FnResult<String> {
     let stdout = dag()
         .pipeline("build")?
         .pkgx()?
-        .with_exec(vec!["pkgm", "install", "docker", "wget"])?
+        .with_exec(vec!["pkgm", "install", "docker"])?
         .with_exec(vec![&format!(
             r#"
           if [ ! -f $HOME/.docker/cli-plugins/docker-buildx ]; then
-            wget {};
+            pkgx wget@1.21.4 {};
             chmod +x {};
             mkdir -p $HOME/.docker/cli-plugins;
             mv {} $HOME/.docker/cli-plugins/docker-buildx;
@@ -69,11 +69,11 @@ pub fn build(args: String) -> FnResult<String> {
     let stdout = dag()
         .pipeline("build")?
         .pkgx()?
-        .with_exec(vec!["pkgm", "install", "docker", "wget"])?
+        .with_exec(vec!["pkgm", "install", "docker"])?
         .with_exec(vec![&format!(
             r#"
           if [ ! -f $HOME/.docker/cli-plugins/docker-buildx ]; then
-            wget {};
+            pkgx wget@1.21.4 {};
             chmod +x {};
             mkdir -p $HOME/.docker/cli-plugins;
             mv {} $HOME/.docker/cli-plugins/docker-buildx;
@@ -119,11 +119,11 @@ pub fn build_cloud(args: String) -> FnResult<String> {
     let stdout = dag()
         .pipeline("build")?
         .pkgx()?
-        .with_exec(vec!["pkgm", "install", "docker", "wget"])?
+        .with_exec(vec!["pkgm", "install", "docker"])?
         .with_exec(vec![&format!(
             r#"
           if [ ! -f $HOME/.docker/cli-plugins/docker-buildx ]; then
-            wget {};
+            pkgx wget@1.21.4 {};
             chmod +x {};
             mkdir -p $HOME/.docker/cli-plugins;
             mv {} $HOME/.docker/cli-plugins/docker-buildx;
