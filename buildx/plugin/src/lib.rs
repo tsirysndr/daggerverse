@@ -165,7 +165,7 @@ pub fn publish(args: String) -> FnResult<String> {
     let stdout = dag()
         .pipeline("publish")?
         .pkgx()?
-        .with_exec(vec!["pkgm," "install", "docker"])?
+        .with_exec(vec!["pkgm", "install", "docker"])?
         .with_exec(vec!["echo $REGISTRY_PASSWORD | docker login $REGISTRY_URL -u $REGISTRY_USER --password-stdin"])?
         .with_exec(vec!["docker", "push", &args])?
         .stdout()?;
