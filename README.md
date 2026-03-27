@@ -45,8 +45,8 @@ See [documentation](https://docs.dagger.io) for more information about dagger mo
 | [nix](./nix)                | Nix package manager |
 | [nixpacks](./nixpacks/)     | Build an OCI image of your project using [nixpacks](https://nixpacks.com/) |
 | [open-policy-agent](./open-policy-agent/)  | Daggerized version of [Open Policy Agent](https://www.openpolicyagent.org/) |
-| [phpcbf](./phpcbf/)         | Daggerized version of [phpcbf](https://github.com/squizlabs/PHP_CodeSniffer) |
-| [phpcs](./phpcs/)           | PHP Code Sniffer [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) |
+| [phpcbf](./phpcbf/)         | Daggerized version of [phpcbf](https://github.com/PHPCSStandards/PHP_CodeSniffer) |
+| [phpcs](./phpcs/)           | PHP Code Sniffer [phpcs](https://github.com/PHPCSStandards/PHP_CodeSniffer) |
 | [php-cs-fixer](./php-cs-fixer/) | PHP Coding Standards Fixer [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) |
 | [pkgx](./pkgx/)             | Daggerized version of [pkgx](https://pkgx.sh) |
 | [r2-sync](./r2-sync/)       | Sync files from local directory to Cloudflare [R2](https://www.cloudflare.com/developer-platform/r2/) |
